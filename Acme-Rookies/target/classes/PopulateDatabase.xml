@@ -426,7 +426,7 @@
 		<property name="moment" value="01/03/2019 23:59"/>
 		<property name="explication" value=""/>
 		<property name="urlCode" value=""/>
-		<property name="submitMoment" value=""/>
+		<property name="submitMoment" value="02/03/2019 23:59"/>
 		<property name="status" value="0"/>
 		<property name="hacker" ref="hacker2"/>
 		<property name="curricula" ref="curricula1"/>
