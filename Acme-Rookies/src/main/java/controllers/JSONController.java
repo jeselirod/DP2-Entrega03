@@ -17,7 +17,7 @@ import security.LoginService;
 import services.ActorService;
 import services.HackerService;
 import domain.Actor;
-import domain.Hacker;
+import domain.Rookie;
 import domain.Position;
 
 @Controller
@@ -38,7 +38,7 @@ public class JSONController extends AbstractController {
 			final int id = LoginService.getPrincipal().getId();
 			final Actor a = this.actorService.getActorByUserAccount(id);
 			final ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-			final Hacker h = this.hackerService.hackerUserAccount(id);
+			final Rookie h = this.hackerService.hackerUserAccount(id);
 			String json;
 			if (this.hackerService.hackerUserAccount(id) != null) {
 				final Collection<Position> positions = h.getFinder().getPositions();

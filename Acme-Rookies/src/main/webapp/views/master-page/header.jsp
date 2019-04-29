@@ -40,9 +40,9 @@
 		
 		
 		<security:authorize access="hasRole('HACKER')">
-			<li><a href="finder/hacker/edit.do"><spring:message code="master.page.finder" /></a></li>
-			<li><a href="application/hacker/list.do"><spring:message code="master.page.application" /></a></li>
-			<li><a href="curricula/hacker/list.do"><spring:message code="master.page.curricula" /></a></li>
+			<li><a href="finder/rookie/edit.do"><spring:message code="master.page.finder" /></a></li>
+			<li><a href="application/rookie/list.do"><spring:message code="master.page.application" /></a></li>
+			<li><a href="curricula/rookie/list.do"><spring:message code="master.page.curricula" /></a></li>
 		</security:authorize>
 		
 		<security:authorize access="isAnonymous()">
@@ -51,7 +51,7 @@
 				<ul>
 					<li class="arrow"></li>
 					<li><a href="company/create.do"><spring:message code="master.page.company.register" /></a></li>
-					<li><a href="hacker/create.do"><spring:message code="master.page.hacker.register" /></a></li>
+					<li><a href="rookie/create.do"><spring:message code="master.page.hacker.register" /></a></li>
 				</ul>
 			<li><a href="company/list.do"><spring:message code="master.page.company" /></a></li>
 			<li><a href="position/listAll.do"><spring:message code="master.page.position" /></a></li>

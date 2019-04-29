@@ -19,7 +19,7 @@ import org.hibernate.validator.constraints.Range;
 @Access(AccessType.PROPERTY)
 public class Curricula extends DomainEntity {
 
-	private Hacker							hacker;
+	private Rookie							rookie;
 	private PersonalData					personalData;
 	private Collection<PositionData>		positionData;
 	private Collection<EducationData>		educationData;
@@ -39,12 +39,12 @@ public class Curricula extends DomainEntity {
 	@NotNull
 	@Valid
 	@ManyToOne(optional = false)
-	public Hacker getHacker() {
-		return this.hacker;
+	public Rookie getRookie() {
+		return this.rookie;
 	}
 
-	public void setHacker(final Hacker hacker) {
-		this.hacker = hacker;
+	public void setRookie(final Rookie rookie) {
+		this.rookie = rookie;
 	}
 
 	@NotNull

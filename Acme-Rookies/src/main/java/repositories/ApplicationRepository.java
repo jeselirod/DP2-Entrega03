@@ -13,10 +13,10 @@ import domain.Application;
 @Repository
 public interface ApplicationRepository extends JpaRepository<Application, Integer> {
 
-	@Query("select avg(1.0*(select count(a.hacker) from Application a where a.hacker.id = h.id)), min(1.0*(select count(a.hacker) from Application a where a.hacker.id = h.id)), max(1.0*(select count(a.hacker) from Application a where a.hacker.id = h.id)), sqrt(1.0*sum(1.0*(select count (a.hacker) from Application a where a.hacker.id = h.id) * (select count(a.hacker) from Application a where a.hacker.id = h.id)) / count(h) - avg(1.0*(select count(a.hacker) from Application a where a.hacker.id = h.id)) * avg(1.0*(select count(a.hacker) from Application a where a.hacker.id = h.id))) from Hacker h")
+	@Query("select avg(1.0*(select count(a.rookie) from Application a where a.rookie.id = h.id)), min(1.0*(select count(a.rookie) from Application a where a.rookie.id = h.id)), max(1.0*(select count(a.rookie) from Application a where a.rookie.id = h.id)), sqrt(1.0*sum(1.0*(select count (a.rookie) from Application a where a.rookie.id = h.id) * (select count(a.rookie) from Application a where a.rookie.id = h.id)) / count(h) - avg(1.0*(select count(a.rookie) from Application a where a.rookie.id = h.id)) * avg(1.0*(select count(a.rookie) from Application a where a.rookie.id = h.id))) from Rookie h")
 	public List<Object[]> getAvgMinMaxDesvAppByHackers();
 
-	@Query("select a from Application a where a.hacker.id = ?1")
+	@Query("select a from Application a where a.rookie.id = ?1")
 	public Collection<Application> getAllMyApplicationsHacker(int id);
 
 }

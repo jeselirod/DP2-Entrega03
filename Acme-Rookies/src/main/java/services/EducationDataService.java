@@ -48,7 +48,7 @@ public class EducationDataService {
 		final UserAccount user = LoginService.getPrincipal();
 		final Actor a = this.actorS.getActorByUserAccount(user.getId());
 		Assert.isTrue(user.getAuthorities().iterator().next().getAuthority().equals("HACKER"));
-		Assert.isTrue(curricula.getHacker() == a);
+		Assert.isTrue(curricula.getRookie() == a);
 		return educationData;
 	}
 
@@ -57,7 +57,7 @@ public class EducationDataService {
 		final UserAccount user = LoginService.getPrincipal();
 		final Actor a = this.actorS.getActorByUserAccount(user.getId());
 		if (educationData.getId() != 0)
-			Assert.isTrue(curricula.getHacker() == a);
+			Assert.isTrue(curricula.getRookie() == a);
 
 		Assert.isTrue(user.getAuthorities().iterator().next().getAuthority().equals("HACKER"));
 		Assert.isTrue(educationData != null && educationData.getEndDate().after(educationData.getStartDate()));
@@ -69,7 +69,7 @@ public class EducationDataService {
 		final UserAccount user = this.actorS.getActorLogged().getUserAccount();
 		final Actor a = this.actorS.getActorByUserAccount(user.getId());
 		Assert.isTrue(user.getAuthorities().iterator().next().getAuthority().equals("HACKER"));
-		Assert.isTrue(curricula.getHacker() == a);
+		Assert.isTrue(curricula.getRookie() == a);
 		Assert.isTrue(curricula.getEducationData().contains(educationData));
 		curricula.getEducationData().remove(educationData);
 		this.educationDataRepository.delete(educationData);

@@ -70,7 +70,7 @@ public class ApplicationServiceTest extends AbstractTest {
 
 			final Application a = this.applicationService.create();
 			a.setMoment(new Date());
-			a.setHacker(this.hackerService.findOne(hackerId));
+			a.setRookie(this.hackerService.findOne(hackerId));
 			a.setCurricula(this.curriculaService.findOne(curriculaId));
 			final int idPosition = super.getEntityId("position1");
 			final Position position = this.positionService.findOne(idPosition);

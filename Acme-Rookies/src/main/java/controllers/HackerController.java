@@ -15,7 +15,7 @@ import services.CreditCardService;
 import services.CustomizableSystemService;
 import services.HackerService;
 import domain.CreditCard;
-import domain.Hacker;
+import domain.Rookie;
 import forms.RegistrationFormHacker;
 
 @Controller
@@ -49,18 +49,18 @@ public class HackerController extends AbstractController {
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
 	public ModelAndView save(@ModelAttribute("registrationForm") final RegistrationFormHacker registrationForm, final BindingResult binding) {
 		ModelAndView result;
-		Hacker hacker = null;
+		Rookie rookie = null;
 		CreditCard creditcard = null;
 		CreditCard creditCardSave = null;
 
 		try {
 			creditcard = this.creditCardService.reconstruct(registrationForm, binding);
 			registrationForm.setCreditCard(creditcard);
-			hacker = this.hackerService.reconstruct(registrationForm, binding);
+			rookie = this.hackerService.reconstruct(registrationForm, binding);
 			if (!binding.hasErrors() && registrationForm.getUserAccount().getPassword().equals(registrationForm.getPassword())) {
 				creditCardSave = this.creditCardService.save(creditcard);
-				hacker.setCreditCard(creditCardSave);
-				this.hackerService.save(hacker);
+				rookie.setCreditCard(creditCardSave);
+				this.hackerService.save(rookie);
 				result = new ModelAndView("redirect:/");
 			} else {
 

@@ -30,7 +30,7 @@ import domain.Actor;
 import domain.Administrator;
 import domain.Company;
 import domain.CreditCard;
-import domain.Hacker;
+import domain.Rookie;
 import forms.RegistrationForm;
 import forms.RegistrationFormCompanyAndCreditCard;
 import forms.RegistrationFormHacker;
@@ -233,29 +233,29 @@ public class ProfileController extends AbstractController {
 	public ModelAndView editHacker() {
 		ModelAndView result;
 		final RegistrationFormHacker registrationForm = new RegistrationFormHacker();
-		Hacker hacker;
+		Rookie rookie;
 		CreditCard creditCard;
 		try {
 
-			hacker = this.hackerService.findOne(this.hackerService.hackerUserAccount(LoginService.getPrincipal().getId()).getId());
-			creditCard = hacker.getCreditCard();
-			Assert.notNull(hacker);
-			registrationForm.setId(hacker.getId());
-			registrationForm.setVersion(hacker.getVersion());
-			registrationForm.setName(hacker.getName());
-			registrationForm.setVatNumber(hacker.getVatNumber());
-			registrationForm.setSurnames(hacker.getSurnames());
-			registrationForm.setPhoto(hacker.getPhoto());
-			registrationForm.setEmail(hacker.getEmail());
-			registrationForm.setPhone(hacker.getPhone());
-			registrationForm.setCreditCard(hacker.getCreditCard());
-			registrationForm.setAddress(hacker.getAddress());
-			registrationForm.setPassword(hacker.getUserAccount().getPassword());
+			rookie = this.hackerService.findOne(this.hackerService.hackerUserAccount(LoginService.getPrincipal().getId()).getId());
+			creditCard = rookie.getCreditCard();
+			Assert.notNull(rookie);
+			registrationForm.setId(rookie.getId());
+			registrationForm.setVersion(rookie.getVersion());
+			registrationForm.setName(rookie.getName());
+			registrationForm.setVatNumber(rookie.getVatNumber());
+			registrationForm.setSurnames(rookie.getSurnames());
+			registrationForm.setPhoto(rookie.getPhoto());
+			registrationForm.setEmail(rookie.getEmail());
+			registrationForm.setPhone(rookie.getPhone());
+			registrationForm.setCreditCard(rookie.getCreditCard());
+			registrationForm.setAddress(rookie.getAddress());
+			registrationForm.setPassword(rookie.getUserAccount().getPassword());
 			registrationForm.setCheck(true);
 			registrationForm.setPatternPhone(false);
 			final UserAccount userAccount = new UserAccount();
-			userAccount.setUsername(hacker.getUserAccount().getUsername());
-			userAccount.setPassword(hacker.getUserAccount().getPassword());
+			userAccount.setUsername(rookie.getUserAccount().getUsername());
+			userAccount.setPassword(rookie.getUserAccount().getPassword());
 			registrationForm.setUserAccount(userAccount);
 			registrationForm.setBrandName(creditCard.getBrandName());
 			registrationForm.setHolderName(creditCard.getHolderName());
@@ -283,11 +283,11 @@ public class ProfileController extends AbstractController {
 		try {
 			final CreditCard creditCard = this.creditCardService.reconstruct(registrationForm, binding);
 			registrationForm.setCreditCard(creditCard);
-			final Hacker hacker = this.hackerService.reconstruct(registrationForm, binding);
+			final Rookie rookie = this.hackerService.reconstruct(registrationForm, binding);
 			if (!binding.hasErrors()) {
 				final CreditCard creditCardSave = this.creditCardService.save(creditCard);
-				hacker.setCreditCard(creditCardSave);
-				this.hackerService.save(hacker);
+				rookie.setCreditCard(creditCardSave);
+				this.hackerService.save(rookie);
 
 				result = new ModelAndView("redirect:personal-datas.do");
 			} else {

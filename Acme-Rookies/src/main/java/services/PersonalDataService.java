@@ -17,8 +17,8 @@ import security.LoginService;
 import security.UserAccount;
 import domain.Actor;
 import domain.Curricula;
-import domain.Hacker;
 import domain.PersonalData;
+import domain.Rookie;
 import forms.PersonalDataForm;
 
 @Service
@@ -60,13 +60,13 @@ public class PersonalDataService {
 		final UserAccount user = LoginService.getPrincipal();
 		final Actor a = this.actorS.getActorByUserAccount(user.getId());
 		Assert.isTrue(user.getAuthorities().iterator().next().getAuthority().equals("HACKER"));
-		Assert.isTrue(curricula.getHacker() == a);
+		Assert.isTrue(curricula.getRookie() == a);
 		return profileData;
 	}
 
 	public PersonalData save(final PersonalData personalData) {
 		final PersonalData personalDataSave;
-		final Hacker h = this.hackerService.hackerUserAccount(LoginService.getPrincipal().getId());
+		final Rookie h = this.hackerService.hackerUserAccount(LoginService.getPrincipal().getId());
 		//		if (h.getPhone() != "" || h.getPhone() != null) {
 		//			final String regexTelefono = "^\\+[1-9][0-9]{0,2}\\ \\([1-9][0-9]{0,2}\\)\\ [0-9]{4,}$|^\\+[1-9][0-9]{0,2}\\ [0-9]{4,}$|^[0-9]{4,}$";
 		//			final Pattern patternTelefono = Pattern.compile(regexTelefono);
@@ -77,7 +77,7 @@ public class PersonalDataService {
 		personalDataSave = this.personalDataRepository.save(personalData);
 		if (personalData.getId() == 0) {
 			final Curricula curricula = this.curriculaService.create();
-			curricula.setHacker(h);
+			curricula.setRookie(h);
 			curricula.setPersonalData(personalDataSave);
 			this.curriculaService.save(curricula);
 		}

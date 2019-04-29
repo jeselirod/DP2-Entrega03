@@ -19,9 +19,9 @@ import security.LoginService;
 import security.UserAccount;
 import domain.Application;
 import domain.Curricula;
-import domain.Hacker;
 import domain.Position;
 import domain.Problem;
+import domain.Rookie;
 
 @Service
 @Transactional
@@ -43,7 +43,7 @@ public class ApplicationService {
 		final Application a = new Application();
 		a.setCurricula(null);
 		a.setExplication("");
-		a.setHacker(null);
+		a.setRookie(null);
 		a.setMoment(new Date());
 		a.setStatus(0);
 		a.setSubmitMoment(null);
@@ -88,9 +88,9 @@ public class ApplicationService {
 			res = application;
 
 			final UserAccount user = LoginService.getPrincipal();
-			final Hacker h = this.hackerService.hackerUserAccount(user.getId());
+			final Rookie h = this.hackerService.hackerUserAccount(user.getId());
 
-			res.setHacker(h);
+			res.setRookie(h);
 			res.setStatus(0);
 			res.setMoment(new Date());
 			res.setExplication("");
@@ -108,7 +108,7 @@ public class ApplicationService {
 			a.setUrlCode(application.getUrlCode());
 			a.setStatus(application.getStatus());
 			a.setMoment(res.getMoment());
-			a.setHacker(res.getHacker());
+			a.setRookie(res.getRookie());
 			a.setSubmitMoment(new Date());
 			if (application.getExplication() == null || application.getExplication() == "")
 				binding.rejectValue("explication", "notBlank");

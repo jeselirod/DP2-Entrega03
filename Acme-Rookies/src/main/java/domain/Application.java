@@ -22,7 +22,7 @@ public class Application extends DomainEntity {
 	private String		urlCode;
 	private Date		submitMoment;
 	private int			status;
-	private Hacker		hacker;
+	private Rookie		rookie;
 	private Curricula	curricula;
 
 
@@ -40,12 +40,12 @@ public class Application extends DomainEntity {
 	@NotNull
 	@Valid
 	@ManyToOne(optional = false)
-	public Hacker getHacker() {
-		return this.hacker;
+	public Rookie getRookie() {
+		return this.rookie;
 	}
 
-	public void setHacker(final Hacker hacker) {
-		this.hacker = hacker;
+	public void setRookie(final Rookie rookie) {
+		this.rookie = rookie;
 	}
 
 	@NotNull

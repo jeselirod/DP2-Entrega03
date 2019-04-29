@@ -67,24 +67,84 @@
 	</bean>
 
 	<bean id="userAccount5" class="security.UserAccount">
-		<property name="username" value="hacker" />
-		<property name="password" value="d6a6bc0db10694a2d90e3a69648f3a03" />
+		<property name="username" value="rookie" />
+		<property name="password" value="891fbc7a93834f52f62785c3dddcda05" />
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
-					<property name="authority" value="HACKER" />
+					<property name="authority" value="ROOKIE" />
 				</bean>
 			</list>
 		</property>
 	</bean>
 	
 	<bean id="userAccount6" class="security.UserAccount">
-		<property name="username" value="hacker1" />
-		<property name="password" value="2ba2a8ac968a7a2b0a7baa7f2fef18d2" />
+		<property name="username" value="rookie1" />
+		<property name="password" value="9701eb1802a4c63f51e1501512fbdd30" />
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
-					<property name="authority" value="HACKER" />
+					<property name="authority" value="ROOKIE" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="userAccount7" class="security.UserAccount">
+		<property name="username" value="auditor" />
+		<property name="password" value="f7d07071ed9431ecae3a8d45b4c82bb2" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="AUDITOR" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="userAccount8" class="security.UserAccount">
+		<property name="username" value="auditor1" />
+		<property name="password" value="175d2e7a63f386554a4dd66e865c3e14" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="AUDITOR" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="userAccount9" class="security.UserAccount">
+		<property name="username" value="auditor2" />
+		<property name="password" value="04dd94ba3212ac52ad3a1f4cbfb52d4f" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="AUDITOR" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="userAccount10" class="security.UserAccount">
+		<property name="username" value="provider" />
+		<property name="password" value="9e9f3d70bd8c8957627eada96d967706" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="PROVIDER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="userAccount11" class="security.UserAccount">
+		<property name="username" value="provider1" />
+		<property name="password" value="cdb82d56473901641525fbbd1d5dab56" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="PROVIDER" />
 				</bean>
 			</list>
 		</property>
@@ -119,6 +179,48 @@
 	</bean>
 	
 
+
+	<!-- AUDITOR -->
+	<bean id="auditor1" class="domain.Auditor">
+		<property name="name" value="David"/>
+		<property name="surnames" value="Lorca"/>
+		<property name="vatNumber" value="ES12345678S"/>
+		<property name="photo" value="https://www.imagen.com.mx/assets/img/imagen_share.png"/>
+		<property name="email" value="david@hotmail.com"/>
+		<property name="phone" value="654654654"/>
+		<property name="address" value="Sevilla"/>
+		<property name="userAccount" ref="userAccount7"/>
+		<property name="creditCard" ref="creditCard7"/>
+	
+	</bean>
+	
+	<bean id="auditor2" class="domain.Auditor">
+		<property name="name" value="Fatima"/>
+		<property name="surnames" value="Lorca"/>
+		<property name="vatNumber" value="LK12345678S"/>
+		<property name="photo" value="https://www.imagen.com.mx/assets/img/imagen_share.png"/>
+		<property name="email" value="fatima@hotmail.com"/>
+		<property name="phone" value="654654654"/>
+		<property name="address" value="Sevilla"/>
+		<property name="userAccount" ref="userAccount8"/>
+		<property name="creditCard" ref="creditCard8"/>
+	
+	</bean>
+	
+	<bean id="auditor3" class="domain.Auditor">
+		<property name="name" value="manuel"/>
+		<property name="surnames" value="Lorca"/>
+		<property name="vatNumber" value="ES12345678S"/>
+		<property name="photo" value="https://www.imagen.com.mx/assets/img/imagen_share.png"/>
+		<property name="email" value="manuel@hotmail.com"/>
+		<property name="phone" value="654654654"/>
+		<property name="address" value="Sevilla"/>
+		<property name="userAccount" ref="userAccount9"/>
+		<property name="creditCard" ref="creditCard9"/>
+	
+	</bean>
+	
+	
 	
 	<!-- ADMINISTRATOR -->
 	
@@ -179,7 +281,7 @@
 	
 		<!-- Hacker -->
 	
-	<bean id="hacker1" class="domain.Hacker">
+	<bean id="hacker1" class="domain.Rookie">
 		<property name="name" value="Cristian"/>
 		<property name="surnames" value="Lorca"/>
 		<property name="vatNumber" value="PA12345678U"/>
@@ -193,7 +295,7 @@
 	
 	</bean>
 	
-		<bean id="hacker2" class="domain.Hacker">
+		<bean id="hacker2" class="domain.Rookie">
 		<property name="name" value="Raul"/>
 		<property name="surnames" value="Rodriguez"/>
 		<property name="vatNumber" value="QA12345678U"/>
@@ -261,7 +363,7 @@
 			</list>
 		</property>
 		<property name="isCancelled" value="0" />
-	
+		<property name="auditor" ref="auditor1"/>
 	</bean>
 	
 	<bean id="position2" class="domain.Position">
@@ -281,6 +383,7 @@
 			</list>
 		</property>
 		<property name="isCancelled" value="0"/>
+		<property name="auditor" ref="auditor2"/>
 	
 	</bean>
 	
@@ -302,7 +405,7 @@
 			</list>
 		</property>
 		<property name="isCancelled" value="0"/>
-	
+		<property name="auditor" ref="auditor3"/>
 	</bean>
 	
 	<!-- PROBLEM -->
@@ -398,7 +501,7 @@
 		<property name="urlCode" value="https://www.google.es/?gws_rd=ssl"/>
 		<property name="submitMoment" value="01/03/2019 23:59"/>
 		<property name="status" value="1"/>
-		<property name="hacker" ref="hacker1"/>
+		<property name="rookie" ref="hacker1"/>
 		<property name="curricula" ref="curricula1"/>
 	</bean>
 	
@@ -408,7 +511,7 @@
 		<property name="urlCode" value="https://www.google.es/?gws_rd=ssl"/>
 		<property name="submitMoment" value="01/03/2019 23:59"/>
 		<property name="status" value="1"/>
-		<property name="hacker" ref="hacker1"/>
+		<property name="rookie" ref="hacker1"/>
 		<property name="curricula" ref="curricula1"/>
 	</bean>
 	
@@ -418,7 +521,7 @@
 		<property name="urlCode" value="https://www.google.es/?gws_rd=ssl"/>
 		<property name="submitMoment" value="01/03/2019 23:59"/>
 		<property name="status" value="1"/>
-		<property name="hacker" ref="hacker1"/>
+		<property name="rookie" ref="hacker1"/>
 		<property name="curricula" ref="curricula1"/>
 	</bean>
 	
@@ -428,7 +531,7 @@
 		<property name="urlCode" value=""/>
 		<property name="submitMoment" value="02/03/2019 23:59"/>
 		<property name="status" value="0"/>
-		<property name="hacker" ref="hacker2"/>
+		<property name="rookie" ref="hacker2"/>
 		<property name="curricula" ref="curricula1"/>
 	</bean>
 	
@@ -438,7 +541,7 @@
 		<property name="urlCode" value="https://www.google.es/?gws_rd=ssl"/>
 		<property name="submitMoment" value="01/03/2019 23:59"/>
 		<property name="status" value="1"/>
-		<property name="hacker" ref="hacker2"/>
+		<property name="rookie" ref="hacker2"/>
 		<property name="curricula" ref="curricula1"/>
 	</bean>
 	
@@ -548,7 +651,7 @@
 	
 	<!-- Curricula -->
 	<bean id="curricula1" class="domain.Curricula">
-		<property name="hacker" ref="hacker1"/>
+		<property name="rookie" ref="hacker1"/>
 		<property name="personalData" ref="personalData1"/>
 		<property name="positionData">
 			<list>
@@ -569,7 +672,7 @@
 	</bean>
 	
 	<bean id="curricula2" class="domain.Curricula">
-		<property name="hacker" ref="hacker2"/>
+		<property name="rookie" ref="hacker2"/>
 		<property name="personalData" ref="personalData2"/>
 		<property name="positionData">
 			<list>
@@ -647,6 +750,37 @@
 		<property name="CW" value="302"></property>
 	
 	</bean>
+	
+	<bean id="creditCard7" class="domain.CreditCard">
+		<property name="holderName" value="nombre7"></property>
+		<property name="brandName" value="VISA"></property>
+		<property name="number" value="4444894320560040"></property>
+		<property name="expirationMonth" value="6"></property>
+		<property name="expirationYear" value="2024"></property>
+		<property name="CW" value="245"></property>
+		
+	</bean>
+	
+	<bean id="creditCard8" class="domain.CreditCard">
+		<property name="holderName" value="nombre8"></property>
+		<property name="brandName" value="VISA"></property>
+		<property name="number" value="4705769057322836"></property>
+		<property name="expirationMonth" value="11"></property>
+		<property name="expirationYear" value="2022"></property>
+		<property name="CW" value="324"></property>
+		
+	</bean>
+	
+	<bean id="creditCard9" class="domain.CreditCard">
+		<property name="holderName" value="nombre9"></property>
+		<property name="brandName" value="VISA"></property>
+		<property name="number" value="4771598816781704"></property>
+		<property name="expirationMonth" value="1"></property>
+		<property name="expirationYear" value="2025"></property>
+		<property name="CW" value="602"></property>
+		
+	</bean>
+	
 	
 	
 </beans>

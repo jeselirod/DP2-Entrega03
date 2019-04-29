@@ -21,8 +21,8 @@ import services.CurriculaService;
 import services.HackerService;
 import services.MiscellaneousDataService;
 import domain.Curricula;
-import domain.Hacker;
 import domain.MiscellaneousData;
+import domain.Rookie;
 
 @Controller
 @RequestMapping("/miscellaneousData/hacker")
@@ -115,9 +115,9 @@ public class MiscellaneousDataHackerController extends AbstractController {
 			}
 		} catch (final Exception e) {
 			final UserAccount user = this.actorS.getActorLogged().getUserAccount();
-			final Hacker h = this.hackerService.hackerUserAccount(user.getId());
+			final Rookie h = this.hackerService.hackerUserAccount(user.getId());
 			final Curricula curricula = this.curriculaService.findOne(curriculaId);
-			if (h.equals(curricula.getHacker())) {
+			if (h.equals(curricula.getRookie())) {
 				result = new ModelAndView("miscellaneousData/edit");
 				result.addObject("miscellaneousData", miscellaneousData);
 				result.addObject("curricula", curricula);
@@ -136,9 +136,9 @@ public class MiscellaneousDataHackerController extends AbstractController {
 				final Curricula curricula = this.curriculaService.findOne(curriculaId);
 				Assert.notNull(curricula);
 				final UserAccount user = LoginService.getPrincipal();
-				final Hacker h = this.hackerService.hackerUserAccount(user.getId());
+				final Rookie h = this.hackerService.hackerUserAccount(user.getId());
 				Assert.isTrue(user.getAuthorities().iterator().next().getAuthority().equals("HACKER"));
-				Assert.isTrue(h.equals(curricula.getHacker()));
+				Assert.isTrue(h.equals(curricula.getRookie()));
 				this.miscellaneousDataService.delete(miscellaneousData, curriculaId);
 				result = new ModelAndView("redirect:list.do?curriculaId=" + curriculaId);
 			} else {
@@ -150,9 +150,9 @@ public class MiscellaneousDataHackerController extends AbstractController {
 			}
 		} catch (final Exception e) {
 			final UserAccount user = LoginService.getPrincipal();
-			final Hacker h = this.hackerService.hackerUserAccount(user.getId());
+			final Rookie h = this.hackerService.hackerUserAccount(user.getId());
 			final Curricula curricula = this.curriculaService.findOne(curriculaId);
-			if (h.equals(curricula.getHacker())) {
+			if (h.equals(curricula.getRookie())) {
 				result = new ModelAndView("miscellaneousData/edit");
 				result.addObject("miscellaneousData", miscellaneousData);
 				result.addObject("curricula", curricula);

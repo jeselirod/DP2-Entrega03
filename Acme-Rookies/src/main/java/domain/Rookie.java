@@ -10,7 +10,7 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Access(AccessType.PROPERTY)
-public class Hacker extends Actor {
+public class Rookie extends Actor {
 
 	private Finder	finder;
 

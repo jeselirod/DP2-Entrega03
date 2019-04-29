@@ -162,7 +162,7 @@ public class RegistrationFormHacker extends Actor {
 		final UserAccount user = new UserAccount();
 		user.setAuthorities(new HashSet<Authority>());
 		final Authority ad = new Authority();
-		ad.setAuthority(Authority.HACKER);
+		ad.setAuthority(Authority.ROOKIE);
 		user.getAuthorities().add(ad);
 
 		//NUEVO

@@ -15,7 +15,7 @@ import security.UserAccount;
 import services.CurriculaService;
 import services.HackerService;
 import domain.Curricula;
-import domain.Hacker;
+import domain.Rookie;
 
 @Controller
 @RequestMapping("/curricula/hacker")
@@ -33,7 +33,7 @@ public class CurriculaHackerController extends AbstractController {
 		final Collection<Curricula> curriculas;
 
 		final UserAccount user = LoginService.getPrincipal();
-		final Hacker h = this.hackerService.hackerUserAccount(user.getId());
+		final Rookie h = this.hackerService.hackerUserAccount(user.getId());
 
 		curriculas = this.curriculaService.getCurriculasByHacker(h.getId());
 		Assert.notNull(curriculas);

@@ -15,10 +15,10 @@ import security.LoginService;
 import security.UserAccount;
 import domain.Curricula;
 import domain.EducationData;
-import domain.Hacker;
 import domain.MiscellaneousData;
 import domain.PersonalData;
 import domain.PositionData;
+import domain.Rookie;
 
 @Service
 @Transactional
@@ -35,7 +35,7 @@ public class CurriculaService {
 	public Curricula create() {
 		final Curricula res = new Curricula();
 		final UserAccount user = this.actorS.getActorLogged().getUserAccount();
-		res.setHacker(this.hackerService.hackerUserAccount(user.getId()));
+		res.setRookie(this.hackerService.hackerUserAccount(user.getId()));
 		res.setEducationData(new HashSet<EducationData>());
 		res.setMiscellaneousData(new HashSet<MiscellaneousData>());
 		res.setPositionData(new HashSet<PositionData>());
@@ -50,9 +50,9 @@ public class CurriculaService {
 	public Curricula findOne(final Integer curriculaId) {
 		final Curricula curricula = this.curriculaRepository.findOne(curriculaId);
 		final UserAccount userAccount = LoginService.getPrincipal();
-		final Hacker hacker = this.hackerService.hackerUserAccount(userAccount.getId());
+		final Rookie rookie = this.hackerService.hackerUserAccount(userAccount.getId());
 		Assert.isTrue(userAccount.getAuthorities().iterator().next().getAuthority().equals("HACKER"));
-		Assert.isTrue(curricula.getHacker() == hacker);
+		Assert.isTrue(curricula.getRookie() == rookie);
 
 		return curricula;
 	}
@@ -61,14 +61,14 @@ public class CurriculaService {
 		final UserAccount user = LoginService.getPrincipal();
 		Assert.isTrue(user.getAuthorities().iterator().next().getAuthority().equals("HACKER"));
 		Assert.isTrue(curricula != null);
-		Assert.isTrue(curricula.getHacker().equals(this.hackerService.hackerUserAccount(user.getId())));
+		Assert.isTrue(curricula.getRookie().equals(this.hackerService.hackerUserAccount(user.getId())));
 		return this.curriculaRepository.save(curricula);
 	}
 
 	public void delete(final Curricula curricula) {
 		final UserAccount user = LoginService.getPrincipal();
 		Assert.isTrue(user.getAuthorities().iterator().next().getAuthority().equals("HACKER"));
-		Assert.isTrue(curricula.getHacker().equals(this.hackerService.hackerUserAccount(user.getId())));
+		Assert.isTrue(curricula.getRookie().equals(this.hackerService.hackerUserAccount(user.getId())));
 		this.curriculaRepository.delete(curricula);
 	}
 

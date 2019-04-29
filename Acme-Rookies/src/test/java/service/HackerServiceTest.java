@@ -14,7 +14,7 @@ import services.CreditCardService;
 import services.HackerService;
 import utilities.AbstractTest;
 import domain.CreditCard;
-import domain.Hacker;
+import domain.Rookie;
 import forms.RegistrationFormHacker;
 
 @ContextConfiguration(locations = {
@@ -63,7 +63,7 @@ public class HackerServiceTest extends AbstractTest {
 	protected void CreateHackerTemplate(final String name, final String surnames, final String vatNumber, final String email, final String username, final String password, final String confirmPassword, final String brandName, final String holderName,
 		final String number, final int expirationMonth, final int expirationYear, final int cW, final Class<?> expected) {
 		Class<?> caught;
-		Hacker hacker = null;
+		Rookie rookie = null;
 		CreditCard creditcard = null;
 		caught = null;
 		try {
@@ -96,10 +96,10 @@ public class HackerServiceTest extends AbstractTest {
 
 			creditcard = this.creditCardService.reconstruct(registrationForm, binding);
 			registrationForm.setCreditCard(creditcard);
-			hacker = this.hackerService.reconstruct(registrationForm, binding);
+			rookie = this.hackerService.reconstruct(registrationForm, binding);
 			final CreditCard creditCardSave = this.creditCardService.save(creditcard);
-			hacker.setCreditCard(creditCardSave);
-			this.hackerService.save(hacker);
+			rookie.setCreditCard(creditCardSave);
+			this.hackerService.save(rookie);
 
 		} catch (final Throwable oops) {
 			caught = oops.getClass();
@@ -142,7 +142,7 @@ public class HackerServiceTest extends AbstractTest {
 	protected void EditHackerTemplate(final String name, final String surnames, final String vatNumber, final String email, final String password, final String confirmPassword, final String brandName, final String holderName, final String number,
 		final int expirationMonth, final int expirationYear, final int cW, final int hackerId, final Class<?> expected) {
 		Class<?> caught;
-		Hacker hacker = null;
+		Rookie rookie = null;
 		CreditCard creditcard = null;
 		caught = null;
 		try {
@@ -151,9 +151,9 @@ public class HackerServiceTest extends AbstractTest {
 
 			registrationForm = registrationForm.createToHacker();
 
-			hacker = this.hackerService.findOne(hackerId);
-			registrationForm.setId(hacker.getId());
-			registrationForm.setVersion(hacker.getVersion());
+			rookie = this.hackerService.findOne(hackerId);
+			registrationForm.setId(rookie.getId());
+			registrationForm.setVersion(rookie.getVersion());
 			registrationForm.setBrandName(brandName);
 			registrationForm.setHolderName(holderName);
 			registrationForm.setNumber(number);
@@ -165,7 +165,7 @@ public class HackerServiceTest extends AbstractTest {
 			registrationForm.setSurnames(surnames);
 			registrationForm.setVatNumber(vatNumber);
 			registrationForm.setEmail(email);
-			registrationForm.getUserAccount().setUsername(hacker.getUserAccount().getUsername());
+			registrationForm.getUserAccount().setUsername(rookie.getUserAccount().getUsername());
 			registrationForm.getUserAccount().setPassword(password);
 			registrationForm.setPassword(confirmPassword);
 			registrationForm.setPhone("");
@@ -176,10 +176,10 @@ public class HackerServiceTest extends AbstractTest {
 
 			creditcard = this.creditCardService.reconstruct(registrationForm, binding);
 			registrationForm.setCreditCard(creditcard);
-			hacker = this.hackerService.reconstruct(registrationForm, binding);
+			rookie = this.hackerService.reconstruct(registrationForm, binding);
 			final CreditCard creditCardSave = this.creditCardService.save(creditcard);
-			hacker.setCreditCard(creditCardSave);
-			this.hackerService.save(hacker);
+			rookie.setCreditCard(creditCardSave);
+			this.hackerService.save(rookie);
 
 		} catch (final Throwable oops) {
 			caught = oops.getClass();

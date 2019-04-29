@@ -15,7 +15,7 @@ import repositories.CreditCardRepository;
 import domain.Administrator;
 import domain.Company;
 import domain.CreditCard;
-import domain.Hacker;
+import domain.Rookie;
 import forms.RegistrationForm;
 import forms.RegistrationFormCompanyAndCreditCard;
 import forms.RegistrationFormHacker;
@@ -198,9 +198,9 @@ public class CreditCardService {
 			this.validator.validate(res, binding);
 
 		} else {
-			Hacker hacker;
-			hacker = this.hackerService.findOne(registrationForm.getId());
-			res = hacker.getCreditCard();
+			Rookie rookie;
+			rookie = this.hackerService.findOne(registrationForm.getId());
+			res = rookie.getCreditCard();
 			final CreditCard p = new CreditCard();
 			p.setId(res.getId());
 			p.setVersion(res.getVersion());

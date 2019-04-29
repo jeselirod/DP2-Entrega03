@@ -22,7 +22,7 @@ import services.EducationDataService;
 import services.HackerService;
 import domain.Curricula;
 import domain.EducationData;
-import domain.Hacker;
+import domain.Rookie;
 
 @Controller
 @RequestMapping("/educationData/hacker")
@@ -115,9 +115,9 @@ public class EducationDataHackerController extends AbstractController {
 			}
 		} catch (final Exception e) {
 			final UserAccount user = this.actorS.getActorLogged().getUserAccount();
-			final Hacker h = this.hackerService.hackerUserAccount(user.getId());
+			final Rookie h = this.hackerService.hackerUserAccount(user.getId());
 			final Curricula curricula = this.curriculaService.findOne(curriculaId);
-			if (h.equals(curricula.getHacker())) {
+			if (h.equals(curricula.getRookie())) {
 				result = new ModelAndView("educationData/edit");
 				result.addObject("educationData", educationData);
 				result.addObject("curricula", curricula);
@@ -136,9 +136,9 @@ public class EducationDataHackerController extends AbstractController {
 				final Curricula curricula = this.curriculaService.findOne(curriculaId);
 				Assert.notNull(curricula);
 				final UserAccount user = LoginService.getPrincipal();
-				final Hacker h = this.hackerService.hackerUserAccount(user.getId());
+				final Rookie h = this.hackerService.hackerUserAccount(user.getId());
 				Assert.isTrue(user.getAuthorities().iterator().next().getAuthority().equals("HACKER"));
-				Assert.isTrue(h.equals(curricula.getHacker()));
+				Assert.isTrue(h.equals(curricula.getRookie()));
 				this.educationDataService.delete(educationData, curriculaId);
 				result = new ModelAndView("redirect:list.do?curriculaId=" + curriculaId);
 			} else {
@@ -150,9 +150,9 @@ public class EducationDataHackerController extends AbstractController {
 			}
 		} catch (final Exception e) {
 			final UserAccount user = LoginService.getPrincipal();
-			final Hacker h = this.hackerService.hackerUserAccount(user.getId());
+			final Rookie h = this.hackerService.hackerUserAccount(user.getId());
 			final Curricula curricula = this.curriculaService.findOne(curriculaId);
-			if (h.equals(curricula.getHacker())) {
+			if (h.equals(curricula.getRookie())) {
 				result = new ModelAndView("educationData/edit");
 				result.addObject("educationData", educationData);
 				result.addObject("curricula", curricula);

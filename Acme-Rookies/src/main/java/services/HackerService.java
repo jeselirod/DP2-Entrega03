@@ -23,7 +23,7 @@ import security.UserAccount;
 import domain.Actor;
 import domain.CreditCard;
 import domain.Finder;
-import domain.Hacker;
+import domain.Rookie;
 import forms.RegistrationFormHacker;
 
 @Service
@@ -46,8 +46,8 @@ public class HackerService {
 	private Validator					validator;
 
 
-	public Hacker create() {
-		final Hacker res = new Hacker();
+	public Rookie create() {
+		final Rookie res = new Rookie();
 		res.setFinder(new Finder());
 		res.setAddress("");
 		res.setEmail("");
@@ -64,7 +64,7 @@ public class HackerService {
 		final UserAccount user = new UserAccount();
 		user.setAuthorities(new HashSet<Authority>());
 		final Authority ad = new Authority();
-		ad.setAuthority(Authority.HACKER);
+		ad.setAuthority(Authority.ROOKIE);
 		user.getAuthorities().add(ad);
 		user.setUsername("");
 		user.setPassword("");
@@ -73,24 +73,24 @@ public class HackerService {
 		return res;
 	}
 
-	public Collection<Hacker> findAll() {
+	public Collection<Rookie> findAll() {
 		return this.hackerRepository.findAll();
 	}
 
-	public Hacker findOne(final int hackerId) {
-		final Hacker hacker = this.hackerRepository.findOne(hackerId);
+	public Rookie findOne(final int hackerId) {
+		final Rookie rookie = this.hackerRepository.findOne(hackerId);
 		final UserAccount userLoged = LoginService.getPrincipal();
 		final Actor a = this.actorService.getActorByUserAccount(userLoged.getId());
 		Assert.isTrue(userLoged.getAuthorities().iterator().next().getAuthority().equals("HACKER"));
-		Assert.isTrue(hacker.equals(a));
+		Assert.isTrue(rookie.equals(a));
 		return this.hackerRepository.findOne(hackerId);
 	}
 
-	public Hacker save(final Hacker r) {
+	public Rookie save(final Rookie r) {
 
 		//final UserAccount userLoged = LoginService.getPrincipal();
 		//Assert.isTrue(userLoged.getAuthorities().iterator().next().getAuthority().equals("HACKER"), "Comprobar que hay Company conectado");
-		Hacker res = null;
+		Rookie res = null;
 		Assert.isTrue(r.getFinder() != null, "Hacker.save -> Finder  invalid");
 		Assert.isTrue(r != null && r.getName() != null && r.getSurnames() != null && r.getName() != "" && r.getUserAccount() != null && r.getEmail() != null && r.getEmail() != "", "Company.save -> Name, Surname or email invalid");
 		Assert.isTrue(r.getVatNumber() != null, "Companny.save -> VatNumber  invalid");
@@ -132,12 +132,12 @@ public class HackerService {
 		return res;
 	}
 
-	public Hacker hackerUserAccount(final Integer id) {
+	public Rookie hackerUserAccount(final Integer id) {
 		return this.hackerRepository.hackerUserAccount(id);
 	}
 
-	public Hacker reconstruct(final RegistrationFormHacker registrationForm, final BindingResult binding) {
-		Hacker res = new Hacker();
+	public Rookie reconstruct(final RegistrationFormHacker registrationForm, final BindingResult binding) {
+		Rookie res = new Rookie();
 
 		if (registrationForm.getId() == 0) {
 			res.setId(registrationForm.getUserAccount().getId());
@@ -153,7 +153,7 @@ public class HackerService {
 			final Authority ad = new Authority();
 			final UserAccount user = new UserAccount();
 			user.setAuthorities(new HashSet<Authority>());
-			ad.setAuthority(Authority.HACKER);
+			ad.setAuthority(Authority.ROOKIE);
 			user.getAuthorities().add(ad);
 			res.setUserAccount(user);
 			user.setUsername(registrationForm.getUserAccount().getUsername());
@@ -181,7 +181,7 @@ public class HackerService {
 
 		} else {
 			res = this.hackerRepository.findOne(registrationForm.getId());
-			final Hacker p = new Hacker();
+			final Rookie p = new Rookie();
 
 			if (registrationForm.getUserAccount().getPassword().equals("") && registrationForm.getPassword().equals(""))
 				p.setUserAccount(res.getUserAccount());

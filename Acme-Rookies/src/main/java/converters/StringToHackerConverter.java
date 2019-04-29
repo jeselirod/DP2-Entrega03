@@ -17,19 +17,19 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import repositories.HackerRepository;
-import domain.Hacker;
+import domain.Rookie;
 
 @Component
 @Transactional
-public class StringToHackerConverter implements Converter<String, Hacker> {
+public class StringToHackerConverter implements Converter<String, Rookie> {
 
 	@Autowired
 	HackerRepository	hackerRepository;
 
 
 	@Override
-	public Hacker convert(final String text) {
-		Hacker result;
+	public Rookie convert(final String text) {
+		Rookie result;
 		int id;
 
 		try {
