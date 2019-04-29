@@ -150,6 +150,18 @@
 		</property>
 	</bean>
 	
+		<bean id="userAccount12" class="security.UserAccount">
+		<property name="username" value="provider2" />
+		<property name="password" value="ebfc815ee2cc6a16225105bb7b3e1e53" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="PROVIDER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
 	<!-- Other domain beans come here -->
 	
 	<!-- NOTIFICATION -->
@@ -217,6 +229,48 @@
 		<property name="address" value="Sevilla"/>
 		<property name="userAccount" ref="userAccount9"/>
 		<property name="creditCard" ref="creditCard9"/>
+	
+	</bean>
+	
+		<bean id="provider1" class="domain.Provider">
+		<property name="name" value="Pedro"/>
+		<property name="surnames" value="Lorca"/>
+		<property name="vatNumber" value="ES12345622S"/>
+		<property name="photo" value="https://www.imagen.com.mx/assets/img/imagen_share.png"/>
+		<property name="email" value="pedro@hotmail.com"/>
+		<property name="phone" value="654654654"/>
+		<property name="address" value="Sevilla"/>
+		<property name="userAccount" ref="userAccount10"/>
+		<property name="creditCard" ref="creditCard10"/>
+		<property name="make" value="marca1"/>
+	
+	</bean>
+	
+		<bean id="provider2" class="domain.Provider">
+		<property name="name" value="Manuel"/>
+		<property name="surnames" value="Lorca"/>
+		<property name="vatNumber" value="ES12345633S"/>
+		<property name="photo" value="https://www.imagen.com.mx/assets/img/imagen_share.png"/>
+		<property name="email" value="Manuel@hotmail.com"/>
+		<property name="phone" value="644977442"/>
+		<property name="address" value="Sevilla"/>
+		<property name="userAccount" ref="userAccount11"/>
+		<property name="creditCard" ref="creditCard11"/>
+		<property name="make" value="marca2"/>
+	
+	</bean>
+	
+		<bean id="provider3" class="domain.Provider">
+		<property name="name" value="Maria"/>
+		<property name="surnames" value="Lorca"/>
+		<property name="vatNumber" value="ES12345644S"/>
+		<property name="photo" value="https://www.imagen.com.mx/assets/img/imagen_share.png"/>
+		<property name="email" value="maria@hotmail.com"/>
+		<property name="phone" value="645287693"/>
+		<property name="address" value="Sevilla"/>
+		<property name="userAccount" ref="userAccount12"/>
+		<property name="creditCard" ref="creditCard12"/>
+		<property name="make" value="marca3"/>
 	
 	</bean>
 	
@@ -777,6 +831,36 @@
 		<property name="number" value="4771598816781704"></property>
 		<property name="expirationMonth" value="1"></property>
 		<property name="expirationYear" value="2025"></property>
+		<property name="CW" value="602"></property>
+		
+	</bean>
+	
+		<bean id="creditCard10" class="domain.CreditCard">
+		<property name="holderName" value="nombre10"></property>
+		<property name="brandName" value="VISA"></property>
+		<property name="number" value="5295015831508933"></property>
+		<property name="expirationMonth" value="1"></property>
+		<property name="expirationYear" value="2024"></property>
+		<property name="CW" value="602"></property>
+		
+	</bean>
+	
+		<bean id="creditCard11" class="domain.CreditCard">
+		<property name="holderName" value="nombre11"></property>
+		<property name="brandName" value="VISA"></property>
+		<property name="number" value="5420430700365679"></property>
+		<property name="expirationMonth" value="1"></property>
+		<property name="expirationYear" value="2023"></property>
+		<property name="CW" value="602"></property>
+		
+	</bean>
+	
+		<bean id="creditCard12" class="domain.CreditCard">
+		<property name="holderName" value="nombre12"></property>
+		<property name="brandName" value="VISA"></property>
+		<property name="number" value="5532567307795983"></property>
+		<property name="expirationMonth" value="1"></property>
+		<property name="expirationYear" value="2022"></property>
 		<property name="CW" value="602"></property>
 		
 	</bean>
