@@ -12,13 +12,15 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
 
 import repositories.CreditCardRepository;
-import domain.Administrator;
+import domain.Actor;
 import domain.Company;
 import domain.CreditCard;
+import domain.Provider;
 import domain.Rookie;
 import forms.RegistrationForm;
 import forms.RegistrationFormCompanyAndCreditCard;
 import forms.RegistrationFormHacker;
+import forms.RegistrationFormProviderAndCreditCard;
 
 @Service
 @Transactional
@@ -30,10 +32,13 @@ public class CreditCardService {
 	private CompanyService			companyService;
 
 	@Autowired
-	private AdministratorService	administratorService;
+	private ProviderService			providerService;
 
 	@Autowired
 	private HackerService			hackerService;
+
+	@Autowired
+	private ActorService			actorService;
 
 	@Autowired
 	private Validator				validator;
@@ -151,9 +156,9 @@ public class CreditCardService {
 			this.validator.validate(res, binding);
 
 		} else {
-			Administrator admin;
-			admin = this.administratorService.findOne(registrationForm.getId());
-			res = admin.getCreditCard();
+			final Actor actor;
+			actor = this.actorService.getActorByUserAccount(registrationForm.getUserAccount().getId());
+			res = actor.getCreditCard();
 			final CreditCard p = new CreditCard();
 			p.setId(res.getId());
 			p.setVersion(res.getVersion());
@@ -224,4 +229,52 @@ public class CreditCardService {
 		}
 		return res;
 	}
+
+	public CreditCard reconstruct(final RegistrationFormProviderAndCreditCard registrationForm, final BindingResult binding) {
+		CreditCard res = new CreditCard();
+
+		if (registrationForm.getId() == 0) {
+			res.setId(registrationForm.getId());
+			res.setVersion(registrationForm.getVersion());
+			res.setBrandName(registrationForm.getBrandName());
+			res.setHolderName(registrationForm.getHolderName());
+			res.setNumber(registrationForm.getNumber());
+			res.setExpirationMonth(registrationForm.getExpirationMonth());
+			res.setExpirationYear(registrationForm.getExpirationYear());
+			res.setCW(registrationForm.getCW());
+
+			final Collection<String> creditCardsNumbers = this.getAllNumbers();
+			if (creditCardsNumbers.contains(res.getNumber()))
+				binding.rejectValue("number", "NumeroRepetido");
+
+			this.validator.validate(res, binding);
+
+		} else {
+			Provider provider;
+			provider = this.providerService.findOne(registrationForm.getId());
+			res = provider.getCreditCard();
+			final CreditCard p = new CreditCard();
+			p.setId(res.getId());
+			p.setVersion(res.getVersion());
+			p.setBrandName(registrationForm.getBrandName());
+			p.setHolderName(registrationForm.getHolderName());
+			p.setNumber(registrationForm.getNumber());
+			p.setExpirationMonth(registrationForm.getExpirationMonth());
+			p.setExpirationYear(registrationForm.getExpirationYear());
+			p.setCW(registrationForm.getCW());
+
+			final Collection<String> creditCardsNumbers = this.getAllNumbers();
+			final CreditCard creditCard = this.findOne(res.getId());
+			final String number = creditCard.getNumber();
+			creditCardsNumbers.remove(number);
+			if (creditCardsNumbers.contains(p.getNumber()))
+				binding.rejectValue("number", "NumeroRepetido");
+
+			this.validator.validate(p, binding);
+			res = p;
+
+		}
+		return res;
+	}
+
 }

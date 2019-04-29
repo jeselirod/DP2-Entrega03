@@ -23,6 +23,7 @@ import security.UserAccount;
 import domain.Actor;
 import domain.Auditor;
 import domain.CreditCard;
+import domain.Position;
 import forms.RegistrationForm;
 
 @Service
@@ -55,6 +56,7 @@ public class AuditorService {
 		res.setSurnames("");
 		res.setAddress("");
 		res.setCreditCard(new CreditCard());
+		res.setPosition(new Position());
 
 		//PREGUNTAR
 		final UserAccount user = new UserAccount();
@@ -145,6 +147,7 @@ public class AuditorService {
 			res.setPhoto(registrationForm.getPhoto());
 			res.setSurnames(registrationForm.getSurnames());
 			res.setCreditCard(registrationForm.getCreditCard());
+			res.setPosition(new Position());
 			final Authority ad = new Authority();
 			final UserAccount user = new UserAccount();
 			user.setAuthorities(new HashSet<Authority>());
@@ -205,6 +208,7 @@ public class AuditorService {
 			p.setPhoto(registrationForm.getPhoto());
 			p.setSurnames(registrationForm.getSurnames());
 			p.setCreditCard(registrationForm.getCreditCard());
+			p.setPosition(res.getPosition());
 
 			if (p.getPhone().length() <= 5)
 				p.setPhone("");
