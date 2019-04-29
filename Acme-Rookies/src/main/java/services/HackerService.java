@@ -81,7 +81,7 @@ public class HackerService {
 		final Rookie rookie = this.hackerRepository.findOne(hackerId);
 		final UserAccount userLoged = LoginService.getPrincipal();
 		final Actor a = this.actorService.getActorByUserAccount(userLoged.getId());
-		Assert.isTrue(userLoged.getAuthorities().iterator().next().getAuthority().equals("HACKER"));
+		Assert.isTrue(userLoged.getAuthorities().iterator().next().getAuthority().equals("ROOKIE"));
 		Assert.isTrue(rookie.equals(a));
 		return this.hackerRepository.findOne(hackerId);
 	}
@@ -89,7 +89,7 @@ public class HackerService {
 	public Rookie save(final Rookie r) {
 
 		//final UserAccount userLoged = LoginService.getPrincipal();
-		//Assert.isTrue(userLoged.getAuthorities().iterator().next().getAuthority().equals("HACKER"), "Comprobar que hay Company conectado");
+		//Assert.isTrue(userLoged.getAuthorities().iterator().next().getAuthority().equals("ROOKIE"), "Comprobar que hay Company conectado");
 		Rookie res = null;
 		Assert.isTrue(r.getFinder() != null, "Hacker.save -> Finder  invalid");
 		Assert.isTrue(r != null && r.getName() != null && r.getSurnames() != null && r.getName() != "" && r.getUserAccount() != null && r.getEmail() != null && r.getEmail() != "", "Company.save -> Name, Surname or email invalid");

@@ -19,8 +19,8 @@
 </head>
 <body>
 
-<security:authorize access="hasRole('HACKER')">
-<form:form action=" personalData/hacker/edit.do" modelAttribute="registrationForm">
+<security:authorize access="hasRole('ROOKIE')">
+<form:form action=" personalData/rookie/edit.do" modelAttribute="registrationForm">
 
 	<form:hidden path="id" />
 	<form:hidden path="version" />
@@ -41,7 +41,7 @@
 	
 	<input type="submit" name="save" onclick=" return validar(); "
 	value="<spring:message code="save" />" />
-	<acme:cancel url="curricula/hacker/list.do" code="cancel"/>
+	<acme:cancel url="curricula/rookie/list.do" code="cancel"/>
 	<br />
 </form:form>
 </security:authorize>

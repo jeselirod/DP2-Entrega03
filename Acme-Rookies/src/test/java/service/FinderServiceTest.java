@@ -59,7 +59,7 @@ public class FinderServiceTest extends AbstractTest {
 
 		caught = null;
 		try {
-			super.authenticate("hacker");
+			super.authenticate("rookie");
 
 			final Finder f = this.finderService.create();
 			f.setKeyWord(keyword);
@@ -108,7 +108,7 @@ public class FinderServiceTest extends AbstractTest {
 
 		caught = null;
 		try {
-			super.authenticate("hacker");
+			super.authenticate("rookie");
 
 			final Finder f = this.finderService.findOne();
 			f.setKeyWord(keyword);
@@ -156,7 +156,7 @@ public class FinderServiceTest extends AbstractTest {
 
 		caught = null;
 		try {
-			super.authenticate("hacker");
+			super.authenticate("rookie");
 
 			final Finder f = this.finderService.findOne();
 			f.setKeyWord(keyword);

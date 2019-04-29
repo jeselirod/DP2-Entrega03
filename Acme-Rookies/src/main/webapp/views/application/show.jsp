@@ -49,7 +49,7 @@
 
 </security:authorize>
 
-<security:authorize access="hasRole('HACKER')">
+<security:authorize access="hasRole('ROOKIE')">
 
 <spring:message code="application.curricula"/>:<jstl:out value=" ${application.curricula.id}"></jstl:out><br>
 <spring:message code="application.moment"/>: <jstl:out value="${application.moment}"></jstl:out><br>
@@ -80,6 +80,6 @@
 	
 </display:table>
 <input type="button" name="create" value="<spring:message code="application.back" />"
-			onclick="javascript: relativeRedir('application/hacker/list.do');" />
+			onclick="javascript: relativeRedir('application/rookie/list.do');" />
 
 </security:authorize>

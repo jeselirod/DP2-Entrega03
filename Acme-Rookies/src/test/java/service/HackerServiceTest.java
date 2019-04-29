@@ -146,7 +146,7 @@ public class HackerServiceTest extends AbstractTest {
 		CreditCard creditcard = null;
 		caught = null;
 		try {
-			super.authenticate("hacker");
+			super.authenticate("rookie");
 			RegistrationFormHacker registrationForm = new RegistrationFormHacker();
 
 			registrationForm = registrationForm.createToHacker();

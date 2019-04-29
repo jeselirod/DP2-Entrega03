@@ -53,9 +53,9 @@ public class PersonalDataServiceTest extends AbstractTest {
 		 */
 		final Object testingData4[][] = {
 			{//Positive test
-				"hacker", super.getEntityId("personalData1"), null
+				"rookie", super.getEntityId("personalData1"), null
 			}, {//Negative test
-				"hacker1", super.getEntityId("personalData1"), IllegalArgumentException.class
+				"rookie1", super.getEntityId("personalData1"), IllegalArgumentException.class
 			}
 		};
 
@@ -84,9 +84,9 @@ public class PersonalDataServiceTest extends AbstractTest {
 		 */
 		final Object testingData[][] = {
 			{//Positive test
-				"hacker", super.getEntityId("personalData1"), "full name", "statement", "+34 123456789", "http://githubProfile", "http://linkedlnProfile", null
+				"rookie", super.getEntityId("personalData1"), "full name", "statement", "+34 123456789", "http://githubProfile", "http://linkedlnProfile", null
 			}, {//Negative test
-				"hacker1", super.getEntityId("personalData1"), "full name", "statement", "+34 123456789", "http://githubProfile", "http://linkedlnProfile", IllegalArgumentException.class
+				"rookie1", super.getEntityId("personalData1"), "full name", "statement", "+34 123456789", "http://githubProfile", "http://linkedlnProfile", IllegalArgumentException.class
 			}
 		};
 
@@ -155,7 +155,7 @@ public class PersonalDataServiceTest extends AbstractTest {
 
 		caught = null;
 		try {
-			super.authenticate("hacker");
+			super.authenticate("rookie");
 
 			final PersonalData p = this.personalDataService.create();
 			p.setFullName(fullName);

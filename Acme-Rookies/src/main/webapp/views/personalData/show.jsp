@@ -19,7 +19,7 @@
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
 
-<security:authorize access="hasRole('HACKER')">
+<security:authorize access="hasRole('ROOKIE')">
 
 <strong><spring:message code="personalData.fullName"/></strong>: <jstl:out value=" ${personalData.fullName}"></jstl:out><br>
 <strong><spring:message code="personalData.statement"/></strong>: <jstl:out value=" ${personalData.statement}"></jstl:out><br>
@@ -27,10 +27,10 @@
 <strong><spring:message code="personalData.githubProfile"/></strong>: <jstl:out value=" ${personalData.githubProfile}"></jstl:out><br>
 <strong><spring:message code="personalData.linkedlnProfile"/></strong>: <jstl:out value=" ${personalData.linkedlnProfile}"></jstl:out><br>
 
-<a href="personalData/hacker/delete.do?personalDataId=${personalData.id}"><spring:message code="delete" /></a>
+<a href="personalData/rookie/delete.do?personalDataId=${personalData.id}"><spring:message code="delete" /></a>
 <input type="button" name="create" value="<spring:message code="edit" />"
-			onclick="javascript: relativeRedir('personalData/hacker/edit.do?personalDataId=${personalData.id}');" />
-<acme:cancel url="curricula/hacker/list.do" code="cancel"/>
+			onclick="javascript: relativeRedir('personalData/rookie/edit.do?personalDataId=${personalData.id}');" />
+<acme:cancel url="curricula/rookie/list.do" code="cancel"/>
 
 </security:authorize>
 

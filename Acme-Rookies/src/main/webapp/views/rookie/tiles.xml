@@ -17,7 +17,7 @@
 <tiles-definitions>
 
 <definition name="rookie/create" extends="master.page">	
-		<put-attribute name="title" value="Hacker: Create new hacker" />
+		<put-attribute name="title" value="Rookie: Create new rookie" />
 		<put-attribute name="body" value="/views/rookie/edit.jsp" />
 	</definition>
 </tiles-definitions>

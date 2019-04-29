@@ -19,7 +19,7 @@ import domain.Rookie;
 import forms.RegistrationFormHacker;
 
 @Controller
-@RequestMapping("/hacker")
+@RequestMapping("/rookie")
 public class HackerController extends AbstractController {
 
 	@Autowired
@@ -40,7 +40,7 @@ public class HackerController extends AbstractController {
 		final String telephoneCode = this.customizableService.getTelephoneCode();
 		registrationForm.setPhone(telephoneCode + " ");
 
-		result = new ModelAndView("hacker/create");
+		result = new ModelAndView("rookie/create");
 		result.addObject("registrationForm", registrationForm);
 
 		return result;
@@ -64,7 +64,7 @@ public class HackerController extends AbstractController {
 				result = new ModelAndView("redirect:/");
 			} else {
 
-				result = new ModelAndView("hacker/create");
+				result = new ModelAndView("rookie/create");
 				result.addObject("registrationForm", registrationForm);
 			}
 		} catch (final Exception e) {
@@ -72,7 +72,7 @@ public class HackerController extends AbstractController {
 			if (creditcard != null)
 				if (creditCardsNumbers.contains(creditcard.getNumber()) && creditCardSave.equals((this.creditCardService.getCreditCardByNumber(creditcard.getNumber()))))
 					this.creditCardService.delete(creditCardSave);
-			result = new ModelAndView("hacker/create");
+			result = new ModelAndView("rookie/create");
 			result.addObject("exception", e);
 			result.addObject("registrationForm", registrationForm);
 

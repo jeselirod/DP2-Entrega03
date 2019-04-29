@@ -62,7 +62,7 @@
 
 		<property name="nameSystem" value="Acme Rookies" />
 		<property name="banner" value="https://www.downdays.eu/wp-content/uploads/2017/10/654366824_640.jpg" />
-		<property name="messageWelcomePage" value="Welcome to Acme Rookies! We're IT hacker's favourite job marketplace!" />
+		<property name="messageWelcomePage" value="Welcome to Acme Rookies! We're IT rookie's favourite job marketplace!" />
 		<property name="spanishMessageWelcomePage" value="¡Bienvenidos a Acme Rookies!  ¡Somos el mercado de trabajo favorito de los profesionales de las TICs!" />
 		<property name="telephoneCode" value="+34" />
 		<property name="timeCache" value="1" />

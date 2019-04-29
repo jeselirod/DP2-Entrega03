@@ -1,4 +1,4 @@
-<%--
+a<%--
  * header.jsp
  *
  * Copyright (C) 2019 Universidad de Sevilla
@@ -39,7 +39,7 @@
 		</security:authorize>
 		
 		
-		<security:authorize access="hasRole('HACKER')">
+		<security:authorize access="hasRole('ROOKIE')">
 			<li><a href="finder/rookie/edit.do"><spring:message code="master.page.finder" /></a></li>
 			<li><a href="application/rookie/list.do"><spring:message code="master.page.application" /></a></li>
 			<li><a href="curricula/rookie/list.do"><spring:message code="master.page.curricula" /></a></li>
@@ -51,7 +51,7 @@
 				<ul>
 					<li class="arrow"></li>
 					<li><a href="company/create.do"><spring:message code="master.page.company.register" /></a></li>
-					<li><a href="rookie/create.do"><spring:message code="master.page.hacker.register" /></a></li>
+					<li><a href="rookie/create.do"><spring:message code="master.page.rookie.register" /></a></li>
 				</ul>
 			<li><a href="company/list.do"><spring:message code="master.page.company" /></a></li>
 			<li><a href="position/listAll.do"><spring:message code="master.page.position" /></a></li>

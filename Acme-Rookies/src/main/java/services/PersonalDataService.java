@@ -59,7 +59,7 @@ public class PersonalDataService {
 		final Curricula curricula = this.curriculaService.getCurriculaByProfileData(profileData.getId());
 		final UserAccount user = LoginService.getPrincipal();
 		final Actor a = this.actorS.getActorByUserAccount(user.getId());
-		Assert.isTrue(user.getAuthorities().iterator().next().getAuthority().equals("HACKER"));
+		Assert.isTrue(user.getAuthorities().iterator().next().getAuthority().equals("ROOKIE"));
 		Assert.isTrue(curricula.getRookie() == a);
 		return profileData;
 	}

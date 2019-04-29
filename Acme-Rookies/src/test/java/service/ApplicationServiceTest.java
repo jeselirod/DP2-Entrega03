@@ -51,9 +51,9 @@ public class ApplicationServiceTest extends AbstractTest {
 	public void CreateApplicationService() {
 		final Object testingData[][] = {
 			{//Positive test
-				super.getEntityId("hacker1"), super.getEntityId("curricula1"), null
+				super.getEntityId("rookie1"), super.getEntityId("curricula1"), null
 			}, {//Negative test: hacker
-				super.getEntityId("hacker2"), super.getEntityId("curricula1"), IllegalArgumentException.class
+				super.getEntityId("rookie2"), super.getEntityId("curricula1"), IllegalArgumentException.class
 			},
 
 		};
@@ -66,7 +66,7 @@ public class ApplicationServiceTest extends AbstractTest {
 
 		caught = null;
 		try {
-			super.authenticate("hacker");
+			super.authenticate("rookie");
 
 			final Application a = this.applicationService.create();
 			a.setMoment(new Date());
@@ -113,7 +113,7 @@ public class ApplicationServiceTest extends AbstractTest {
 
 		caught = null;
 		try {
-			super.authenticate("hacker");
+			super.authenticate("rookie");
 
 			final Application a = this.applicationService.findOne(applicationId);
 			a.setExplication("hola");

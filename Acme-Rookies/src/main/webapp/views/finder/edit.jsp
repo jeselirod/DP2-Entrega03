@@ -19,8 +19,8 @@
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
 
-<security:authorize access="hasRole('HACKER')">
-<form:form action="finder/hacker/edit.do" modelAttribute="finder">
+<security:authorize access="hasRole('ROOKIE')">
+<form:form action="finder/rookie/edit.do" modelAttribute="finder">
 
 <jstl:if test="${not empty exception}">
 		<p style="color:red"> <spring:message code="notification.error" /> </p>
@@ -42,10 +42,10 @@
 </form:form>
 
 <input type="button" name="cancel" value="<spring:message code="finder.show" />"
-			onclick="javascript: relativeRedir('finder/hacker/show.do');" />
+			onclick="javascript: relativeRedir('finder/rookie/show.do');" />
 
 <input type="button" name="clear" value="<spring:message code="finder.clear.results" />"
-			onclick="javascript: relativeRedir('finder/hacker/clear.do');" />
+			onclick="javascript: relativeRedir('finder/rookie/clear.do');" />
 
 <!-- <button type="button" onclick="exportFunction()"><spring:message code="finder.clear.results" /></button>
 <p id="message"></p>
@@ -53,7 +53,7 @@
 	function exportFunction() {
 		$.ajax({
 			type:'GET',
-			url:'finder/hacker/clear.do',
+			url:'finder/rookie/clear.do',
 			success: function(res) {
 				document.getElementById("message").innerHTML = res;
 		    }

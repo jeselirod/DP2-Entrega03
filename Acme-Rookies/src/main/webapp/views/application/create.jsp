@@ -18,7 +18,7 @@
 
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
-<security:authorize access="hasRole('HACKER')">
+<security:authorize access="hasRole('ROOKIE')">
 <spring:message code="application.position"/>
 <select id="selectId" onchange="myFunction()">
   <option value="-100">---</option>
@@ -27,7 +27,7 @@
   </jstl:forEach>
 </select>
 
-<form:form id="miFormulario" action="application/hacker/edit.do?positionId=" modelAttribute="application">
+<form:form id="miFormulario" action="application/rookie/edit.do?positionId=" modelAttribute="application">
 <form:hidden path="id"/>
 <form:hidden path="version"/>
 <jstl:if test="${not empty exception}">
@@ -39,14 +39,14 @@
 	value="<spring:message code="application.create" />" />
 	
 <input type="button" name="cancel" value="<spring:message code="application.cancel" />"
-			onclick="javascript: relativeRedir('application/hacker/list.do');" />
+			onclick="javascript: relativeRedir('application/rookie/list.do');" />
 </form:form>
 
 <script>
 function myFunction(){
     var select = document.getElementById("selectId");
     var valor= select.options[select.selectedIndex].value;
-    document.getElementById("miFormulario").action = "application/hacker/edit.do?positionId="+valor ;
+    document.getElementById("miFormulario").action = "application/rookie/edit.do?positionId="+valor ;
 }
 </script>
 

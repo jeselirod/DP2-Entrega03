@@ -19,8 +19,8 @@
 </head>
 <body>
 
-<security:authorize access="hasRole('HACKER')">
-<form:form action="miscellaneousData/hacker/edit.do?curriculaId=${curricula.id}" modelAttribute="miscellaneousData">
+<security:authorize access="hasRole('ROOKIE')">
+<form:form action="miscellaneousData/rookie/edit.do?curriculaId=${curricula.id}" modelAttribute="miscellaneousData">
 
 	<form:hidden path="id" />
 	<form:hidden path="version" />
@@ -35,7 +35,7 @@
 	<jstl:if test="${miscellaneousData.id ne 0 }">
 		<acme:submit name="delete" code="delete"/>
 	</jstl:if>
-	<acme:cancel url="miscellaneousData/hacker/list.do?curriculaId=${curricula.id }" code="cancel"/>
+	<acme:cancel url="miscellaneousData/rookie/list.do?curriculaId=${curricula.id }" code="cancel"/>
 	<br />
 </form:form>
 </security:authorize>

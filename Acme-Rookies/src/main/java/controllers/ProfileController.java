@@ -229,7 +229,7 @@ public class ProfileController extends AbstractController {
 
 	}
 
-	@RequestMapping(value = "/edit-hacker", method = RequestMethod.GET)
+	@RequestMapping(value = "/edit-rookie", method = RequestMethod.GET)
 	public ModelAndView editHacker() {
 		ModelAndView result;
 		final RegistrationFormHacker registrationForm = new RegistrationFormHacker();
@@ -264,9 +264,9 @@ public class ProfileController extends AbstractController {
 			registrationForm.setExpirationYear(creditCard.getExpirationYear());
 			registrationForm.setCW(creditCard.getCW());
 
-			result = new ModelAndView("profile/editHacker");
+			result = new ModelAndView("profile/editRookie");
 			result.addObject("actor", registrationForm);
-			result.addObject("action", "profile/edit-hacker.do");
+			result.addObject("action", "profile/edit-Rookie.do");
 
 		} catch (final Exception e) {
 			result = new ModelAndView("redirect:../../");
@@ -276,7 +276,7 @@ public class ProfileController extends AbstractController {
 
 	}
 
-	@RequestMapping(value = "/edit-hacker", method = RequestMethod.POST, params = "save")
+	@RequestMapping(value = "/edit-rookie", method = RequestMethod.POST, params = "save")
 	public ModelAndView editHacker(@ModelAttribute("actor") final RegistrationFormHacker registrationForm, final BindingResult binding) {
 		ModelAndView result;
 
@@ -291,13 +291,13 @@ public class ProfileController extends AbstractController {
 
 				result = new ModelAndView("redirect:personal-datas.do");
 			} else {
-				result = new ModelAndView("profile/editHacker");
+				result = new ModelAndView("profile/editRookie");
 				result.addObject("actor", registrationForm);
 
 			}
 		} catch (final Exception e) {
 
-			result = new ModelAndView("profile/editHacker");
+			result = new ModelAndView("profile/editRookie");
 			result.addObject("actor", registrationForm);
 			result.addObject("exception", e);
 

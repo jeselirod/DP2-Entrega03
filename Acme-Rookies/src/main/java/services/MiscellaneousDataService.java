@@ -43,7 +43,7 @@ public class MiscellaneousDataService {
 		final Curricula curricula = this.curriculaService.getCurriculaByMiscellaneousData(miscellaneousData.getId());
 		final UserAccount user = LoginService.getPrincipal();
 		final Actor a = this.actorS.getActorByUserAccount(user.getId());
-		Assert.isTrue(user.getAuthorities().iterator().next().getAuthority().equals("HACKER"));
+		Assert.isTrue(user.getAuthorities().iterator().next().getAuthority().equals("ROOKIE"));
 		Assert.isTrue(curricula.getRookie() == a);
 		return miscellaneousData;
 	}
@@ -55,7 +55,7 @@ public class MiscellaneousDataService {
 		if (miscellaneousData.getId() != 0)
 			Assert.isTrue(curricula.getRookie() == a);
 
-		Assert.isTrue(user.getAuthorities().iterator().next().getAuthority().equals("HACKER"));
+		Assert.isTrue(user.getAuthorities().iterator().next().getAuthority().equals("ROOKIE"));
 		Assert.isTrue(miscellaneousData != null);
 		return this.miscellaneousDataRepository.save(miscellaneousData);
 	}
@@ -64,7 +64,7 @@ public class MiscellaneousDataService {
 		final Curricula curricula = this.curriculaService.findOne(curriculaId);
 		final UserAccount user = this.actorS.getActorLogged().getUserAccount();
 		final Actor a = this.actorS.getActorByUserAccount(user.getId());
-		Assert.isTrue(user.getAuthorities().iterator().next().getAuthority().equals("HACKER"));
+		Assert.isTrue(user.getAuthorities().iterator().next().getAuthority().equals("ROOKIE"));
 		Assert.isTrue(curricula.getRookie() == a);
 		Assert.isTrue(curricula.getMiscellaneousData().contains(miscellaneousData));
 		curricula.getMiscellaneousData().remove(miscellaneousData);

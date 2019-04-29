@@ -46,7 +46,7 @@ public class PositionDataService {
 		final Curricula curricula = this.curriculaService.getCurriculaByPositionData(positionData.getId());
 		final UserAccount user = LoginService.getPrincipal();
 		final Actor a = this.actorS.getActorByUserAccount(user.getId());
-		Assert.isTrue(user.getAuthorities().iterator().next().getAuthority().equals("HACKER"));
+		Assert.isTrue(user.getAuthorities().iterator().next().getAuthority().equals("ROOKIE"));
 		Assert.isTrue(curricula.getRookie() == a);
 		return positionData;
 	}
@@ -58,7 +58,7 @@ public class PositionDataService {
 		if (positionData.getId() != 0)
 			Assert.isTrue(curricula.getRookie() == a);
 
-		Assert.isTrue(user.getAuthorities().iterator().next().getAuthority().equals("HACKER"));
+		Assert.isTrue(user.getAuthorities().iterator().next().getAuthority().equals("ROOKIE"));
 		Assert.isTrue(positionData != null && positionData.getEndDate().after(positionData.getStartDate()));
 		return this.positionDataRepository.save(positionData);
 	}
@@ -67,7 +67,7 @@ public class PositionDataService {
 		final Curricula curricula = this.curriculaService.findOne(curriculaId);
 		final UserAccount user = this.actorS.getActorLogged().getUserAccount();
 		final Actor a = this.actorS.getActorByUserAccount(user.getId());
-		Assert.isTrue(user.getAuthorities().iterator().next().getAuthority().equals("HACKER"));
+		Assert.isTrue(user.getAuthorities().iterator().next().getAuthority().equals("ROOKIE"));
 		Assert.isTrue(curricula.getRookie() == a);
 		Assert.isTrue(curricula.getPositionData().contains(positionData));
 		curricula.getPositionData().remove(positionData);

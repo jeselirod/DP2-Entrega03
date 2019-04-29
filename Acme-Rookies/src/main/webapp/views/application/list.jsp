@@ -22,10 +22,10 @@
 
 </security:authorize>
 
-<security:authorize access="hasRole('HACKER')">
+<security:authorize access="hasRole('ROOKIE')">
 
 <display:table pagesize="10" name="applications" id="row"
-requestURI="application/hacker/list.do" >
+requestURI="application/rookie/list.do" >
 
 <display:column sortable="true" titleKey="application.status">
 
@@ -51,11 +51,11 @@ requestURI="application/hacker/list.do" >
 <display:column property="urlCode" titleKey="application.urlCode" />
 <display:column property="submitMoment" titleKey="application.submitMoment" />
 <display:column >
-<a href="application/hacker/show.do?applicationId=${row.id}"><spring:message code="application.show" /></a>
+<a href="application/rookie/show.do?applicationId=${row.id}"><spring:message code="application.show" /></a>
 </display:column>
 <display:column>
 	<jstl:if test="${row.status eq 0 }">
-		<a href="application/hacker/edit.do?applicationId=${row.id}"><spring:message code="application.edit" /></a>
+		<a href="application/rookie/edit.do?applicationId=${row.id}"><spring:message code="application.edit" /></a>
 	</jstl:if>
 	<jstl:if test="${row.status eq 1 or row.status eq 2 or row.status eq 3 }">
 	-
@@ -64,7 +64,7 @@ requestURI="application/hacker/list.do" >
 
 </display:table>
 <input type="button" name="create" value="<spring:message code="application.create" />"
-			onclick="javascript: relativeRedir('application/hacker/create.do');" />
+			onclick="javascript: relativeRedir('application/rookie/create.do');" />
 
 </security:authorize>
 

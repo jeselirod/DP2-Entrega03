@@ -18,7 +18,7 @@ import domain.Curricula;
 import domain.Rookie;
 
 @Controller
-@RequestMapping("/curricula/hacker")
+@RequestMapping("/curricula/rookie")
 public class CurriculaHackerController extends AbstractController {
 
 	@Autowired

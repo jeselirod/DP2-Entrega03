@@ -19,12 +19,12 @@
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
 
-<security:authorize access="hasRole('HACKER')">
+<security:authorize access="hasRole('ROOKIE')">
 <display:table pagesize="5" name="educationsData" id="row"
-requestURI="educationData/hacker/list.do?idCurricula=${curricula.id}" >
+requestURI="educationData/rookie/list.do?idCurricula=${curricula.id}" >
 
 <display:column>
-	<a href="educationData/hacker/edit.do?educationDataId=${row.id}&curriculaId=${curricula.id}" ><spring:message code="edit" /></a>
+	<a href="educationData/rookie/edit.do?educationDataId=${row.id}&curriculaId=${curricula.id}" ><spring:message code="edit" /></a>
 </display:column>
 
 <display:column titleKey="educationData.degree">
@@ -44,8 +44,8 @@ requestURI="educationData/hacker/list.do?idCurricula=${curricula.id}" >
 </display:column>
 
 </display:table>
-<a href="educationData/hacker/create.do?curriculaId=${curricula.id}" ><spring:message code="create" /></a>
-<acme:cancel url="curricula/hacker/list.do" code="cancel"/>
+<a href="educationData/rookie/create.do?curriculaId=${curricula.id}" ><spring:message code="create" /></a>
+<acme:cancel url="curricula/rookie/list.do" code="cancel"/>
 
 </security:authorize>
 

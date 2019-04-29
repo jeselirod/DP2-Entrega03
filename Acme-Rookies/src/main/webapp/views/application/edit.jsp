@@ -18,9 +18,9 @@
 
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
-<security:authorize access="hasRole('HACKER')">
+<security:authorize access="hasRole('ROOKIE')">
 
-<form:form action="application/hacker/edit.do?status=1" modelAttribute="application">
+<form:form action="application/rookie/edit.do?status=1" modelAttribute="application">
 <form:hidden path="id"/>
 <form:hidden path="version"/>
 
@@ -32,7 +32,7 @@
 	
 
 <input type="button" name="cancel" value="<spring:message code="application.cancel" />"
-			onclick="javascript: relativeRedir('application/hacker/list.do');" />
+			onclick="javascript: relativeRedir('application/rookie/list.do');" />
 </form:form>
 
 </security:authorize>

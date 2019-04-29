@@ -17,7 +17,7 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
-<form:form action="hacker/edit.do" modelAttribute="registrationForm">
+<form:form action="rookie/edit.do" modelAttribute="registrationForm">
 <jstl:if test="${not empty exception}">
 		<p style="color:red"> <spring:message code="hacker.error" /> </p>
 </jstl:if>

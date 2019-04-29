@@ -25,7 +25,7 @@ import domain.MiscellaneousData;
 import domain.Rookie;
 
 @Controller
-@RequestMapping("/miscellaneousData/hacker")
+@RequestMapping("/miscellaneousData/rookie")
 public class MiscellaneousDataHackerController extends AbstractController {
 
 	@Autowired
@@ -48,7 +48,7 @@ public class MiscellaneousDataHackerController extends AbstractController {
 			result.addObject("miscellaneousesData", miscellaneousData);
 			result.addObject("curricula", curricula);
 		} catch (final Exception e) {
-			result = new ModelAndView("redirect:../../curricula/hacker/list.do");
+			result = new ModelAndView("redirect:../../curricula/rookie/list.do");
 		}
 		return result;
 	}
@@ -137,7 +137,7 @@ public class MiscellaneousDataHackerController extends AbstractController {
 				Assert.notNull(curricula);
 				final UserAccount user = LoginService.getPrincipal();
 				final Rookie h = this.hackerService.hackerUserAccount(user.getId());
-				Assert.isTrue(user.getAuthorities().iterator().next().getAuthority().equals("HACKER"));
+				Assert.isTrue(user.getAuthorities().iterator().next().getAuthority().equals("ROOKIE"));
 				Assert.isTrue(h.equals(curricula.getRookie()));
 				this.miscellaneousDataService.delete(miscellaneousData, curriculaId);
 				result = new ModelAndView("redirect:list.do?curriculaId=" + curriculaId);

@@ -1,5 +1,5 @@
 #./src/main/resources/Entities.map
-#Mon Apr 29 12:07:32 CEST 2019
+#Mon Apr 29 14:20:21 CEST 2019
 creditCard2=771
 application5=797
 creditCard1=770
@@ -28,6 +28,8 @@ educationData3=768
 notification1=744
 educationData2=767
 educationData1=766
+rookie2=787
+rookie1=786
 positionData4=765
 positionData3=764
 administrator2=783
@@ -41,9 +43,7 @@ company1=784
 userAccount7=739
 userAccount6=738
 userAccount5=737
-hacker2=787
 userAccount4=736
-hacker1=786
 userAccount3=735
 userAccount2=734
 userAccount1=733

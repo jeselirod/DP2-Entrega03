@@ -51,7 +51,7 @@ public class CurriculaService {
 		final Curricula curricula = this.curriculaRepository.findOne(curriculaId);
 		final UserAccount userAccount = LoginService.getPrincipal();
 		final Rookie rookie = this.hackerService.hackerUserAccount(userAccount.getId());
-		Assert.isTrue(userAccount.getAuthorities().iterator().next().getAuthority().equals("HACKER"));
+		Assert.isTrue(userAccount.getAuthorities().iterator().next().getAuthority().equals("ROOKIE"));
 		Assert.isTrue(curricula.getRookie() == rookie);
 
 		return curricula;
@@ -59,7 +59,7 @@ public class CurriculaService {
 
 	public Curricula save(final Curricula curricula) {
 		final UserAccount user = LoginService.getPrincipal();
-		Assert.isTrue(user.getAuthorities().iterator().next().getAuthority().equals("HACKER"));
+		Assert.isTrue(user.getAuthorities().iterator().next().getAuthority().equals("ROOKIE"));
 		Assert.isTrue(curricula != null);
 		Assert.isTrue(curricula.getRookie().equals(this.hackerService.hackerUserAccount(user.getId())));
 		return this.curriculaRepository.save(curricula);
@@ -67,7 +67,7 @@ public class CurriculaService {
 
 	public void delete(final Curricula curricula) {
 		final UserAccount user = LoginService.getPrincipal();
-		Assert.isTrue(user.getAuthorities().iterator().next().getAuthority().equals("HACKER"));
+		Assert.isTrue(user.getAuthorities().iterator().next().getAuthority().equals("ROOKIE"));
 		Assert.isTrue(curricula.getRookie().equals(this.hackerService.hackerUserAccount(user.getId())));
 		this.curriculaRepository.delete(curricula);
 	}

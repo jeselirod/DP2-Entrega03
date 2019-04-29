@@ -18,7 +18,7 @@ import domain.PersonalData;
 import forms.PersonalDataForm;
 
 @Controller
-@RequestMapping("/personalData/hacker")
+@RequestMapping("/personalData/rookie")
 public class PersonalDataHackerController extends AbstractController {
 
 	@Autowired
@@ -40,7 +40,7 @@ public class PersonalDataHackerController extends AbstractController {
 			result.addObject("personalData", personalData);
 			//result.addObject("curriculaId", curriculaId);
 		} catch (final Exception e) {
-			result = new ModelAndView("redirect:../../curricula/hacker/list.do");
+			result = new ModelAndView("redirect:../../curricula/rookie/list.do");
 		}
 		return result;
 	}
@@ -77,7 +77,7 @@ public class PersonalDataHackerController extends AbstractController {
 			result = new ModelAndView("personalData/edit");
 			result.addObject("registrationForm", registrationForm);
 		} catch (final Exception e) {
-			result = new ModelAndView("redirect:../../curricula/hacker/list.do");
+			result = new ModelAndView("redirect:../../curricula/rookie/list.do");
 		}
 		return result;
 	}
@@ -93,7 +93,7 @@ public class PersonalDataHackerController extends AbstractController {
 				result.addObject("registrationForm", registrationForm);
 			} else {
 				this.personalData.save(personalData);
-				result = new ModelAndView("redirect:../../curricula/hacker/list.do");
+				result = new ModelAndView("redirect:../../curricula/rookie/list.do");
 			}
 		} catch (final Exception e) {
 			result = new ModelAndView("personalData/edit");
@@ -109,9 +109,9 @@ public class PersonalDataHackerController extends AbstractController {
 		try {
 			final PersonalData personalData = this.personalData.findOne(personalDataId);
 			this.personalData.delete(personalData);
-			result = new ModelAndView("redirect:../../curricula/hacker/list.do");
+			result = new ModelAndView("redirect:../../curricula/rookie/list.do");
 		} catch (final Exception e) {
-			result = new ModelAndView("redirect:../../curricula/hacker/list.do");
+			result = new ModelAndView("redirect:../../curricula/rookie/list.do");
 			result.addObject("exception", e);
 		}
 		return result;

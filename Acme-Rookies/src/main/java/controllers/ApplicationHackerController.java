@@ -22,7 +22,7 @@ import domain.Position;
 import domain.Problem;
 
 @Controller
-@RequestMapping("/application/hacker")
+@RequestMapping("/application/rookie")
 public class ApplicationHackerController extends AbstractController {
 
 	@Autowired

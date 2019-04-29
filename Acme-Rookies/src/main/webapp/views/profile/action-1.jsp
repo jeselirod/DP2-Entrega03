@@ -78,8 +78,8 @@
 </form>
 </security:authorize>
 
-<security:authorize access="hasRole('HACKER')">
-<form action="profile/edit-hacker.do">
+<security:authorize access="hasRole('ROOKIE')">
+<form action="profile/edit-rookie.do">
     <input type="submit" value="<spring:message code="profile.edit.profile" />" />
 </form>
 </security:authorize>

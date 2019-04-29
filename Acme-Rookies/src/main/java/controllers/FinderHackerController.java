@@ -13,7 +13,7 @@ import services.FinderService;
 import domain.Finder;
 
 @Controller
-@RequestMapping("/finder/hacker")
+@RequestMapping("/finder/rookie")
 public class FinderHackerController extends AbstractController {
 
 	@Autowired

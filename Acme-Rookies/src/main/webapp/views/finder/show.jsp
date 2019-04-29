@@ -17,10 +17,10 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@ page import="java.util.ArrayList"%>
 
-<security:authorize access="hasRole('HACKER')">
+<security:authorize access="hasRole('ROOKIE')">
 
 <!--<display:table pagesize="5" name="positions" id="row"
-requestURI="finder/hacker/show.do" >
+requestURI="finder/rookie/show.do" >
 
 <display:column property="ticker" titleKey="position.ticker" />
 <display:column property="title" titleKey="position.title" />
@@ -89,6 +89,6 @@ requestURI="finder/hacker/show.do" >
     </tbody>
   </table>
 	<input type="button" name="create" value="<spring:message code="finder.back" />"
-			onclick="javascript: relativeRedir('finder/hacker/edit.do');" />
+			onclick="javascript: relativeRedir('finder/rookie/edit.do');" />
 
 </security:authorize>
