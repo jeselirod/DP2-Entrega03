@@ -51,7 +51,8 @@
 		<bean class="converters.HackerToStringConverter" />
 		<bean class="converters.StringToApplicationConverter" />
 		<bean class="converters.ApplicationToStringConverter" />
-		
+		<bean class="converters.StringToAuditConverter" />
+		<bean class="converters.AuditToStringConverter" />
 		
 		
 	</util:list>
