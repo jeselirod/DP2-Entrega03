@@ -15,7 +15,9 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
-
+<%--
+<%@ page language="java" import="services.PositionService" %> 
+ --%>
 <security:authorize access="isAnonymous()">
 
 <display:table pagesize="5" name="companies" id="row"
@@ -25,6 +27,11 @@ requestURI="company/list.do" >
 <display:column property="phone" titleKey="list.phone" />
 <display:column property="email" titleKey="list.email" />
 
+<%--
+<jsp:useBean id="producto" class="services.PositionService" scope="page"/> 
+<% producto.getPositionWithWorstSalary(); %>"
+
+ --%>
 
 <display:column>
 	<a href="position/list.do?companyId=${row.id}"><spring:message code="position.list" /></a>
