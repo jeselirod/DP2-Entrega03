@@ -203,7 +203,7 @@
 		<property name="address" value="Sevilla"/>
 		<property name="userAccount" ref="userAccount7"/>
 		<property name="creditCard" ref="creditCard7"/>
-	
+		<property name="position" ref="position1"/>
 	</bean>
 	
 	<bean id="auditor2" class="domain.Auditor">
@@ -216,7 +216,7 @@
 		<property name="address" value="Sevilla"/>
 		<property name="userAccount" ref="userAccount8"/>
 		<property name="creditCard" ref="creditCard8"/>
-	
+		<property name="position" ref="position2"/>
 	</bean>
 	
 	<bean id="auditor3" class="domain.Auditor">
@@ -229,7 +229,7 @@
 		<property name="address" value="Sevilla"/>
 		<property name="userAccount" ref="userAccount9"/>
 		<property name="creditCard" ref="creditCard9"/>
-	
+		<property name="position" ref="position3"/>
 	</bean>
 	
 		<bean id="provider1" class="domain.Provider">
@@ -417,7 +417,6 @@
 			</list>
 		</property>
 		<property name="isCancelled" value="0" />
-		<property name="auditor" ref="auditor1"/>
 	</bean>
 	
 	<bean id="position2" class="domain.Position">
@@ -437,7 +436,6 @@
 			</list>
 		</property>
 		<property name="isCancelled" value="0"/>
-		<property name="auditor" ref="auditor2"/>
 	
 	</bean>
 	
@@ -459,7 +457,6 @@
 			</list>
 		</property>
 		<property name="isCancelled" value="0"/>
-		<property name="auditor" ref="auditor3"/>
 	</bean>
 	
 	<!-- PROBLEM -->
