@@ -17,7 +17,7 @@ public class Auditor extends Actor {
 
 	@NotNull
 	@Valid
-	@OneToOne(optional = false)
+	@OneToOne(optional = true)
 	public Position getPosition() {
 		return this.position;
 	}
