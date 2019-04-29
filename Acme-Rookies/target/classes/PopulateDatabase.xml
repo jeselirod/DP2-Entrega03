@@ -891,6 +891,28 @@
 		<property name="position" ref="position3"></property>
 	</bean>
 	
+	<!-- Items -->
+	<bean id="item1" class="domain.Item">
+		<property name="name" value="articulo1" />
+		<property name="description" value="este artículo es el mejor" />
+		<property name="link" value="https://www.marca.com" />
+		<property name="provider" ref="provider1" />
+		<property name="pictures">
+			<list>
+				<value>https://cdn-images-1.medium.com/max/2600/1*TYAzzTJ60x-qg5N81ElU9A.png</value>
+			</list>
+		</property>
+	</bean>
 	
-	
+	<bean id="item2" class="domain.Item">
+		<property name="name" value="articulo1" />
+		<property name="description" value="este artículo es el mejor" />
+		<property name="link" value="https://www.google.com" />
+		<property name="provider" ref="provider2" />
+		<property name="pictures">
+			<list>
+				<value>https://img.freepik.com/foto-gratis/hacker-portatil_23-2147985341.jpg</value>
+			</list>
+		</property>
+	</bean>
 </beans>

@@ -1,4 +1,4 @@
-a<%--
+<%--
  * header.jsp
  *
  * Copyright (C) 2019 Universidad de Sevilla
@@ -55,6 +55,7 @@ a<%--
 				</ul>
 			<li><a href="company/list.do"><spring:message code="master.page.company" /></a></li>
 			<li><a href="position/listAll.do"><spring:message code="master.page.position" /></a></li>
+			<li><a href="item/list.do"><spring:message code="master.page.item" /></a></li>
 			
 		</security:authorize>
 		

@@ -41,6 +41,8 @@
 		<value>/views/application/tiles.xml</value>
 		<value>/views/profile/tiles.xml</value>
 		<value>/views/rookie/tiles.xml</value>
+		
+		<value>/views/item/tiles.xml</value>
 	
 		
 		

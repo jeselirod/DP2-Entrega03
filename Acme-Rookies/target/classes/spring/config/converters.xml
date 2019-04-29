@@ -58,6 +58,9 @@
 		<bean class="converters.StringToProviderConverter" />
 		<bean class="converters.ProviderToStringConverter" />
 		
+		<bean class="converters.StringToItemConverter" />
+		<bean class="converters.ItemToStringConverter" />
+		
 		
 	</util:list>
 	
