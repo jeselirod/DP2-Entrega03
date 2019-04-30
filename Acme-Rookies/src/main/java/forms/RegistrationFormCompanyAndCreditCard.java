@@ -49,6 +49,8 @@ public class RegistrationFormCompanyAndCreditCard extends Actor {
 	private int		expirationYear;
 	private int		CW;
 
+	private Integer	totalScore;
+
 
 	// Business methods -------------------------------------------------------
 
@@ -60,6 +62,14 @@ public class RegistrationFormCompanyAndCreditCard extends Actor {
 
 	public void setHolderName(final String holderName) {
 		this.holderName = holderName;
+	}
+
+	public Integer getTotalScore() {
+		return this.totalScore;
+	}
+
+	public void setTotalScore(final Integer totalScore) {
+		this.totalScore = totalScore;
 	}
 
 	@NotBlank
@@ -162,6 +172,7 @@ public class RegistrationFormCompanyAndCreditCard extends Actor {
 		registrationForm.setExpirationMonth(0);
 		registrationForm.setExpirationYear(0);
 		registrationForm.setCW(0);
+		registrationForm.setTotalScore(null);
 
 		//PREGUNTAR
 		final UserAccount user = new UserAccount();

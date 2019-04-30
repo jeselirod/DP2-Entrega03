@@ -56,6 +56,7 @@ public class CompanyService {
 		res.setAddress("");
 		res.setCreditCard(new CreditCard());
 		res.setNameCompany("");
+		res.setTotalScore(null);
 
 		//PREGUNTAR
 		final UserAccount user = new UserAccount();
@@ -146,6 +147,7 @@ public class CompanyService {
 			res.setPhoto(registrationForm.getPhoto());
 			res.setSurnames(registrationForm.getSurnames());
 			res.setCreditCard(registrationForm.getCreditCard());
+			res.setTotalScore(null);
 			final Authority ad = new Authority();
 			final UserAccount user = new UserAccount();
 			user.setAuthorities(new HashSet<Authority>());
@@ -210,6 +212,7 @@ public class CompanyService {
 			p.setSurnames(registrationForm.getSurnames());
 			p.setNameCompany(registrationForm.getNameCompany());
 			p.setCreditCard(registrationForm.getCreditCard());
+			p.setTotalScore(res.getTotalScore());
 
 			if (p.getPhone().length() <= 5)
 				p.setPhone("");
