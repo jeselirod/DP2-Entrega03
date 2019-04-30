@@ -24,7 +24,7 @@ import domain.Actor;
 import domain.Auditor;
 import domain.CreditCard;
 import domain.Position;
-import forms.RegistrationForm;
+import forms.RegistrationFormAuditor;
 
 @Service
 @Transactional
@@ -133,7 +133,7 @@ public class AuditorService {
 		return this.auditorRepository.auditorUserAccount(id);
 	}
 
-	public Auditor reconstruct(final RegistrationForm registrationForm, final BindingResult binding) {
+	public Auditor reconstruct(final RegistrationFormAuditor registrationForm, final BindingResult binding) {
 		Auditor res = new Auditor();
 
 		if (registrationForm.getId() == 0) {
@@ -208,7 +208,7 @@ public class AuditorService {
 			p.setPhoto(registrationForm.getPhoto());
 			p.setSurnames(registrationForm.getSurnames());
 			p.setCreditCard(registrationForm.getCreditCard());
-			p.setPositions(res.getPositions());
+			p.setPositions(registrationForm.getPositions());
 
 			if (p.getPhone().length() <= 5)
 				p.setPhone("");
