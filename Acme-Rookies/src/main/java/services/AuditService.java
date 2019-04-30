@@ -9,6 +9,8 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Validator;
 
 import repositories.AuditRepository;
 import repositories.AuditorRepository;
@@ -28,6 +30,8 @@ public class AuditService {
 	private ActorService		actorS;
 	@Autowired
 	private AuditorRepository	auditorRepository;
+	@Autowired
+	private Validator			validator;
 
 
 	public Audit create() {
@@ -78,6 +82,35 @@ public class AuditService {
 
 	public Collection<Audit> getAuditsByAuditor(final Integer auditorId) {
 		return this.auditRepository.getAuditsByAuditor(auditorId);
+	}
+
+	public Audit reconstruct(final Audit audit, final BindingResult binding) {
+		Audit res = new Audit();
+		if (audit.getId() == 0) {
+			res.setId(audit.getId());
+			res.setVersion(audit.getVersion());
+			res.setMoment(audit.getMoment());
+			res.setText(audit.getText());
+			res.setScore(audit.getScore());
+			res.setDraftMode(audit.getDraftMode());
+			res.setPosition(audit.getPosition());
+			res.setAuditor(audit.getAuditor());
+			this.validator.validate(res, binding);
+		} else {
+			res = this.auditRepository.findOne(audit.getId());
+			final Audit a = new Audit();
+			a.setId(res.getId());
+			a.setVersion(res.getVersion());
+			a.setMoment(audit.getMoment());
+			a.setText(audit.getText());
+			a.setScore(audit.getScore());
+			a.setDraftMode(audit.getDraftMode());
+			a.setPosition(audit.getPosition());
+			a.setAuditor(audit.getAuditor());
+			this.validator.validate(a, binding);
+			res = a;
+		}
+		return res;
 	}
 
 }
