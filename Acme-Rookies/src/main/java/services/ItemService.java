@@ -3,6 +3,7 @@ package services;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -71,6 +72,10 @@ public class ItemService {
 	}
 	private int providerUserAccountId() {
 		return LoginService.getPrincipal().getId();
+	}
+
+	public List<Object[]> getAvgMinMaxDesvNumberItemByProvider() {
+		return this.itemRepository.getAvgMinMaxDesvNumberItemByProvider();
 	}
 
 }

@@ -80,6 +80,14 @@
 </fieldset>
 
 <fieldset>
+<legend><spring:message code="administrator.item.provider" /></legend>
+<b><spring:message code="administrator.avg" /></b>: <fmt:formatNumber type="number" maxIntegerDigits = "3" value ="${getAvgItemProvider}"></fmt:formatNumber> <br/>
+<b><spring:message code="administrator.min" /></b>: <jstl:out value="${getMinItemProvider}"></jstl:out><br/>
+<b><spring:message code="administrator.max" /></b>: <jstl:out value="${getMaxItemProvider}"></jstl:out><br/>
+<b><spring:message code="administrator.desv" /></b>: <fmt:formatNumber type="number" maxIntegerDigits = "3" value ="${getDesvItemProvider}"></fmt:formatNumber>
+</fieldset>
+
+<fieldset>
 <b><spring:message code="administrator.top5.providers" /></b>:
 <br/>
 <jstl:if test="${fn:length(top5Providers) ne 0}">

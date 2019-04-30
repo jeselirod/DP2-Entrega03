@@ -29,6 +29,7 @@ import services.CurriculaService;
 import services.CustomizableSystemService;
 import services.FinderService;
 import services.HackerService;
+import services.ItemService;
 import services.PositionService;
 import services.ProviderService;
 import domain.Administrator;
@@ -69,6 +70,9 @@ public class AdministratorController extends AbstractController {
 	@Autowired
 	private ProviderService				providerService;
 
+	@Autowired
+	private ItemService					itemService;
+
 
 	// Constructors -----------------------------------------------------------
 
@@ -105,6 +109,12 @@ public class AdministratorController extends AbstractController {
 		final String getPositionWithBestSalary = this.positionService.getPositionWithBestSalary();
 		final String getPositionWithWorstSalary = this.positionService.getPositionWithWorstSalary();
 
+		final List<Object[]> getAvgMaxMinDesvItemProvider = this.itemService.getAvgMinMaxDesvNumberItemByProvider();
+		final Double getAvgItemProvider = (Double) getAvgMaxMinDesvItemProvider.get(0)[0];
+		final Double getMinItemProvider = (Double) getAvgMaxMinDesvItemProvider.get(0)[1];
+		final Double getMaxItemProvider = (Double) getAvgMaxMinDesvItemProvider.get(0)[2];
+		final Double getDesvItemProvider = (Double) getAvgMaxMinDesvItemProvider.get(0)[3];
+
 		final List<String> top5Providers = this.providerService.getTop5Providers();
 
 		result = new ModelAndView("administrator/dashboard");
@@ -134,6 +144,11 @@ public class AdministratorController extends AbstractController {
 		result.addObject("curricula", this.curriculaService.getMinMaxAvgDesvCurriculaPerHacker());
 		result.addObject("resultsFinder", this.finderService.getMinMaxAvgDesvResultsFinder());
 		result.addObject("emptyVSnotEmpty", this.finderService.ratioEmptyNotEmtpyFinder());
+
+		result.addObject("getAvgItemProvider", getAvgItemProvider);
+		result.addObject("getMinItemProvider", getMinItemProvider);
+		result.addObject("getMaxItemProvider", getMaxItemProvider);
+		result.addObject("getDesvItemProvider", getDesvItemProvider);
 
 		result.addObject("top5Providers", top5Providers);
 
