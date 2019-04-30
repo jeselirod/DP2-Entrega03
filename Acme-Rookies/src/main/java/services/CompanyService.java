@@ -242,4 +242,9 @@ public class CompanyService {
 	public List<Integer> getIdsOfCompanyWithHighScore() {
 		return this.companyRepository.getIdsOfCompanyWithHighScore();
 	}
+
+	public Collection<String> getCompaniesWithHighestScore() {
+		return this.companyRepository.getCompaniesWithHighestScore();
+	}
+
 }

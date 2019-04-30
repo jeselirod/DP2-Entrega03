@@ -80,6 +80,25 @@
 </fieldset>
 
 <fieldset>
+<legend><spring:message code="administrator.audit.score" /></legend>
+<b><spring:message code="administrator.avg" /></b>: <fmt:formatNumber type="number" maxIntegerDigits = "3" value ="${getAvgScoreOfAudit}"></fmt:formatNumber> <br/>
+<b><spring:message code="administrator.min" /></b>: <jstl:out value="${getMinScoreOfAudit}"></jstl:out><br/>
+<b><spring:message code="administrator.max" /></b>: <jstl:out value="${getMaxScoreOfAudit}"></jstl:out><br/>
+<b><spring:message code="administrator.desv" /></b>: <fmt:formatNumber type="number" maxIntegerDigits = "3" value ="${getDesvScoreOfAudit}"></fmt:formatNumber>
+</fieldset>
+
+<fieldset>
+<b><spring:message code="administrator.company.score" /></b>:
+<br/>
+<jstl:if test="${fn:length(getCompaniesWithHighestScore) ne 0}">
+<jstl:forEach var="item" items="${getCompaniesWithHighestScore}">
+<jstl:out value="${item}"></jstl:out>
+<br/>
+</jstl:forEach>
+</jstl:if>
+</fieldset>
+
+<fieldset>
 <b><spring:message code="administrator.company.highScore" /></b>:
 <br/>
 <jstl:if test="${fn:length(getAvgSalaryOfCompaniesWithHighScore) ne 0}">

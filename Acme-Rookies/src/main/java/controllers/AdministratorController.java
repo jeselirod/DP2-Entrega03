@@ -23,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import services.AdministratorService;
 import services.ApplicationService;
+import services.AuditService;
 import services.CompanyService;
 import services.CreditCardService;
 import services.CurriculaService;
@@ -73,6 +74,9 @@ public class AdministratorController extends AbstractController {
 	@Autowired
 	private ItemService					itemService;
 
+	@Autowired
+	private AuditService				auditService;
+
 
 	// Constructors -----------------------------------------------------------
 
@@ -108,6 +112,14 @@ public class AdministratorController extends AbstractController {
 
 		final String getPositionWithBestSalary = this.positionService.getPositionWithBestSalary();
 		final String getPositionWithWorstSalary = this.positionService.getPositionWithWorstSalary();
+
+		final List<Object[]> getAvgMinMaxDesvScoreOfAudit = this.auditService.getAvgMinMaxDesvScoreOfAudit();
+		final Double getAvgScoreOfAudit = (Double) getAvgMinMaxDesvScoreOfAudit.get(0)[0];
+		final Integer getMinScoreOfAudit = (Integer) getAvgMinMaxDesvScoreOfAudit.get(0)[1];
+		final Integer getMaxScoreOfAudit = (Integer) getAvgMinMaxDesvScoreOfAudit.get(0)[2];
+		final Double getDesvScoreOfAudit = (Double) getAvgMinMaxDesvScoreOfAudit.get(0)[3];
+
+		final Collection<String> getCompaniesWithHighestScore = this.companyService.getCompaniesWithHighestScore();
 
 		final Collection<Double> getAvgSalaryOfCompaniesWithHighScore = this.positionService.getAverageSalaryOfCompaniesWithHighScore();
 
@@ -146,6 +158,13 @@ public class AdministratorController extends AbstractController {
 		result.addObject("curricula", this.curriculaService.getMinMaxAvgDesvCurriculaPerHacker());
 		result.addObject("resultsFinder", this.finderService.getMinMaxAvgDesvResultsFinder());
 		result.addObject("emptyVSnotEmpty", this.finderService.ratioEmptyNotEmtpyFinder());
+
+		result.addObject("getAvgScoreOfAudit", getAvgScoreOfAudit);
+		result.addObject("getMinScoreOfAudit", getMinScoreOfAudit);
+		result.addObject("getMaxScoreOfAudit", getMaxScoreOfAudit);
+		result.addObject("getDesvScoreOfAudit", getDesvScoreOfAudit);
+
+		result.addObject("getCompaniesWithHighestScore", getCompaniesWithHighestScore);
 
 		result.addObject("getAvgSalaryOfCompaniesWithHighScore", getAvgSalaryOfCompaniesWithHighScore);
 

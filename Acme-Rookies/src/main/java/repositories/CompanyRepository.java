@@ -1,6 +1,7 @@
 
 package repositories;
 
+import java.util.Collection;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -21,4 +22,7 @@ public interface CompanyRepository extends JpaRepository<Company, Integer> {
 
 	@Query("select c.id from Company c where c.totalScore=(select max(c.totalScore) from Company c)")
 	public List<Integer> getIdsOfCompanyWithHighScore();
+
+	@Query("select a.position.company.nameCompany from Audit a where a.score =(select max(a.score) from Audit a)")
+	public Collection<String> getCompaniesWithHighestScore();
 }
