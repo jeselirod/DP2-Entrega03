@@ -3,6 +3,7 @@ package services;
 
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 import javax.transaction.Transactional;
 
@@ -110,6 +111,11 @@ public class AuditService {
 			res = a;
 		}
 		return res;
+	}
+
+	//Dashboard
+	public List<Object[]> getAvgMinMaxDesvScoreOfAudit() {
+		return this.auditRepository.getAvgMinMaxDesvScoreOfAudit();
 	}
 
 }
