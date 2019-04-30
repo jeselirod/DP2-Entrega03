@@ -21,12 +21,13 @@
 <spring:message code="item.description"/>: <jstl:out value="${item.description}"></jstl:out><br>
 <spring:message code="item.link"/>: <jstl:out value="${item.link}"></jstl:out><br>
 <spring:message code="item.pictures"/>: <jstl:out value="${item.pictures}"></jstl:out><br>
-<spring:message code="item.provider"/>: <br>
-
-<jstl:out value="${item.provider.name}"></jstl:out><br>
-<jstl:out value="${item.provider.surnames}"></jstl:out><br>
-<jstl:out value="${item.provider.email}"></jstl:out><br>
-<jstl:out value="${item.provider.make}"></jstl:out><br>
+<b><spring:message code="item.provider"/>:</b> <br>
+<div style="border: 5px solid skyblue; border-radius: 12px; display:inline-block;">
+	<jstl:out value="${item.provider.name}"></jstl:out><br>
+	<jstl:out value="${item.provider.surnames}"></jstl:out><br>
+	<jstl:out value="${item.provider.email}"></jstl:out><br>
+	<jstl:out value="${item.provider.make}"></jstl:out><br>
+</div><br>
 <input type="button" name="back" value="<spring:message code="item.back" />"
 			onclick="javascript: relativeRedir('item/list.do');" />
 

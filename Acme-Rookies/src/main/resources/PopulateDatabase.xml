@@ -906,7 +906,12 @@
 	<bean id="item1" class="domain.Item">
 		<property name="name" value="articulo1" />
 		<property name="description" value="este artículo es el mejor" />
-		<property name="link" value="https://www.marca.com" />
+		<property name="link">
+			<list>
+				<value>https://www.google.com</value>
+				<value>https://www.marca.com</value>
+			</list>
+		</property>
 		<property name="provider" ref="provider1" />
 		<property name="pictures">
 			<list>
@@ -918,7 +923,12 @@
 	<bean id="item2" class="domain.Item">
 		<property name="name" value="articulo1" />
 		<property name="description" value="este artículo es el mejor" />
-		<property name="link" value="https://www.google.com" />
+		<property name="link">
+			<list>
+				<value>https://www.google.com</value>
+				<value>https://www.marca.com</value>
+			</list>
+		</property>
 		<property name="provider" ref="provider2" />
 		<property name="pictures">
 			<list>
@@ -930,7 +940,12 @@
 	<bean id="item3" class="domain.Item">
 		<property name="name" value="articulo1" />
 		<property name="description" value="este artículo es el mejor" />
-		<property name="link" value="https://www.google.com" />
+		<property name="link">
+			<list>
+				<value>https://www.google.es</value>
+				<value>https://www.ev.us.es</value>
+			</list>
+		</property>
 		<property name="provider" ref="provider2" />
 		<property name="pictures">
 			<list>
@@ -942,7 +957,12 @@
 	<bean id="item4" class="domain.Item">
 		<property name="name" value="articulo1" />
 		<property name="description" value="este artículo es el mejor" />
-		<property name="link" value="https://www.google.com" />
+		<property name="link">
+			<list>
+				<value>https://www.google.com</value>
+				<value>https://www.marca.com</value>
+			</list>
+		</property>
 		<property name="provider" ref="provider2" />
 		<property name="pictures">
 			<list>

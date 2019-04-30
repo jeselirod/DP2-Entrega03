@@ -8,6 +8,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
 
@@ -25,11 +26,14 @@ public class ItemService {
 	@Autowired
 	private Validator		validator;
 
+	@Autowired
+	private ProviderService	providerService;
+
 
 	public Item create() {
 		final Item res = new Item();
 		res.setDescription("");
-		res.setLink("");
+		res.setLink(new HashSet<String>());
 		res.setName("");
 		res.setPictures(new HashSet<String>());
 		res.setProvider(null);
@@ -45,25 +49,36 @@ public class ItemService {
 	}
 
 	public Item save(final Item i) {
-		final Item saved = null; //quitar null
-		if (i.getId() == 0) {
-
-		} else {
-
-		}
+		final Item saved;
+		if (i.getId() == 0)
+			Assert.isTrue(i.getProvider().getId() == this.providerService.providerUserAccount(LoginService.getPrincipal().getId()).getId());
+		else
+			Assert.isTrue(this.itemsByProvider().contains(i));
+		saved = this.save(i);
 		return saved;
 	}
 
 	//RECONSTRUCT
 	public Item reconstruct(final Item item, final BindingResult binding) {
-		final Item res;
+		Item res;
+		if (item.getId() != 0) {
+			res = this.findOne(item.getId());
+			final Item copy = new Item();
+			copy.setId(res.getId());
+			copy.setVersion(res.getVersion());
+			copy.setName(item.getName());
+			copy.setDescription(item.getDescription());
+			copy.setLink(item.getLink());
+			copy.setPictures(item.getPictures());
+			copy.setProvider(res.getProvider());
+			res = copy;
+		} else {
+			item.setProvider(this.providerService.providerUserAccount(LoginService.getPrincipal().getId()));
+			res = item;
+		}
 
-		final Item copy = new Item();
-		copy.setId(item.getId());
-		copy.setVersion(item.getVersion());
-
-		this.validator.validate(copy, binding);
-		return copy;
+		this.validator.validate(res, binding);
+		return res;
 
 	}
 

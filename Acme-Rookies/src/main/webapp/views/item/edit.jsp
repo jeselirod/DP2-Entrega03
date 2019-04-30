@@ -28,6 +28,7 @@
 <acme:textbox code="item.description" path="description"/>
 <acme:textbox code="item.link" path="link"/>
 <acme:textbox code="item.pictures" path="pictures"/>
+<spring:message code="item.pictures.message"/><br>
 
 <input type="submit" name="save" 
 	value="<spring:message code="item.save" />" />

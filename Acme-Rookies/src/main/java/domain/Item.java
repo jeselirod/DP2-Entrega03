@@ -12,7 +12,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
-import org.hibernate.validator.constraints.URL;
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Access(AccessType.PROPERTY)
@@ -20,7 +20,7 @@ public class Item extends DomainEntity {
 
 	private String				name;
 	private String				description;
-	private String				link;
+	private Collection<String>	link;
 	private Collection<String>	pictures;
 	private Provider			provider;
 
@@ -56,13 +56,13 @@ public class Item extends DomainEntity {
 		this.description = description;
 	}
 
-	@URL
-	@NotNull
-	public String getLink() {
+	@NotEmpty
+	@ElementCollection
+	public Collection<String> getLink() {
 		return this.link;
 	}
 
-	public void setLink(final String link) {
+	public void setLink(final Collection<String> link) {
 		this.link = link;
 	}
 

@@ -6,6 +6,7 @@ import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -65,23 +66,24 @@ public class ItemProviderController extends AbstractController {
 		return result;
 	}
 
-	//	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
-	//	public ModelAndView edit(final Finder f, final BindingResult binding) {
-	//		final ModelAndView result;
-	//		final Finder finder;
-	//
-	//		finder = this.finderService.reconstruct(f, binding);
-	//
-	//		if (!binding.hasErrors()) {
-	//			this.finderService.save(finder);
-	//			result = new ModelAndView("redirect:show.do");
-	//		} else {
-	//			result = new ModelAndView("finder/edit");
-	//			result.addObject("finder", finder);
-	//		}
-	//
-	//		return result;
-	//
-	//	}
+	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
+	public ModelAndView edit(final Item i, final BindingResult binding) {
+		ModelAndView result;
+		final Item item;
+		try {
+			item = this.itemService.reconstruct(i, binding);
+			if (!binding.hasErrors()) {
+				this.itemService.save(item);
+				result = new ModelAndView("redirect:list.do");
+			} else {
+				result = new ModelAndView("item/edit");
+				result.addObject("item", i);
+			}
+		} catch (final Exception e) {
+			result = new ModelAndView("item/edit");
+			result.addObject("item", i);
+		}
+		return result;
+	}
 
 }
