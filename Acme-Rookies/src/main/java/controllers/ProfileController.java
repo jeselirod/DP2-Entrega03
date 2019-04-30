@@ -266,7 +266,7 @@ public class ProfileController extends AbstractController {
 
 			result = new ModelAndView("profile/editRookie");
 			result.addObject("actor", registrationForm);
-			result.addObject("action", "profile/edit-Rookie.do");
+			result.addObject("action", "profile/edit-rookie.do");
 
 		} catch (final Exception e) {
 			result = new ModelAndView("redirect:../../");
