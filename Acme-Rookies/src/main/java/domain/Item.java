@@ -14,6 +14,8 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
 
+import validators.URLCollection;
+
 @Entity
 @Access(AccessType.PROPERTY)
 public class Item extends DomainEntity {
@@ -57,6 +59,7 @@ public class Item extends DomainEntity {
 	}
 
 	@NotEmpty
+	@URLCollection
 	@ElementCollection
 	public Collection<String> getLink() {
 		return this.link;
@@ -66,6 +69,7 @@ public class Item extends DomainEntity {
 		this.link = link;
 	}
 
+	@URLCollection
 	@ElementCollection
 	public Collection<String> getPictures() {
 		return this.pictures;
