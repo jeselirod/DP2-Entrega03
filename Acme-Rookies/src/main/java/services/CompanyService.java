@@ -238,4 +238,8 @@ public class CompanyService {
 	public List<String> getCompaniesWithMorePositions() {
 		return this.companyRepository.getCompaniesWithMorePositions();
 	}
+
+	public List<Integer> getIdsOfCompanyWithHighScore() {
+		return this.companyRepository.getIdsOfCompanyWithHighScore();
+	}
 }

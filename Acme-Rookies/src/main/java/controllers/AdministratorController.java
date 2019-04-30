@@ -109,6 +109,8 @@ public class AdministratorController extends AbstractController {
 		final String getPositionWithBestSalary = this.positionService.getPositionWithBestSalary();
 		final String getPositionWithWorstSalary = this.positionService.getPositionWithWorstSalary();
 
+		final Collection<Double> getAvgSalaryOfCompaniesWithHighScore = this.positionService.getAverageSalaryOfCompaniesWithHighScore();
+
 		final List<Object[]> getAvgMaxMinDesvItemProvider = this.itemService.getAvgMinMaxDesvNumberItemByProvider();
 		final Double getAvgItemProvider = (Double) getAvgMaxMinDesvItemProvider.get(0)[0];
 		final Double getMinItemProvider = (Double) getAvgMaxMinDesvItemProvider.get(0)[1];
@@ -144,6 +146,8 @@ public class AdministratorController extends AbstractController {
 		result.addObject("curricula", this.curriculaService.getMinMaxAvgDesvCurriculaPerHacker());
 		result.addObject("resultsFinder", this.finderService.getMinMaxAvgDesvResultsFinder());
 		result.addObject("emptyVSnotEmpty", this.finderService.ratioEmptyNotEmtpyFinder());
+
+		result.addObject("getAvgSalaryOfCompaniesWithHighScore", getAvgSalaryOfCompaniesWithHighScore);
 
 		result.addObject("getAvgItemProvider", getAvgItemProvider);
 		result.addObject("getMinItemProvider", getMinItemProvider);

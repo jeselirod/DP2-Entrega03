@@ -1,6 +1,7 @@
 
 package services;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
@@ -43,6 +44,9 @@ public class PositionService {
 
 	@Autowired
 	private FinderRepository	finderRepository;
+
+	@Autowired
+	private CompanyService		companyService;
 
 
 	public Position create() {
@@ -254,5 +258,17 @@ public class PositionService {
 
 	public Collection<Position> getAllPositionToCreateApplication() {
 		return this.positionRepository.getAllPositionToCreateApplication();
+	}
+
+	public List<Double> getAverageSalaryOfCompaniesWithHighScore() {
+		final List<Double> res = new ArrayList<Double>();
+		final List<Integer> companiesId = this.companyService.getIdsOfCompanyWithHighScore();
+
+		for (int i = 0; i < companiesId.size(); i++) {
+			final Double salary = this.positionRepository.getAverageOfSalary(companiesId.get(i));
+			res.add(salary);
+		}
+
+		return res;
 	}
 }

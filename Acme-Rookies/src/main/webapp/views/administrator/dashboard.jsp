@@ -80,6 +80,17 @@
 </fieldset>
 
 <fieldset>
+<b><spring:message code="administrator.company.highScore" /></b>:
+<br/>
+<jstl:if test="${fn:length(getAvgSalaryOfCompaniesWithHighScore) ne 0}">
+<jstl:forEach var="item" items="${getAvgSalaryOfCompaniesWithHighScore}">
+<jstl:out value="${item}"></jstl:out>
+<br/>
+</jstl:forEach>
+</jstl:if>
+</fieldset>
+
+<fieldset>
 <legend><spring:message code="administrator.item.provider" /></legend>
 <b><spring:message code="administrator.avg" /></b>: <fmt:formatNumber type="number" maxIntegerDigits = "3" value ="${getAvgItemProvider}"></fmt:formatNumber> <br/>
 <b><spring:message code="administrator.min" /></b>: <jstl:out value="${getMinItemProvider}"></jstl:out><br/>
