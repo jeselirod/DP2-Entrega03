@@ -16,6 +16,14 @@ public interface AuditRepository extends JpaRepository<Audit, Integer> {
 	@Query("select a from Audit a where a.auditor.id=?1")
 	public Collection<Audit> getAuditsByAuditor(Integer auditorId);
 
+	//---Cristian---
+	@Query("select count(a) from Audit a where a.position.company.id = ?1")
+	public Integer getNumerosAuditsByCompany(Integer id);
+
+	@Query("select 1.0*(sum(a.score)/(10*count(a))) from Audit a where a.position.company.id = ?1")
+	public Double getTotalScoreOfCompany(Integer id);
+	//---Cristian---
+
 	//DASHBOARD
 	@Query("select avg(a.score), min(a.score), max(a.score), sqrt(sum(a.score * a.score)/count(a)-avg(a.score)*avg(a.score)) from Audit a")
 	public List<Object[]> getAvgMinMaxDesvScoreOfAudit();

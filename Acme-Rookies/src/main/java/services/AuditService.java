@@ -113,6 +113,19 @@ public class AuditService {
 		return res;
 	}
 
+	//Metodo para actualizar el totalScore de una company
+	public Double updateTotalScoreOfCompany(final Integer idCompany) {
+		Double res = null;
+
+		final Integer numAudits = this.auditRepository.getNumerosAuditsByCompany(idCompany);
+
+		if (numAudits != 0)
+			res = this.auditRepository.getTotalScoreOfCompany(idCompany);
+
+		return res;
+
+	}
+
 	//Dashboard
 	public List<Object[]> getAvgMinMaxDesvScoreOfAudit() {
 		return this.auditRepository.getAvgMinMaxDesvScoreOfAudit();
