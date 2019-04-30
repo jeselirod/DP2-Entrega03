@@ -14,8 +14,10 @@ import security.LoginService;
 import security.UserAccount;
 import services.AuditService;
 import services.AuditorService;
+import services.PositionService;
 import domain.Audit;
 import domain.Auditor;
+import domain.Position;
 
 @Controller
 @RequestMapping("/audit/auditor")
@@ -25,6 +27,8 @@ public class AuditAuditorController extends AbstractController {
 	private AuditService	auditService;
 	@Autowired
 	private AuditorService	auditorService;
+	@Autowired
+	private PositionService	positionService;
 
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
@@ -43,4 +47,18 @@ public class AuditAuditorController extends AbstractController {
 
 		return result;
 	}
+
+	@RequestMapping(value = "/create", method = RequestMethod.GET)
+	public ModelAndView create() {
+		final ModelAndView result;
+		Collection<Position> positions;
+		positions = this.positionService.findAll();
+		final Audit audit = this.auditService.create();
+
+		result = new ModelAndView("audit/edit");
+		result.addObject("positions", positions);
+		result.addObject("audit", audit);
+		return result;
+	}
+
 }
