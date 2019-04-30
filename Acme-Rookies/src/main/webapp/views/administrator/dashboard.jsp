@@ -88,6 +88,14 @@
 </fieldset>
 
 <fieldset>
+<legend><spring:message code="administrator.audit.score.company" /></legend>
+<b><spring:message code="administrator.avg" /></b>: <fmt:formatNumber type="number" maxIntegerDigits = "3" value ="${getAvgScoreOfAuditByCompany}"></fmt:formatNumber> <br/>
+<b><spring:message code="administrator.min" /></b>: <jstl:out value="${getMinScoreOfAuditByCompany}"></jstl:out><br/>
+<b><spring:message code="administrator.max" /></b>: <jstl:out value="${getMaxScoreOfAuditByCompany}"></jstl:out><br/>
+<b><spring:message code="administrator.desv" /></b>: <fmt:formatNumber type="number" maxIntegerDigits = "3" value ="${getDesvScoreOfAuditByCompany}"></fmt:formatNumber>
+</fieldset>
+
+<fieldset>
 <b><spring:message code="administrator.company.score" /></b>:
 <br/>
 <jstl:if test="${fn:length(getCompaniesWithHighestScore) ne 0}">

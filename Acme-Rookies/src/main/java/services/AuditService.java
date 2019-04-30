@@ -118,4 +118,8 @@ public class AuditService {
 		return this.auditRepository.getAvgMinMaxDesvScoreOfAudit();
 	}
 
+	public List<Object[]> getAvgMinMaxDesvScoreOfAuditByCompany() {
+		return this.auditRepository.getAvgMinMaxDesvScoreOfAuditByCompany();
+	}
+
 }

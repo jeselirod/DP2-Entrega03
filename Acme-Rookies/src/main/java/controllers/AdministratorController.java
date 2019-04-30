@@ -119,6 +119,12 @@ public class AdministratorController extends AbstractController {
 		final Integer getMaxScoreOfAudit = (Integer) getAvgMinMaxDesvScoreOfAudit.get(0)[2];
 		final Double getDesvScoreOfAudit = (Double) getAvgMinMaxDesvScoreOfAudit.get(0)[3];
 
+		final List<Object[]> getAvgMinMaxDesvScoreOfAuditByCompany = this.auditService.getAvgMinMaxDesvScoreOfAuditByCompany();
+		final Double getAvgScoreOfAuditByCompany = (Double) getAvgMinMaxDesvScoreOfAuditByCompany.get(0)[0];
+		final Double getMinScoreOfAuditByCompany = (Double) getAvgMinMaxDesvScoreOfAuditByCompany.get(0)[1];
+		final Double getMaxScoreOfAuditByCompany = (Double) getAvgMinMaxDesvScoreOfAuditByCompany.get(0)[2];
+		final Double getDesvScoreOfAuditByCompany = (Double) getAvgMinMaxDesvScoreOfAuditByCompany.get(0)[3];
+
 		final Collection<String> getCompaniesWithHighestScore = this.companyService.getCompaniesWithHighestScore();
 
 		final Collection<Double> getAvgSalaryOfCompaniesWithHighScore = this.positionService.getAverageSalaryOfCompaniesWithHighScore();
@@ -163,6 +169,11 @@ public class AdministratorController extends AbstractController {
 		result.addObject("getMinScoreOfAudit", getMinScoreOfAudit);
 		result.addObject("getMaxScoreOfAudit", getMaxScoreOfAudit);
 		result.addObject("getDesvScoreOfAudit", getDesvScoreOfAudit);
+
+		result.addObject("getAvgScoreOfAuditByCompany", getAvgScoreOfAuditByCompany);
+		result.addObject("getMinScoreOfAuditByCompany", getMinScoreOfAuditByCompany);
+		result.addObject("getMaxScoreOfAuditByCompany", getMaxScoreOfAuditByCompany);
+		result.addObject("getDesvScoreOfAuditByCompany", getDesvScoreOfAuditByCompany);
 
 		result.addObject("getCompaniesWithHighestScore", getCompaniesWithHighestScore);
 
