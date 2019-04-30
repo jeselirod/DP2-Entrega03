@@ -30,6 +30,7 @@ import services.CustomizableSystemService;
 import services.FinderService;
 import services.HackerService;
 import services.PositionService;
+import services.ProviderService;
 import domain.Administrator;
 import domain.CreditCard;
 import forms.RegistrationForm;
@@ -64,6 +65,9 @@ public class AdministratorController extends AbstractController {
 
 	@Autowired
 	private AdministratorService		administratorService;
+
+	@Autowired
+	private ProviderService				providerService;
 
 
 	// Constructors -----------------------------------------------------------
@@ -101,6 +105,8 @@ public class AdministratorController extends AbstractController {
 		final String getPositionWithBestSalary = this.positionService.getPositionWithBestSalary();
 		final String getPositionWithWorstSalary = this.positionService.getPositionWithWorstSalary();
 
+		final List<String> top5Providers = this.providerService.getTop5Providers();
+
 		result = new ModelAndView("administrator/dashboard");
 
 		result.addObject("getAvgPositionByCompany", getAvgPositionByCompany);
@@ -128,6 +134,8 @@ public class AdministratorController extends AbstractController {
 		result.addObject("curricula", this.curriculaService.getMinMaxAvgDesvCurriculaPerHacker());
 		result.addObject("resultsFinder", this.finderService.getMinMaxAvgDesvResultsFinder());
 		result.addObject("emptyVSnotEmpty", this.finderService.ratioEmptyNotEmtpyFinder());
+
+		result.addObject("top5Providers", top5Providers);
 
 		return result;
 	}

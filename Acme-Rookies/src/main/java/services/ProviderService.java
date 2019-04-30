@@ -1,6 +1,7 @@
 
 package services;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
@@ -227,6 +228,20 @@ public class ProviderService {
 			res = p;
 
 		}
+		return res;
+
+	}
+
+	//DASHBOARD
+	public List<String> getTop5Providers() {
+		final List<Integer> ls = (List<Integer>) this.providerRepository.getTop5Providers();
+		final List<String> res = new ArrayList<String>();
+
+		for (int i = 0; i < ls.size(); i++) {
+			final Provider p = this.providerRepository.findOne(ls.get(i));
+			res.add(p.getName());
+		}
+
 		return res;
 
 	}

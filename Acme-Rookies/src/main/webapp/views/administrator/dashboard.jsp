@@ -79,4 +79,15 @@
 <b><spring:message code="administrator.curricula-finder.finder2" /></b>: <jstl:out value="Ratio: ${emptyVSnotEmpty}"></jstl:out><br/>
 </fieldset>
 
+<fieldset>
+<b><spring:message code="administrator.top5.providers" /></b>:
+<br/>
+<jstl:if test="${fn:length(top5Providers) ne 0}">
+<jstl:forEach var="item" items="${top5Providers}">
+<jstl:out value="${item}"></jstl:out>
+<br/>
+</jstl:forEach>
+</jstl:if>
+</fieldset>
+
 </security:authorize>
