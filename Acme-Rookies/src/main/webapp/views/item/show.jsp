@@ -32,3 +32,14 @@
 
 </security:authorize>
 
+<security:authorize access="hasRole('PROVIDER')">
+<spring:message code="item.name"/>:<jstl:out value=" ${item.name}"></jstl:out><br>
+<spring:message code="item.description"/>: <jstl:out value="${item.description}"></jstl:out><br>
+<spring:message code="item.link"/>: <jstl:out value="${item.link}"></jstl:out><br>
+<spring:message code="item.pictures"/>: <jstl:out value="${item.pictures}"></jstl:out><br>
+
+<input type="button" name="back" value="<spring:message code="item.back" />"
+			onclick="javascript: relativeRedir('item/provider/list.do');" />
+
+</security:authorize>
+

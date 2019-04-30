@@ -12,6 +12,6 @@ import domain.Item;
 @Repository
 public interface ItemRepository extends JpaRepository<Item, Integer> {
 
-	@Query("select i from Item i where i.provider.id = ?1")
+	@Query("select i from Item i where i.provider.userAccount.id = ?1")
 	public Collection<Item> getItemsByProvider(int providerId);
 }

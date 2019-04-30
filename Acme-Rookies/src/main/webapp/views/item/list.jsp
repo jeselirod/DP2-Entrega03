@@ -43,13 +43,15 @@
 		<display:column property="name" titleKey="item.name" />
 		<display:column property="description" titleKey="item.description" />
 		<display:column property="link" titleKey="item.link" />
-		<display:column property="pictures" titleKey="item.picture" />
+		<display:column property="pictures" titleKey="item.pictures" />
 		<display:column>
 			<a style="color: green;"
 				href="item/provider/show.do?itemId=${row.id}"><spring:message
 					code="application.show" /></a>
 		</display:column>
-		
 	</display:table>
+	
+	<input type="button" name="create" value="<spring:message code="item.create" />"
+			onclick="javascript: relativeRedir('item/provider/edit.do?itemId=0');" />
 
 </security:authorize>

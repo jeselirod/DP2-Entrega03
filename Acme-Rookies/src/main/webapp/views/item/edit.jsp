@@ -18,21 +18,23 @@
 
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
-<security:authorize access="hasRole('ROOKIE')">
+<security:authorize access="hasRole('PROVIDER')">
 
-<form:form action="application/rookie/edit.do?status=1" modelAttribute="application">
+<form:form action="item/provider/edit.do" modelAttribute="item">
 <form:hidden path="id"/>
 <form:hidden path="version"/>
 
-<acme:textbox code="application.urlCode" path="urlCode"/>
-<acme:textbox code="application.explication" path="explication"/>
+<acme:textbox code="item.name" path="name"/>
+<acme:textbox code="item.description" path="description"/>
+<acme:textbox code="item.link" path="link"/>
+<acme:textbox code="item.pictures" path="pictures"/>
 
 <input type="submit" name="save" 
-	value="<spring:message code="position.save" />" />
+	value="<spring:message code="item.save" />" />
 	
 
-<input type="button" name="cancel" value="<spring:message code="application.cancel" />"
-			onclick="javascript: relativeRedir('application/rookie/list.do');" />
+<input type="button" name="cancel" value="<spring:message code="item.cancel" />"
+			onclick="javascript: relativeRedir('item/provider/list.do');" />
 </form:form>
 
 </security:authorize>
