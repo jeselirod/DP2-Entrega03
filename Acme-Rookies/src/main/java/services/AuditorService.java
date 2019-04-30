@@ -56,7 +56,7 @@ public class AuditorService {
 		res.setSurnames("");
 		res.setAddress("");
 		res.setCreditCard(new CreditCard());
-		res.setPosition(new Position());
+		res.setPositions(new HashSet<Position>());
 
 		//PREGUNTAR
 		final UserAccount user = new UserAccount();
@@ -147,7 +147,7 @@ public class AuditorService {
 			res.setPhoto(registrationForm.getPhoto());
 			res.setSurnames(registrationForm.getSurnames());
 			res.setCreditCard(registrationForm.getCreditCard());
-			res.setPosition(new Position());
+			res.setPositions(new HashSet<Position>());
 			final Authority ad = new Authority();
 			final UserAccount user = new UserAccount();
 			user.setAuthorities(new HashSet<Authority>());
@@ -208,7 +208,7 @@ public class AuditorService {
 			p.setPhoto(registrationForm.getPhoto());
 			p.setSurnames(registrationForm.getSurnames());
 			p.setCreditCard(registrationForm.getCreditCard());
-			p.setPosition(res.getPosition());
+			p.setPositions(res.getPositions());
 
 			if (p.getPhone().length() <= 5)
 				p.setPhone("");
