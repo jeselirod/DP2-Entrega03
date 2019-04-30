@@ -50,11 +50,9 @@ public class ItemService {
 
 	public Item save(final Item i) {
 		final Item saved;
-		if (i.getId() == 0)
-			Assert.isTrue(i.getProvider().getId() == this.providerService.providerUserAccount(LoginService.getPrincipal().getId()).getId());
-		else
+		if (i.getId() != 0)
 			Assert.isTrue(this.itemsByProvider().contains(i));
-		saved = this.save(i);
+		saved = this.itemRepository.save(i);
 		return saved;
 	}
 
