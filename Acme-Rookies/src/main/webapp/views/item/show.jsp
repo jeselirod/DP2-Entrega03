@@ -16,70 +16,19 @@
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<security:authorize access="hasRole('COMPANY')">
-<spring:message code="application.curricula"/>:<jstl:out value=" ${application.curricula.id}"></jstl:out><br>
-<spring:message code="application.moment"/>: <jstl:out value="${application.moment}"></jstl:out><br>
-<spring:message code="application.explication"/>: <jstl:out value="${application.explication}"></jstl:out><br>
-<spring:message code="application.urlCode"/>: <jstl:out value="${application.urlCode}"></jstl:out><br>
-<spring:message code="application.submitMoment"/>: <jstl:out value="${application.submitMoment}"></jstl:out><br>
-<spring:message code="application.status"/>: 
-<jstl:if test="${application.status eq 0 }">
-<spring:message code="application.status.pending"/>
-</jstl:if>
-<jstl:if test="${application.status eq 1 }">
-<spring:message code="application.status.submitted"/>
-</jstl:if>
-<jstl:if test="${application.status eq 2 }">
-<spring:message code="application.status.accepted"/>
-</jstl:if>
-<jstl:if test="${application.status eq 3 }">
-<spring:message code="application.status.cancel"/>
-</jstl:if>
-<br>
-<display:table pagesize="1" name="problem" id="row" >
+<security:authorize access="isAnonymous()">
+<spring:message code="item.name"/>:<jstl:out value=" ${item.name}"></jstl:out><br>
+<spring:message code="item.description"/>: <jstl:out value="${item.description}"></jstl:out><br>
+<spring:message code="item.link"/>: <jstl:out value="${item.link}"></jstl:out><br>
+<spring:message code="item.pictures"/>: <jstl:out value="${item.pictures}"></jstl:out><br>
+<spring:message code="item.provider"/>: <br>
 
-	<display:column property="title" titleKey="application.problem.title" />
-	<display:column property="statement" titleKey="application.problem.statement" />
-	<display:column property="hint" titleKey="application.problem.hint" />
-	<display:column property="attachment" titleKey="application.problem.attachment" />
-	
-</display:table>
-<input type="button" name="create" value="<spring:message code="application.back" />"
-			onclick="javascript: relativeRedir('application/company/list.do');" />
+<jstl:out value="${item.provider.name}"></jstl:out><br>
+<jstl:out value="${item.provider.surnames}"></jstl:out><br>
+<jstl:out value="${item.provider.email}"></jstl:out><br>
+<jstl:out value="${item.provider.make}"></jstl:out><br>
+<input type="button" name="back" value="<spring:message code="item.back" />"
+			onclick="javascript: relativeRedir('item/list.do');" />
 
 </security:authorize>
 
-<security:authorize access="hasRole('ROOKIE')">
-
-<spring:message code="application.curricula"/>:<jstl:out value=" ${application.curricula.id}"></jstl:out><br>
-<spring:message code="application.moment"/>: <jstl:out value="${application.moment}"></jstl:out><br>
-<spring:message code="application.explication"/>: <jstl:out value="${application.explication}"></jstl:out><br>
-<spring:message code="application.urlCode"/>: <jstl:out value="${application.urlCode}"></jstl:out><br>
-<spring:message code="application.submitMoment"/>: <jstl:out value="${application.submitMoment}"></jstl:out><br>
-<spring:message code="application.status"/>: 
-<jstl:if test="${application.status eq 0 }">
-<spring:message code="application.status.pending"/>
-</jstl:if>
-<jstl:if test="${application.status eq 1 }">
-<spring:message code="application.status.submitted"/>
-</jstl:if>
-<jstl:if test="${application.status eq 2 }">
-<spring:message code="application.status.accepted"/>
-</jstl:if>
-<jstl:if test="${application.status eq 3 }">
-<spring:message code="application.status.cancel"/>
-</jstl:if>
-<br>
-
-<display:table pagesize="1" name="problem" id="row" >
-
-	<display:column property="title" titleKey="application.problem.title" />
-	<display:column property="statement" titleKey="application.problem.statement" />
-	<display:column property="hint" titleKey="application.problem.hint" />
-	<display:column property="attachment" titleKey="application.problem.attachment" />
-	
-</display:table>
-<input type="button" name="create" value="<spring:message code="application.back" />"
-			onclick="javascript: relativeRedir('application/rookie/list.do');" />
-
-</security:authorize>

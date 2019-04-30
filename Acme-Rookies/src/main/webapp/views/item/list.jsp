@@ -25,7 +25,7 @@
 		<display:column property="name" titleKey="item.name" />
 		<display:column property="description" titleKey="item.description" />
 		<display:column property="link" titleKey="item.link" />
-		<display:column property="pictures" titleKey="item.picture" />
+		<display:column property="pictures" titleKey="item.pictures" />
 		<display:column>
 			<a style="color: green;"
 				href="item/show.do?itemId=${row.id}"><spring:message
