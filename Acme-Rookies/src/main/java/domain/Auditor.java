@@ -1,10 +1,12 @@
 
 package domain;
 
+import java.util.Collection;
+
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Entity;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
@@ -12,18 +14,18 @@ import javax.validation.constraints.NotNull;
 @Access(AccessType.PROPERTY)
 public class Auditor extends Actor {
 
-	private Position	position;
+	private Collection<Position>	positions;
 
 
 	@NotNull
 	@Valid
-	@OneToOne(optional = true)
-	public Position getPosition() {
-		return this.position;
+	@OneToMany
+	public Collection<Position> getPositions() {
+		return this.positions;
 	}
 
-	public void setPosition(final Position position) {
-		this.position = position;
+	public void setPositions(final Collection<Position> positions) {
+		this.positions = positions;
 	}
 
 }

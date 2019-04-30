@@ -13,7 +13,16 @@ import org.hibernate.validator.constraints.NotBlank;
 public class Company extends Actor {
 
 	private String	nameCompany;
+	private Integer	totalScore;
 
+
+	public Integer getTotalScore() {
+		return this.totalScore;
+	}
+
+	public void setTotalScore(final Integer totalScore) {
+		this.totalScore = totalScore;
+	}
 
 	@NotBlank
 	@Length(min = 4)
