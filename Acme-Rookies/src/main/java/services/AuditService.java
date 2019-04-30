@@ -40,7 +40,7 @@ public class AuditService {
 		audit.setMoment(new Date());
 		audit.setScore(0);
 		audit.setText("");
-		audit.setDraftMode(0);
+		audit.setDraftMode(1);
 		audit.setPosition(new Position());
 		audit.setAuditor(this.auditorRepository.auditorUserAccount(user.getId()));
 		return audit;
@@ -87,26 +87,25 @@ public class AuditService {
 	public Audit reconstruct(final Audit audit, final BindingResult binding) {
 		Audit res = new Audit();
 		if (audit.getId() == 0) {
-			res.setId(audit.getId());
-			res.setVersion(audit.getVersion());
-			res.setMoment(audit.getMoment());
-			res.setText(audit.getText());
-			res.setScore(audit.getScore());
-			res.setDraftMode(audit.getDraftMode());
-			res.setPosition(audit.getPosition());
-			res.setAuditor(audit.getAuditor());
+			res = audit;
+			final UserAccount user = LoginService.getPrincipal();
+			final Auditor auditor = this.auditorRepository.auditorUserAccount(user.getId());
+			res.setMoment(new Date());
+			res.setDraftMode(1);
+			res.setPosition(new Position());
+			res.setAuditor(auditor);
 			this.validator.validate(res, binding);
 		} else {
 			res = this.auditRepository.findOne(audit.getId());
 			final Audit a = new Audit();
 			a.setId(res.getId());
 			a.setVersion(res.getVersion());
-			a.setMoment(audit.getMoment());
+			a.setMoment(res.getMoment());
 			a.setText(audit.getText());
 			a.setScore(audit.getScore());
 			a.setDraftMode(audit.getDraftMode());
-			a.setPosition(audit.getPosition());
-			a.setAuditor(audit.getAuditor());
+			a.setPosition(res.getPosition());
+			a.setAuditor(res.getAuditor());
 			this.validator.validate(a, binding);
 			res = a;
 		}

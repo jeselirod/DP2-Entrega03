@@ -3,9 +3,12 @@ package controllers;
 
 import java.util.Collection;
 
+import javax.validation.ValidationException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -58,6 +61,34 @@ public class AuditAuditorController extends AbstractController {
 		result = new ModelAndView("audit/edit");
 		result.addObject("positions", positions);
 		result.addObject("audit", audit);
+		return result;
+	}
+
+	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
+	public ModelAndView edit(final Audit audit, final BindingResult binding) {
+		ModelAndView result;
+		Audit a = null;
+		try {
+			a = this.auditService.reconstruct(audit, binding);
+			if (!binding.hasErrors()) {
+				this.auditService.save(a);
+				result = new ModelAndView("redirect:list.do");
+			} else {
+				Collection<Position> positions;
+				positions = this.positionService.findAll();
+				result = new ModelAndView("audit/edit");
+				result.addObject("positions", positions);
+				result.addObject("audit", audit);
+			}
+		} catch (final ValidationException opps) {
+			Collection<Position> positions;
+			positions = this.positionService.findAll();
+			result = new ModelAndView("audit/edit");
+			result.addObject("positions", positions);
+			result.addObject("audit", audit);
+		} catch (final Exception e) {
+			result = new ModelAndView("redirect:../../");
+		}
 		return result;
 	}
 

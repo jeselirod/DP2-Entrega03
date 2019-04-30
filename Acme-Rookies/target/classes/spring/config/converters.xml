@@ -60,6 +60,8 @@
 		
 		<bean class="converters.StringToItemConverter" />
 		<bean class="converters.ItemToStringConverter" />
+		<bean class="converters.StringToPositionConverter" />
+		<bean class="converters.PositionToStringConverter" />
 		
 		
 	</util:list>
