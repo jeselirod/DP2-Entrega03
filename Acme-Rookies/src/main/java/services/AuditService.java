@@ -76,4 +76,8 @@ public class AuditService {
 		this.auditRepository.delete(audit);
 	}
 
+	public Collection<Audit> getAuditsByAuditor(final Integer auditorId) {
+		return this.auditRepository.getAuditsByAuditor(auditorId);
+	}
+
 }
