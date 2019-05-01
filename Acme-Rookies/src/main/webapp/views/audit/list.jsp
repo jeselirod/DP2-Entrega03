@@ -16,6 +16,7 @@
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
 
 <security:authorize access="hasRole('AUDITOR')">
@@ -56,6 +57,39 @@ requestURI="audit/auditor/list.do?idAuditor=${row.auditor.id}" >
 			onclick="javascript: relativeRedir('audit/auditor/create.do');" /><br>
 
 </security:authorize>
+
+
+
+
+
+
+<security:authorize access="hasRole('COMPANY')">
+<display:table pagesize="5" name="audits" id="row"
+requestURI="audit/company/list.do?idPosition=${row.position.id}" >
+
+<display:column titleKey="audit.auditor.name">
+<jstl:out value="${row.auditor.name}"></jstl:out>
+</display:column>
+<display:column titleKey="audit.position.ticker">
+<jstl:out value="${row.position.ticker}"></jstl:out>
+</display:column>
+<display:column titleKey="audit.moment">
+<jstl:out value="${row.moment}"></jstl:out>
+</display:column>
+<display:column titleKey="audit.text">
+<jstl:out value="${row.text}"></jstl:out>
+</display:column>
+<display:column titleKey="audit.score">
+<jstl:out value="${row.score}"></jstl:out>
+</display:column>
+<display:column titleKey="audit.draftMode">
+<jstl:out value="${row.draftMode}"></jstl:out>
+</display:column>
+</display:table>
+
+<acme:cancel url="position/company/list.do" code="cancel"/>
+</security:authorize>
+
 
 
 

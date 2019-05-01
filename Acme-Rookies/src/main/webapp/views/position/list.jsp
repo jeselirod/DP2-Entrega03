@@ -22,6 +22,9 @@
 <display:table pagesize="5" name="positions" id="row"
 requestURI="position/company/list.do" >
 
+<display:column>
+	<a href="audit/company/list.do?positionId=${row.id}"><spring:message code="position.audit" /></a>
+</display:column>
 
 <display:column>
 	<a href="position/company/show.do?positionId=${row.id}"><spring:message code="position.moreDetails" /></a>
