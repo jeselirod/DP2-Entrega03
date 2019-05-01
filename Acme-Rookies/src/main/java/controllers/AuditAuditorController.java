@@ -11,6 +11,7 @@ import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import security.LoginService;
@@ -64,10 +65,30 @@ public class AuditAuditorController extends AbstractController {
 		return result;
 	}
 
+	@RequestMapping(value = "/edit", method = RequestMethod.GET)
+	public ModelAndView edit(@RequestParam final int auditId) {
+		ModelAndView result;
+		final Audit audit;
+		Collection<Position> positions;
+
+		try {
+			audit = this.auditService.findOne(auditId);
+			positions = this.positionService.findAll();
+			Assert.notNull(audit);
+			result = new ModelAndView("audit/edit");
+			result.addObject("audit", audit);
+			result.addObject("positions", positions);
+		} catch (final Exception e) {
+			result = new ModelAndView("redirect:list.do");
+		}
+
+		return result;
+	}
+
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
 	public ModelAndView edit(final Audit audit, final BindingResult binding) {
 		ModelAndView result;
-		Audit a = null;
+		Audit a;
 		try {
 			a = this.auditService.reconstruct(audit, binding);
 			if (!binding.hasErrors()) {
@@ -89,6 +110,28 @@ public class AuditAuditorController extends AbstractController {
 		} catch (final Exception e) {
 			result = new ModelAndView("redirect:../../");
 		}
+		return result;
+	}
+
+	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "delete")
+	public ModelAndView delete(final Audit audit, final BindingResult binding) {
+		ModelAndView result;
+		try {
+			final Audit a = this.auditService.reconstruct(audit, binding);
+			if (!binding.hasErrors()) {
+				this.auditService.delete(a);
+				result = new ModelAndView("redirect:list.do");
+			} else {
+				Collection<Position> positions;
+				positions = this.positionService.findAll();
+				result = new ModelAndView("audit/edit");
+				result.addObject("audit", audit);
+				result.addObject("positions", positions);
+			}
+		} catch (final Exception e) {
+			result = new ModelAndView("redirect:../../");
+		}
+
 		return result;
 	}
 

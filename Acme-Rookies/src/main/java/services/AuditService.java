@@ -86,22 +86,20 @@ public class AuditService {
 	}
 
 	public Audit reconstruct(final Audit audit, final BindingResult binding) {
-		Audit res = new Audit();
+		Audit res;
 		if (audit.getId() == 0) {
 			res = audit;
 			final UserAccount user = LoginService.getPrincipal();
 			final Auditor auditor = this.auditorRepository.auditorUserAccount(user.getId());
-			res.setMoment(new Date());
-			res.setDraftMode(1);
-			res.setPosition(new Position());
 			res.setAuditor(auditor);
+			res.setDraftMode(1);
 			this.validator.validate(res, binding);
 		} else {
 			res = this.auditRepository.findOne(audit.getId());
 			final Audit a = new Audit();
 			a.setId(res.getId());
 			a.setVersion(res.getVersion());
-			a.setMoment(res.getMoment());
+			a.setMoment(audit.getMoment());
 			a.setText(audit.getText());
 			a.setScore(audit.getScore());
 			a.setDraftMode(audit.getDraftMode());

@@ -42,6 +42,12 @@ requestURI="audit/auditor/list.do?idAuditor=${row.auditor.id}" >
 <jstl:out value="${row.draftMode}"></jstl:out>
 </display:column>
 
+<display:column>
+<jstl:if test="${(row.draftMode eq 1)}">
+	<a href="audit/auditor/edit.do?auditId=${row.id}"><spring:message code="edit" /></a>
+</jstl:if>
+</display:column>
+
 </display:table>
 
 <input type="button" name="create" value="<spring:message code="audit.create" />"

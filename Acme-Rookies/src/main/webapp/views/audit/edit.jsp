@@ -31,15 +31,24 @@
 	<br />
 	<acme:textbox code="audit.moment" path="moment"/>
 	<br />
-	<acme:textbox code="audit.draftMode" path="draftMode"/>
-	<br />
 	<acme:select items="${positions}" itemLabel="ticker" code="audit.position" path="position"/>
 	<br />
+	
+	<jstl:if test="${audit.id ne 0 }">
+	<form:label path="draftMode"><spring:message code="audit.draftMode" />:</form:label>
+		<form:select path="draftMode">
+			<form:option value="1" label="Yes" />	
+			<form:option value="0" label="No" />	
+		</form:select>
+		<form:errors path="draftMode"/>
+	</jstl:if>
 
 	<acme:submit name="save" code="save"/>
 	<acme:cancel url="audit/auditor/list.do" code="cancel"/>
+	<jstl:if test="${audit.id ne 0 }">	
+		<input type="submit" name="delete" value="<spring:message code="delete" />" />
+	</jstl:if>		
 	<br />
-	
 </form:form>
 </security:authorize>
 </body>
