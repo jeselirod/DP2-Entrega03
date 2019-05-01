@@ -22,7 +22,9 @@
 <display:table pagesize="5" name="audits" id="row"
 requestURI="audit/auditor/list.do?idAuditor=${row.auditor.id}" >
 
-
+<display:column>
+	<a href="audit/auditor/show.do?auditId=${row.id}"><spring:message code="show" /></a>
+</display:column>
 <display:column titleKey="audit.auditor.name">
 <jstl:out value="${row.auditor.name}"></jstl:out>
 </display:column>

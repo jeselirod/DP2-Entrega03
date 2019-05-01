@@ -35,6 +35,21 @@ public class AuditAuditorController extends AbstractController {
 	private PositionService	positionService;
 
 
+	@RequestMapping(value = "/show", method = RequestMethod.GET)
+	public ModelAndView show(@RequestParam final Integer auditId) {
+		ModelAndView result;
+		final Audit audit;
+		try {
+			audit = this.auditService.findOne(auditId);
+			result = new ModelAndView("audit/show");
+			result.addObject("audit", audit);
+			//result.addObject("position", position);
+		} catch (final Exception e) {
+			result = new ModelAndView("redirect:../../");
+		}
+		return result;
+	}
+
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ModelAndView list() {
 		final ModelAndView result;
