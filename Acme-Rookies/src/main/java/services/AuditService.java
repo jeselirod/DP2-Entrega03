@@ -85,6 +85,11 @@ public class AuditService {
 		return this.auditRepository.getAuditsByAuditor(auditorId);
 	}
 
+	//Requisito  no funcional 5
+	public Collection<Audit> getAuditsByPositionDM(final Integer positionId) {
+		return this.auditRepository.getAuditsByPositionDM(positionId);
+	}
+
 	public Audit reconstruct(final Audit audit, final BindingResult binding) {
 		Audit res;
 		if (audit.getId() == 0) {

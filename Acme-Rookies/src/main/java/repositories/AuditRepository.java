@@ -16,6 +16,9 @@ public interface AuditRepository extends JpaRepository<Audit, Integer> {
 	@Query("select a from Audit a where a.auditor.id=?1")
 	public Collection<Audit> getAuditsByAuditor(Integer auditorId);
 
+	//Audits de una position cuyo draftMode sea 0.
+	@Query("select a from Audit a where a.position.id=?1 and a.draftMode=0")
+	public Collection<Audit> getAuditsByPositionDM(Integer positionId);
 	//---Cristian---
 	@Query("select count(a) from Audit a where a.position.company.id = ?1")
 	public Integer getNumerosAuditsByCompany(Integer id);

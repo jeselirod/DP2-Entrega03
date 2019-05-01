@@ -22,6 +22,7 @@
 <display:table pagesize="5" name="positions" id="row"
 requestURI="position/company/list.do" >
 
+
 <display:column>
 	<a href="position/company/show.do?positionId=${row.id}"><spring:message code="position.moreDetails" /></a>
 </display:column>
