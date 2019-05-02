@@ -91,4 +91,9 @@ public class ItemService {
 		return this.itemRepository.getAvgMinMaxDesvNumberItemByProvider();
 	}
 
+	public void delete(final Item item) {
+		Assert.isTrue(this.itemsByProvider().contains(item));
+		this.itemRepository.delete(item);
+	}
+
 }

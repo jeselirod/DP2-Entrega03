@@ -39,6 +39,7 @@ public class ItemProviderController extends AbstractController {
 		ModelAndView result;
 		try {
 			final Item item = this.itemService.findOne(itemId);
+			Assert.notNull(item);
 			result = new ModelAndView("item/show");
 			result.addObject("item", item);
 		} catch (final Exception e) {
@@ -84,6 +85,21 @@ public class ItemProviderController extends AbstractController {
 			result.addObject("item", i);
 		}
 		return result;
+	}
+
+	@RequestMapping(value = "/delete", method = RequestMethod.GET)
+	public ModelAndView delete(@RequestParam final Integer itemId) {
+		ModelAndView result;
+		try {
+			final Item item = this.itemService.findOne(itemId);
+			Assert.notNull(item);
+			this.itemService.delete(item);
+			result = new ModelAndView("redirect:list.do");
+		} catch (final Exception e) {
+			result = new ModelAndView("redirect:list.do");
+		}
+		return result;
+
 	}
 
 }

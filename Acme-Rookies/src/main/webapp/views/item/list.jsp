@@ -31,7 +31,7 @@
 				href="item/show.do?itemId=${row.id}"><spring:message
 					code="item.show" /></a>
 		</display:column>
-		
+				
 	</display:table>
 
 </security:authorize>
@@ -48,6 +48,18 @@
 			<a style="color: green;"
 				href="item/provider/show.do?itemId=${row.id}"><spring:message
 					code="application.show" /></a>
+		</display:column>
+		
+		<display:column>
+			<a style="color: gold;"
+				href="item/provider/edit.do?itemId=${row.id}"><spring:message
+					code="item.edit" /></a>
+		</display:column>
+		
+		<display:column>
+			<a style="color: red;"
+				href="item/provider/delete.do?itemId=${row.id}"><spring:message
+					code="item.delete" /></a>
 		</display:column>
 	</display:table>
 	
