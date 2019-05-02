@@ -30,6 +30,7 @@
 					<li><a href="administrator/create.do"><spring:message code="master.page.administrator.Create" /></a></li>				
 				</ul>
 			</li>
+			<li><a href="auditor/administrator/create.do"><spring:message code="master.page.auditor.administrator" /></a></li>
 						
 		</security:authorize>
 		
@@ -59,6 +60,7 @@
 					<li class="arrow"></li>
 					<li><a href="company/create.do"><spring:message code="master.page.company.register" /></a></li>
 					<li><a href="rookie/create.do"><spring:message code="master.page.rookie.register" /></a></li>
+					<li><a href="provider/create.do"><spring:message code="master.page.provider.register" /></a></li>
 				</ul>
 			<li><a href="company/list.do"><spring:message code="master.page.company" /></a></li>
 			<li><a href="position/listAll.do"><spring:message code="master.page.position" /></a></li>

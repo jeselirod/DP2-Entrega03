@@ -34,7 +34,22 @@
 
 <security:authorize access="hasRole('COMPANY')">
 <b><spring:message code="profile.company.nameCompany" /></b> <jstl:out value="${actor.nameCompany }"/> <br/>
+<b><spring:message code="profile.company.Score" /></b> <jstl:out value="${actor.totalScore }"/> <br/>
 </security:authorize>
+<security:authorize access="hasRole('PROVIDER')">
+<b><spring:message code="profile.provider.make" /></b> <jstl:out value="${actor.make}"/> <br/>
+
+</security:authorize>
+<security:authorize access="hasRole('AUDITOR')">
+<b><spring:message code="profile.auditor.positions" /></b>
+<jstl:forEach var="position" items="${actor.positions}">
+<jstl:out value="${position.title}"></jstl:out>
+<br/>
+</jstl:forEach>
+
+</security:authorize>
+
+
 </fieldset>
 
 <fieldset>
@@ -80,6 +95,16 @@
 
 <security:authorize access="hasRole('ROOKIE')">
 <form action="profile/edit-rookie.do">
+    <input type="submit" value="<spring:message code="profile.edit.profile" />" />
+</form>
+</security:authorize>
+<security:authorize access="hasRole('PROVIDER')">
+<form action="profile/edit-provider.do">
+    <input type="submit" value="<spring:message code="profile.edit.profile" />" />
+</form>
+</security:authorize>
+<security:authorize access="hasRole('AUDITOR')">
+<form action="profile/edit-auditor.do">
     <input type="submit" value="<spring:message code="profile.edit.profile" />" />
 </form>
 </security:authorize>

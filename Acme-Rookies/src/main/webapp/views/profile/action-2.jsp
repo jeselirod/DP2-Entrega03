@@ -57,6 +57,17 @@
 	
 	</security:authorize>
 	
+	<security:authorize access="hasRole('PROVIDER')">
+	
+
+	<acme:textbox code="provider.make" path="make"/>
+	
+	</security:authorize>
+	
+		<security:authorize access="hasRole('AUDITOR')">
+	
+	<acme:multipleSelect items="${positions}" itemLabel="title" code="auditor.positions" path="positions"/>
+	</security:authorize>
 	</fieldset>
 	<br />
 	

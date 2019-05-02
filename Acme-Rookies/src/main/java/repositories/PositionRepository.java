@@ -53,4 +53,7 @@ public interface PositionRepository extends JpaRepository<Position, Integer> {
 
 	@Query("select avg(p.salary) from Position p where p.company.id=?1")
 	public Double getAverageOfSalary(Integer id);
+
+	@Query("select a.positions from Auditor a")
+	public Collection<Position> getAllPositionAssing();
 }

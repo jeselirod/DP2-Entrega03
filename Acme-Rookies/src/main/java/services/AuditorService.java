@@ -85,9 +85,12 @@ public class AuditorService {
 	}
 
 	public Auditor save(final Auditor r) {
-
 		final UserAccount userLoged = LoginService.getPrincipal();
-		Assert.isTrue(userLoged.getAuthorities().iterator().next().getAuthority().equals("ADMIN") || userLoged.getAuthorities().iterator().next().getAuthority().equals("AUDITOR"), "Comprobar que hay admin conectado");
+		if (r.getId() == 0)
+			Assert.isTrue(userLoged.getAuthorities().iterator().next().getAuthority().equals("ADMIN") || userLoged.getAuthorities().iterator().next().getAuthority().equals("AUDITOR"), "Comprobar que hay admin conectado");
+		else
+			Assert.isTrue(userLoged.getAuthorities().iterator().next().getAuthority().equals("AUDITOR"), "Comprobar que es un Auditor el que esta intentando modificar los datos");
+
 		Auditor res = null;
 
 		Assert.isTrue(r != null && r.getName() != null && r.getSurnames() != null && r.getName() != "" && r.getUserAccount() != null && r.getEmail() != null && r.getEmail() != "", "Auditor.save -> Name, Surname or email invalid");

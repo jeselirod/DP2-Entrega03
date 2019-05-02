@@ -134,7 +134,7 @@ public class RegistrationFormAuditor extends Actor {
 
 	// Business methods -------------------------------------------------------
 
-	public RegistrationFormAuditor createToAdmin() {
+	public RegistrationFormAuditor createToAuditor() {
 
 		final RegistrationFormAuditor registrationForm = new RegistrationFormAuditor();
 

@@ -271,4 +271,8 @@ public class PositionService {
 
 		return res;
 	}
+	public Collection<Position> getAllPositionAssing() {
+		return this.positionRepository.getAllPositionAssing();
+	}
+
 }

@@ -141,7 +141,7 @@ public class RegistrationFormProviderAndCreditCard extends Actor {
 
 	// Business methods -------------------------------------------------------
 
-	public RegistrationFormProviderAndCreditCard createToCompanyAndCreditCard() {
+	public RegistrationFormProviderAndCreditCard createToProviderAndCreditCard() {
 
 		final RegistrationFormProviderAndCreditCard registrationForm = new RegistrationFormProviderAndCreditCard();
 		registrationForm.setMake("");
