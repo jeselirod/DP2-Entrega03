@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import repositories.CompanyRepository;
 import security.LoginService;
 import security.UserAccount;
 import services.AuditService;
@@ -21,6 +22,7 @@ import services.AuditorService;
 import services.PositionService;
 import domain.Audit;
 import domain.Auditor;
+import domain.Company;
 import domain.Position;
 
 @Controller
@@ -28,11 +30,13 @@ import domain.Position;
 public class AuditAuditorController extends AbstractController {
 
 	@Autowired
-	private AuditService	auditService;
+	private AuditService		auditService;
 	@Autowired
-	private AuditorService	auditorService;
+	private AuditorService		auditorService;
 	@Autowired
-	private PositionService	positionService;
+	private PositionService		positionService;
+	@Autowired
+	private CompanyRepository	companyRepository;
 
 
 	@RequestMapping(value = "/show", method = RequestMethod.GET)
@@ -107,7 +111,9 @@ public class AuditAuditorController extends AbstractController {
 		try {
 			a = this.auditService.reconstruct(audit, binding);
 			if (!binding.hasErrors()) {
-				this.auditService.save(a);
+				final Audit saved = this.auditService.save(a);
+				final Company c = this.companyRepository.getCompanyByAudit(saved.getId());
+				this.auditService.updateTotalScoreOfCompany(c.getId());
 				result = new ModelAndView("redirect:list.do");
 			} else {
 				Collection<Position> positions;

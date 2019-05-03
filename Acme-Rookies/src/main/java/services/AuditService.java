@@ -15,10 +15,12 @@ import org.springframework.validation.Validator;
 
 import repositories.AuditRepository;
 import repositories.AuditorRepository;
+import repositories.CompanyRepository;
 import security.LoginService;
 import security.UserAccount;
 import domain.Audit;
 import domain.Auditor;
+import domain.Company;
 import domain.Position;
 
 @Service
@@ -33,6 +35,8 @@ public class AuditService {
 	private AuditorRepository	auditorRepository;
 	@Autowired
 	private Validator			validator;
+	@Autowired
+	private CompanyRepository	companyRepository;
 
 
 	public Audit create() {
@@ -78,7 +82,9 @@ public class AuditService {
 		Assert.isTrue(userAccount.getAuthorities().iterator().next().getAuthority().equals("AUDITOR"));
 		Assert.isTrue(audit.getAuditor().equals(this.auditorRepository.auditorUserAccount(userAccount.getId())));
 		Assert.isTrue(audit.getDraftMode() == 1);
+		final Company c = this.companyRepository.getCompanyByAudit(audit.getId());
 		this.auditRepository.delete(audit);
+		this.updateTotalScoreOfCompany(c.getId());
 	}
 
 	public Collection<Audit> getAuditsByAuditor(final Integer auditorId) {
@@ -117,7 +123,7 @@ public class AuditService {
 	}
 
 	//Metodo para actualizar el totalScore de una company
-	public Double updateTotalScoreOfCompany(final Integer idCompany) {
+	public void updateTotalScoreOfCompany(final Integer idCompany) {
 		Double res = null;
 
 		final Integer numAudits = this.auditRepository.getNumerosAuditsByCompany(idCompany);
@@ -125,7 +131,9 @@ public class AuditService {
 		if (numAudits != 0)
 			res = this.auditRepository.getTotalScoreOfCompany(idCompany);
 
-		return res;
+		final Company c = this.companyRepository.findOne(idCompany);
+		c.setTotalScore(res);
+		this.companyRepository.save(c);
 
 	}
 
