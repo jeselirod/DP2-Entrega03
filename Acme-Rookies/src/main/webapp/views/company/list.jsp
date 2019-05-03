@@ -24,6 +24,15 @@ requestURI="company/list.do" >
 <display:column property="nameCompany" titleKey="list.nameCompany" />
 <display:column property="phone" titleKey="list.phone" />
 <display:column property="email" titleKey="list.email" />
+<display:column titleKey="list.totalScore" >
+<jstl:if test="${row.totalScore eq null }">
+Don't have audits
+</jstl:if>
+<jstl:if test="${row.totalScore ne null }">
+<jstl:out value="${row.totalScore }"></jstl:out>
+</jstl:if>
+</display:column>
+
 
 
 <display:column>
