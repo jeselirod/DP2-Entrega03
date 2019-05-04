@@ -83,6 +83,9 @@ public class ProviderService {
 		Assert.isTrue(provider.equals(a));
 		return this.providerRepository.findOne(providerId);
 	}
+	public Provider findOneAnonymous(final int providerId) {
+		return this.providerRepository.findOne(providerId);
+	}
 
 	public Provider save(final Provider r) {
 

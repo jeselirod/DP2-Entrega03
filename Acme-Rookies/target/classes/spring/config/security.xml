@@ -100,6 +100,7 @@
 		<security:intercept-url pattern="/item/provider/show.do" access="hasRole('PROVIDER')" />
 		<security:intercept-url pattern="/item/provider/delete.do" access="hasRole('PROVIDER')" />
 		<security:intercept-url pattern="/item/list.do" access="isAnonymous()" />
+		<security:intercept-url pattern="/item/listProvider.do" access="isAnonymous()" />
 		<security:intercept-url pattern="/item/show.do" access="isAnonymous()" />
 		
 		<security:intercept-url pattern="/company/create.do" access="isAnonymous()" />
@@ -108,6 +109,7 @@
 		<security:intercept-url pattern="/rookie/edit.do" access="isAnonymous()" />
 		<security:intercept-url pattern="/provider/create.do" access="isAnonymous()" />
 		<security:intercept-url pattern="/provider/edit.do" access="isAnonymous()" />
+		<security:intercept-url pattern="/provider/list.do" access="isAnonymous()" />
 		<security:intercept-url pattern="/position/show.do" access="isAnonymous()" />
 		<security:intercept-url pattern="/position/list.do" access="isAnonymous()" />
 		<security:intercept-url pattern="/company/list.do" access="isAnonymous()" />

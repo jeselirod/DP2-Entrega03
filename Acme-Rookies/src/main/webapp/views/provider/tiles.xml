@@ -22,7 +22,7 @@
 	</definition>
 
 	<definition name="provider/list" extends="master.page">	
-		<put-attribute name="title" value="List of companies" />
+		<put-attribute name="title" value="List of providers" />
 		<put-attribute name="body" value="/views/provider/list.jsp" />
 	</definition>
 	

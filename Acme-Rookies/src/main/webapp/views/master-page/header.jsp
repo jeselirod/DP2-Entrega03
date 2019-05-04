@@ -65,6 +65,7 @@
 			<li><a href="company/list.do"><spring:message code="master.page.company" /></a></li>
 			<li><a href="position/listAll.do"><spring:message code="master.page.position" /></a></li>
 			<li><a href="item/list.do"><spring:message code="master.page.item" /></a></li>
+			<li><a href="provider/list.do"><spring:message code="master.page.providers" /></a></li>
 			
 		</security:authorize>
 		

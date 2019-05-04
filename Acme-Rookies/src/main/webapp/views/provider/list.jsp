@@ -21,13 +21,15 @@
 <display:table pagesize="5" name="providers" id="row"
 requestURI="provider/list.do" >
 
+<display:column property="name" titleKey="list.name" />
+<display:column property="surnames" titleKey="list.surnames" />
 <display:column property="make" titleKey="list.make" />
 <display:column property="phone" titleKey="list.phone" />
 <display:column property="email" titleKey="list.email" />
 
 
 <display:column>
-	<a href="position/list.do?companyId=${row.id}"><spring:message code="position.list" /></a>
+	<a href="item/listProvider.do?providerId=${row.id}"><spring:message code="item.list" /></a>
 </display:column>
 
 </display:table>

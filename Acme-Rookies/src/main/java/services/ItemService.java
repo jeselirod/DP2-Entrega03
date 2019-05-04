@@ -96,4 +96,8 @@ public class ItemService {
 		this.itemRepository.delete(item);
 	}
 
+	public Collection<Item> itemsByProviderId(final Integer userAccountProviderId) {
+		return this.itemRepository.getItemsByProvider(userAccountProviderId);
+	}
+
 }
