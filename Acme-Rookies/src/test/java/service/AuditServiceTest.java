@@ -139,35 +139,6 @@ public class AuditServiceTest extends AbstractTest {
 		this.checkExceptions(expected, caught);
 	}
 
-	@Test
-	public void DeleteAuditService() {
-		final Object testingData[][] = {
-			{//Positive test
-				super.getEntityId("audit1"), null
-			}, {//Positive test
-				super.getEntityId("audit2"), IllegalArgumentException.class
-			}
-
-		};
-
-		for (int i = 0; i < testingData.length; i++)
-			this.DeleteAuditTemplate((int) testingData[i][0], (Class<?>) testingData[i][1]);
-	}
-	protected void DeleteAuditTemplate(final int auditId, final Class<?> expected) {
-		Class<?> caught;
-
-		caught = null;
-		try {
-			super.authenticate("auditor");
-			final Audit audit = this.auditService.findOne(auditId);
-			this.auditService.delete(audit);
-			super.authenticate(null);
-		} catch (final Throwable oops) {
-			caught = oops.getClass();
-		}
-		this.checkExceptions(expected, caught);
-	}
-
 	/*
 	 * a) Requeriment: Manage his or her audits, which includes listing them, showing them, creating them,
 	 * updating, and deleting them. An audit can be updated or deleted as long as it’s
