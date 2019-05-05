@@ -1,6 +1,8 @@
 
 package service;
 
+import java.util.Collection;
+
 import javax.transaction.Transactional;
 
 import org.junit.Test;
@@ -8,12 +10,15 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 
 import services.CreditCardService;
+import services.ItemService;
 import services.ProviderService;
 import utilities.AbstractTest;
 import domain.CreditCard;
+import domain.Item;
 import domain.Provider;
 import forms.RegistrationFormProviderAndCreditCard;
 
@@ -28,6 +33,9 @@ public class ProviderServiceTest extends AbstractTest {
 	private ProviderService		providerService;
 
 	@Autowired
+	private ItemService			itemService;
+
+	@Autowired
 	private CreditCardService	creditCardService;
 
 
@@ -38,8 +46,8 @@ public class ProviderServiceTest extends AbstractTest {
 	 * b) Broken bussines rule:
 	 * Se intenta registratar un usuario como provider con el make vacio
 	 * 
-	 * c) Sentence coverage:Este caso de uso engloba el recontructor y el save tando del CompanyService como de CreditCardService,
-	 * el total de lineas sumando estos metodos es de 128, de las cuales este test recorrer 75 , es decir un 58'59%.
+	 * c) Sentence coverage:Este caso de uso engloba el recontructor y el save tanto del ProviderService como de CreditCardService,
+	 * el total de lineas sumando estos metodos es de 142, de las cuales este test recorrer 77 , es decir un 54'23%.
 	 * 
 	 * d) Data coverage: 7.14% (1 atributo incorrecto/14atributos)
 	 */
@@ -115,10 +123,10 @@ public class ProviderServiceTest extends AbstractTest {
 	 * b) Broken bussines rule:
 	 * Un provider intenta editar la informacion de otro.
 	 * 
-	 * c) Sentence coverage:Este caso de uso engloba el recontructor y el save tando del CompanyService como del CreditCardService, y al findOne de CompanyService,
-	 * el total de lineas sumando estos metodos es de 134, de las cuales este test recorrer 81 , es decir un 60'45%.
+	 * c) Sentence coverage:Este caso de uso engloba el recontructor y el save tanto del ProviderService como del CreditCardService, y al findOne de ProviderService,
+	 * el total de lineas sumando estos metodos es de 148, de las cuales este test recorrer 96 , es decir un 63'38%.
 	 * 
-	 * d) Data coverage:
+	 * d) Data coverage:7.14% (1 atributo incorrecto/14atributos)
 	 */
 
 	@Test
@@ -129,7 +137,7 @@ public class ProviderServiceTest extends AbstractTest {
 				"Nuevo Nombre", "Apellido", "ES12345678X", "prueba@email.com", "NuevaPassWord", "NuevaPassWord", "NuevoBrandName", "NuevoholderName", "5182901911816096", 8, 2020, 876, super.getEntityId("provider1"), "NombreProvider", null
 			},
 			{
-				//Negative test: Una company intenta modificar los datos de otra
+				//Negative test: Un Provider  intenta modificar los datos de otra
 				"Nuevo Nombre", "Apellido", "ES12345678X", "prueba@email.com", "NuevaPassWord", "NuevaPassWord", "NuevoBrandName", "NuevoholderName", "5182901911816096", 8, 2020, 876, super.getEntityId("provider2"), "NombreProvider",
 				IllegalArgumentException.class
 
@@ -189,6 +197,58 @@ public class ProviderServiceTest extends AbstractTest {
 		}
 
 		this.checkExceptions(expected, caught);
+	}
+
+	/*
+	 * a) Requeriment: 9. An actor who is not authenticated must be able to:
+	 * Browse the list of providers and navigate to their items.
+	 * 
+	 * b) Broken bussines rule:
+	 * casoNegativo : Se le pasa un id de una provider que no existe
+	 * 
+	 * c) Sentence coverage:Compruebo el findOne de Provider y de item , cubriendo el 100% de sus lineas de código.
+	 * 
+	 * d) Data coverage:-
+	 */
+	@Test
+	public void listProviderAndItems() {
+		final Object testingData[][] = {
+			{
+				super.getEntityId("provider1"), null
+			}, {
+				1000, IllegalArgumentException.class
+			}
+		};
+
+		for (int i = 0; i < testingData.length; i++)
+			try {
+				super.startTransaction();
+				this.templateList((Integer) testingData[i][0], (Class<?>) testingData[i][1]);
+			} catch (final Throwable oops) {
+				throw new RuntimeException(oops);
+			} finally {
+				super.rollbackTransaction();
+			}
+	}
+	// Ancillary methods ------------------------------------------------------
+
+	protected void templateList(final Integer providerId, final Class<?> expected) {
+		Class<?> caught;
+
+		caught = null;
+		try {
+
+			final Provider provider = this.providerService.findOneAnonymous(providerId);
+			Assert.notNull(provider);
+			final Collection<Item> items = this.itemService.itemsByProviderId(provider.getUserAccount().getId());
+			Assert.notNull(items);
+
+			super.flushTransaction();
+		} catch (final Throwable oops) {
+			caught = oops.getClass();
+		}
+
+		super.checkExceptions(expected, caught);
 	}
 
 }
