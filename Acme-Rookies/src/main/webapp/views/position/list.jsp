@@ -22,8 +22,11 @@
 <display:table pagesize="5" name="positions" id="row"
 requestURI="position/company/list.do" >
 
+
 <display:column>
-	<a href="audit/company/list.do?positionId=${row.id}"><spring:message code="position.audit" /></a>
+	<jstl:if test="${(row.isCancelled eq 0) and (row.draftMode eq 0 )}">
+		<a href="audit/company/list.do?positionId=${row.id}"><spring:message code="position.audit" /></a>
+	</jstl:if>
 </display:column>
 
 <display:column>
