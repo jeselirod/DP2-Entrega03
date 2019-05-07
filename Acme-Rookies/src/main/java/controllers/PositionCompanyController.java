@@ -152,7 +152,7 @@ public class PositionCompanyController extends AbstractController {
 		ModelAndView result;
 		final Position position;
 
-		position = this.positionService.reconstruct(p, binding);
+		position = this.positionService.findOne(p.getId());
 
 		try {
 
@@ -163,6 +163,7 @@ public class PositionCompanyController extends AbstractController {
 				result = new ModelAndView("position/edit");
 				result.addObject("position", p);
 			}
+
 		} catch (final Exception e) {
 
 			final UserAccount user = LoginService.getPrincipal();

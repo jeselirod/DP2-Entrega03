@@ -233,4 +233,8 @@ public class AuditorService {
 
 	}
 
+	public Auditor getAuditorByPosition(final Integer id) {
+		return this.auditorRepository.getAuditorByPosition(id);
+	}
+
 }

@@ -16,11 +16,13 @@ import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
 
+import repositories.AuditorRepository;
 import repositories.FinderRepository;
 import repositories.PositionRepository;
 import security.LoginService;
 import security.UserAccount;
 import domain.Actor;
+import domain.Auditor;
 import domain.Company;
 import domain.Finder;
 import domain.Position;
@@ -47,6 +49,12 @@ public class PositionService {
 
 	@Autowired
 	private CompanyService		companyService;
+
+	@Autowired
+	private AuditorService		auditorService;
+
+	@Autowired
+	private AuditorRepository	auditorRepository;
 
 
 	public Position create() {
@@ -198,10 +206,12 @@ public class PositionService {
 			finders.get(i).getPositions().remove(p);
 			this.finderRepository.save(finders.get(i));
 		}
+		final Auditor auditor = this.auditorService.getAuditorByPosition(p.getId());
+		auditor.getPositions().remove(p);
+		this.auditorRepository.save(auditor);
 
 		this.positionRepository.delete(p);
 	}
-
 	public void cancel(final Position p) {
 		final UserAccount user = LoginService.getPrincipal();
 		final Actor a = this.actorService.getActorByUserAccount(user.getId());
