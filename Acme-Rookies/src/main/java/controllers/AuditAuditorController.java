@@ -75,7 +75,7 @@ public class AuditAuditorController extends AbstractController {
 	public ModelAndView create() {
 		final ModelAndView result;
 		Collection<Position> positions;
-		positions = this.positionService.findAll();
+		positions = this.positionService.getPositionsOutDraftMode();
 		final Audit audit = this.auditService.create();
 
 		result = new ModelAndView("audit/edit");
@@ -92,7 +92,7 @@ public class AuditAuditorController extends AbstractController {
 
 		try {
 			audit = this.auditService.findOne(auditId);
-			positions = this.positionService.findAll();
+			positions = this.positionService.getPositionsOutDraftMode();
 			Assert.notNull(audit);
 			result = new ModelAndView("audit/edit");
 			result.addObject("audit", audit);
@@ -117,14 +117,14 @@ public class AuditAuditorController extends AbstractController {
 				result = new ModelAndView("redirect:list.do");
 			} else {
 				Collection<Position> positions;
-				positions = this.positionService.findAll();
+				positions = this.positionService.getPositionsOutDraftMode();
 				result = new ModelAndView("audit/edit");
 				result.addObject("positions", positions);
 				result.addObject("audit", audit);
 			}
 		} catch (final ValidationException opps) {
 			Collection<Position> positions;
-			positions = this.positionService.findAll();
+			positions = this.positionService.getPositionsOutDraftMode();
 			result = new ModelAndView("audit/edit");
 			result.addObject("positions", positions);
 			result.addObject("audit", audit);
@@ -144,7 +144,7 @@ public class AuditAuditorController extends AbstractController {
 				result = new ModelAndView("redirect:list.do");
 			} else {
 				Collection<Position> positions;
-				positions = this.positionService.findAll();
+				positions = this.positionService.getPositionsOutDraftMode();
 				result = new ModelAndView("audit/edit");
 				result.addObject("audit", audit);
 				result.addObject("positions", positions);
