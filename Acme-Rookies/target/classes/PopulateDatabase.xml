@@ -470,6 +470,25 @@
 		<property name="isCancelled" value="0"/>
 	</bean>
 	
+	<bean id="position4" class="domain.Position">
+		<property name="title" value="Position4"/>
+		<property name="description" value="Description of position3"/>
+		<property name="deadLine" value="01/01/2020"/>
+		<property name="requiredProfile" value="Happy"/>
+		<property name="skillsRequired" value="MySQL and Java"/>
+		<property name="technologiesRequired" value="i7"/>
+		<property name="salary" value="1600"/>
+		<property name="ticker" value="phgo-7000"/>
+		<property name="draftMode" value="0"/>
+		<property name="company" ref="company2"/>
+		<property name="problems">
+			<list>
+			</list>
+		</property>
+		<property name="isCancelled" value="0"/>
+	</bean>
+	
+	
 	<!-- PROBLEM -->
 	
 	<bean id="problem1" class="domain.Problem">
@@ -899,7 +918,7 @@
 		<property name="score" value="8"></property>
 		<property name="draftMode" value="1"></property>
 		<property name="auditor" ref="auditor3"></property>
-		<property name="position" ref="position3"></property>
+		<property name="position" ref="position4"></property>
 	</bean>
 	
 	<!-- Items -->
