@@ -233,7 +233,7 @@ public class AuditorService {
 
 	}
 
-	public Auditor getAuditorByPosition(final Integer id) {
+	public List<Auditor> getAuditorByPosition(final Integer id) {
 		return this.auditorRepository.getAuditorByPosition(id);
 	}
 

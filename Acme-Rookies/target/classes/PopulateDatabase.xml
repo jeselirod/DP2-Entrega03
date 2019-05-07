@@ -881,7 +881,7 @@
 		<property name="score" value="1"></property>
 		<property name="draftMode" value="0"></property>
 		<property name="auditor" ref="auditor1"></property>
-		<property name="position" ref="position1"></property>
+		<property name="position" ref="position2"></property>
 	</bean>
 	
 	<bean id="audit2" class="domain.Audit">

@@ -206,10 +206,11 @@ public class PositionService {
 			finders.get(i).getPositions().remove(p);
 			this.finderRepository.save(finders.get(i));
 		}
-		final Auditor auditor = this.auditorService.getAuditorByPosition(p.getId());
-		auditor.getPositions().remove(p);
-		this.auditorRepository.save(auditor);
-
+		final List<Auditor> auditors = this.auditorService.getAuditorByPosition(p.getId());
+		for (int i = 0; i < auditors.size(); i++) {
+			auditors.get(i).getPositions().remove(p);
+			this.auditorRepository.save(auditors.get(i));
+		}
 		this.positionRepository.delete(p);
 	}
 	public void cancel(final Position p) {
