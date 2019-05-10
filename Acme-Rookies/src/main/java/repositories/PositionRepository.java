@@ -43,10 +43,10 @@ public interface PositionRepository extends JpaRepository<Position, Integer> {
 	public List<Object[]> getAvgMaxMinDesvSalaryOfPositions();
 
 	@Query("select p.title from Position p where p.salary=(select max(p.salary) from Position p)")
-	public String getPositionWithBestSalary();
+	public List<String> getPositionWithBestSalary();
 
 	@Query("select p.title from Position p where p.salary=(select min(p.salary) from Position p)")
-	public String getPositionWithWorstSalary();
+	public List<String> getPositionWithWorstSalary();
 
 	@Query("select p from Position p where p.draftMode=0 and p.isCancelled=0")
 	public Collection<Position> getAllPositionToCreateApplication();

@@ -110,8 +110,8 @@ public class AdministratorController extends AbstractController {
 		final Double getMaxSalaryOfPositions = (Double) getAvgMaxMinDesvSalaryOfPositions.get(0)[2];
 		final Double getDesvSalaryOfPositions = (Double) getAvgMaxMinDesvSalaryOfPositions.get(0)[3];
 
-		final String getPositionWithBestSalary = this.positionService.getPositionWithBestSalary();
-		final String getPositionWithWorstSalary = this.positionService.getPositionWithWorstSalary();
+		final List<String> getPositionWithBestSalary = this.positionService.getPositionWithBestSalary();
+		final List<String> getPositionWithWorstSalary = this.positionService.getPositionWithWorstSalary();
 
 		final List<Object[]> getAvgMinMaxDesvScoreOfAudit = this.auditService.getAvgMinMaxDesvScoreOfAudit();
 		final Double getAvgScoreOfAudit = (Double) getAvgMinMaxDesvScoreOfAudit.get(0)[0];

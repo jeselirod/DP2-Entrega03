@@ -251,11 +251,11 @@ public class PositionService {
 		return this.positionRepository.getAvgMaxMinDesvSalaryOfPositions();
 	}
 
-	public String getPositionWithBestSalary() {
+	public List<String> getPositionWithBestSalary() {
 		return this.positionRepository.getPositionWithBestSalary();
 	}
 
-	public String getPositionWithWorstSalary() {
+	public List<String> getPositionWithWorstSalary() {
 		return this.positionRepository.getPositionWithWorstSalary();
 	}
 

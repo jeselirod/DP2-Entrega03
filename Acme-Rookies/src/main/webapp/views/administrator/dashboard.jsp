@@ -68,8 +68,18 @@
 
 <fieldset>
 <legend><spring:message code="administrator.salary" /></legend>
-<b><spring:message code="administrator.best" /></b>: <jstl:out value="${getPositionWithBestSalary}"></jstl:out><br/>
-<b><spring:message code="administrator.worst" /></b>: <jstl:out value="${getPositionWithWorstSalary}"></jstl:out><br/>
+<b><spring:message code="administrator.best" /></b>: 
+<br/>
+<jstl:forEach var="item" items="${getPositionWithBestSalary}">
+<jstl:out value="${item}"></jstl:out>
+<br/>
+</jstl:forEach>
+
+<b><spring:message code="administrator.worst" /></b>: <br/>
+<jstl:forEach var="item" items="${getPositionWithWorstSalary}">
+<jstl:out value="${item}"></jstl:out>
+<br/>
+</jstl:forEach>
 </fieldset>
 
 <fieldset>
