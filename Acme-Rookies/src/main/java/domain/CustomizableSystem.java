@@ -8,6 +8,7 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.Range;
+import org.hibernate.validator.constraints.SafeHtml;
 import org.hibernate.validator.constraints.URL;
 
 @Entity
@@ -43,6 +44,7 @@ public class CustomizableSystem extends DomainEntity {
 
 	@NotNull
 	@NotBlank
+	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
 	public String getNameSystem() {
 		return this.nameSystem;
 	}
@@ -54,6 +56,7 @@ public class CustomizableSystem extends DomainEntity {
 	@NotBlank
 	@NotNull
 	@URL
+	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
 	public String getBanner() {
 		return this.banner;
 	}
@@ -64,6 +67,7 @@ public class CustomizableSystem extends DomainEntity {
 
 	@NotBlank
 	@NotNull
+	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
 	public String getMessageWelcomePage() {
 		return this.messageWelcomePage;
 	}
@@ -74,6 +78,7 @@ public class CustomizableSystem extends DomainEntity {
 
 	@NotBlank
 	@NotNull
+	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
 	public String getSpanishMessageWelcomePage() {
 		return this.spanishMessageWelcomePage;
 	}
@@ -84,6 +89,7 @@ public class CustomizableSystem extends DomainEntity {
 
 	@NotBlank
 	@NotNull
+	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
 	public String getTelephoneCode() {
 		return this.telephoneCode;
 	}
