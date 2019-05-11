@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.SafeHtml;
 
 @Entity
 @Access(AccessType.PROPERTY)
@@ -23,7 +24,7 @@ public class Company extends Actor {
 	public void setTotalScore(final Double totalScore) {
 		this.totalScore = totalScore;
 	}
-
+	@SafeHtml
 	@NotBlank
 	@Length(min = 4)
 	public String getNameCompany() {

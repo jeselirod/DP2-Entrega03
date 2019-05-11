@@ -12,7 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
 
 import repositories.CreditCardRepository;
-import domain.Actor;
+import domain.Administrator;
 import domain.Auditor;
 import domain.Company;
 import domain.CreditCard;
@@ -32,6 +32,9 @@ public class CreditCardService {
 	private CreditCardRepository	creditCardRepository;
 	@Autowired
 	private CompanyService			companyService;
+
+	@Autowired
+	private AdministratorService	adminService;
 
 	@Autowired
 	private ProviderService			providerService;
@@ -161,9 +164,9 @@ public class CreditCardService {
 			this.validator.validate(res, binding);
 
 		} else {
-			final Actor actor;
-			actor = this.actorService.getActorByUserAccount(registrationForm.getUserAccount().getId());
-			res = actor.getCreditCard();
+			final Administrator admin;
+			admin = this.adminService.findOne(registrationForm.getId());
+			res = admin.getCreditCard();
 			final CreditCard p = new CreditCard();
 			p.setId(res.getId());
 			p.setVersion(res.getVersion());
