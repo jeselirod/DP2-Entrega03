@@ -14,6 +14,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.SafeHtml;
 import org.hibernate.validator.constraints.URL;
 
 import security.UserAccount;
@@ -35,7 +36,7 @@ public class Actor extends DomainEntity {
 
 
 	//Getters and Setters
-
+	@SafeHtml
 	@NotBlank
 	@NotNull
 	public String getName() {
@@ -45,7 +46,7 @@ public class Actor extends DomainEntity {
 	public void setName(final String name) {
 		this.name = name;
 	}
-
+	@SafeHtml
 	@NotNull
 	@NotBlank
 	@Pattern(regexp = "[A-Z]{2}[0-9]{8}[A-z]$")
@@ -56,7 +57,7 @@ public class Actor extends DomainEntity {
 	public void setVatNumber(final String vatNumber) {
 		this.vatNumber = vatNumber;
 	}
-
+	@SafeHtml
 	@Valid
 	@NotNull
 	@NotBlank
@@ -67,7 +68,7 @@ public class Actor extends DomainEntity {
 	public void setSurnames(final String surnames) {
 		this.surnames = surnames;
 	}
-
+	@SafeHtml
 	@URL
 	public String getPhoto() {
 		return this.photo;
@@ -76,7 +77,7 @@ public class Actor extends DomainEntity {
 	public void setPhoto(final String photo) {
 		this.photo = photo;
 	}
-
+	@SafeHtml
 	@Column(unique = true)
 	@NotNull
 	@NotBlank
@@ -87,7 +88,7 @@ public class Actor extends DomainEntity {
 	public void setEmail(final String email) {
 		this.email = email;
 	}
-
+	@SafeHtml
 	//@Pattern(regexp = "^\\+[1-9][0-9]{0,2}\\ \\([1-9][0-9]{0,2}\\)\\ [0-9]{4,}$|^\\+[1-9][0-9]{0,2}\\ [0-9]{4,}$|^[0-9]{4,}|^\\+[0-9]\\ $|^$|^\\+$")
 	//OPCIONAL
 	public String getPhone() {
@@ -97,7 +98,7 @@ public class Actor extends DomainEntity {
 	public void setPhone(final String phone) {
 		this.phone = phone;
 	}
-
+	@SafeHtml
 	//OPCIONAL
 	public String getAddress() {
 		return this.address;

@@ -10,6 +10,7 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.CreditCardNumber;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.Range;
+import org.hibernate.validator.constraints.SafeHtml;
 
 @Entity
 @Access(AccessType.PROPERTY)
@@ -23,6 +24,7 @@ public class CreditCard extends DomainEntity {
 	private int		CW;
 
 
+	@SafeHtml
 	@NotBlank
 	@NotNull
 	public String getHolderName() {
@@ -31,7 +33,7 @@ public class CreditCard extends DomainEntity {
 	public void setHolderName(final String holderName) {
 		this.holderName = holderName;
 	}
-
+	@SafeHtml
 	@NotBlank
 	@NotNull
 	public String getBrandName() {
@@ -40,6 +42,7 @@ public class CreditCard extends DomainEntity {
 	public void setBrandName(final String brandName) {
 		this.brandName = brandName;
 	}
+	@SafeHtml
 	@CreditCardNumber
 	@NotNull
 	@NotBlank
