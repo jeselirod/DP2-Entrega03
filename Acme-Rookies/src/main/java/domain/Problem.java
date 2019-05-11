@@ -14,6 +14,7 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.Range;
+import org.hibernate.validator.constraints.SafeHtml;
 
 @Entity
 @Access(AccessType.PROPERTY)
@@ -29,6 +30,7 @@ public class Problem extends DomainEntity {
 
 	@NotNull
 	@NotBlank
+	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
 	public String getTitle() {
 		return this.title;
 	}
@@ -39,6 +41,7 @@ public class Problem extends DomainEntity {
 
 	@NotNull
 	@NotBlank
+	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
 	public String getStatement() {
 		return this.statement;
 	}
@@ -47,6 +50,7 @@ public class Problem extends DomainEntity {
 		this.statement = statement;
 	}
 
+	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
 	public String getHint() {
 		return this.hint;
 	}

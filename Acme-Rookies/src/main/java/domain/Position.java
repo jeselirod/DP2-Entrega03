@@ -21,6 +21,7 @@ import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.Range;
+import org.hibernate.validator.constraints.SafeHtml;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
@@ -54,6 +55,7 @@ public class Position extends DomainEntity {
 
 	@NotNull
 	@NotBlank
+	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
 	public String getTitle() {
 		return this.title;
 	}
@@ -64,6 +66,7 @@ public class Position extends DomainEntity {
 
 	@NotNull
 	@NotBlank
+	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
 	public String getDescription() {
 		return this.description;
 	}
@@ -84,6 +87,7 @@ public class Position extends DomainEntity {
 
 	@NotNull
 	@NotBlank
+	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
 	public String getRequiredProfile() {
 		return this.requiredProfile;
 	}
@@ -94,6 +98,7 @@ public class Position extends DomainEntity {
 
 	@NotNull
 	@NotBlank
+	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
 	public String getSkillsRequired() {
 		return this.skillsRequired;
 	}
@@ -104,6 +109,7 @@ public class Position extends DomainEntity {
 
 	@NotNull
 	@NotBlank
+	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
 	public String getTechnologiesRequired() {
 		return this.technologiesRequired;
 	}
@@ -125,6 +131,7 @@ public class Position extends DomainEntity {
 	@Column(unique = true)
 	@NotNull
 	@NotBlank
+	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
 	public String getTicker() {
 		return this.ticker;
 	}

@@ -324,6 +324,13 @@
 			<artifactId>jackson-core-asl</artifactId>
 			<version>1.9.13</version>
 		</dependency>
+		
+		<!-- Dependency SAFE-HTML -->
+		<dependency>
+			<groupId>org.jsoup</groupId>
+			<artifactId>jsoup</artifactId>
+			<version>1.6.1</version>
+		</dependency>
 
 	</dependencies>
 
