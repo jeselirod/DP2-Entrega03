@@ -43,3 +43,23 @@ Don't have audits
 
 </security:authorize>
 
+<security:authorize access="hasRole('ADMIN')">
+
+<display:table pagesize="5" name="companies" id="row"
+requestURI="company/administrator/list.do" >
+
+<display:column property="nameCompany" titleKey="list.nameCompany" />
+<display:column titleKey="list.totalScore" >
+<jstl:if test="${row.totalScore eq null }">
+Don't have audits
+</jstl:if>
+<jstl:if test="${row.totalScore ne null }">
+<jstl:out value="${row.totalScore }"></jstl:out>
+</jstl:if>
+</display:column>
+
+</display:table>
+
+</security:authorize>
+
+
