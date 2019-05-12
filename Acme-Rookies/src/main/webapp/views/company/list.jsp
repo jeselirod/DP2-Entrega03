@@ -60,6 +60,9 @@ Don't have audits
 
 </display:table>
 
+<input type="button" name="Update" value="<spring:message code="company.update" />"
+			onclick="javascript: relativeRedir('company/administrator/update.do');" />
+
 </security:authorize>
 
 
