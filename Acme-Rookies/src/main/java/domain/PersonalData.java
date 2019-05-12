@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.SafeHtml;
 import org.hibernate.validator.constraints.URL;
 
 @Entity
@@ -32,6 +33,7 @@ public class PersonalData extends DomainEntity {
 
 	@NotNull
 	@NotBlank
+	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
 	public String getFullName() {
 		return this.fullName;
 	}
@@ -42,6 +44,7 @@ public class PersonalData extends DomainEntity {
 
 	@NotNull
 	@NotBlank
+	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
 	public String getStatement() {
 		return this.statement;
 	}
@@ -52,6 +55,7 @@ public class PersonalData extends DomainEntity {
 
 	@NotNull
 	@NotBlank
+	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
 	public String getPhoneNumber() {
 		return this.phoneNumber;
 	}
@@ -63,6 +67,7 @@ public class PersonalData extends DomainEntity {
 	@NotNull
 	@URL
 	@NotBlank
+	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
 	public String getGithubProfile() {
 		return this.githubProfile;
 	}
@@ -74,6 +79,7 @@ public class PersonalData extends DomainEntity {
 	@NotNull
 	@URL
 	@NotBlank
+	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
 	public String getLinkedlnProfile() {
 		return this.linkedlnProfile;
 	}

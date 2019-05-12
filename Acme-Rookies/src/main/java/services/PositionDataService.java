@@ -58,8 +58,10 @@ public class PositionDataService {
 		if (positionData.getId() != 0)
 			Assert.isTrue(curricula.getRookie() == a);
 
+		if (positionData.getEndDate() != null)
+			Assert.isTrue(positionData.getStartDate().before(positionData.getEndDate()));
 		Assert.isTrue(user.getAuthorities().iterator().next().getAuthority().equals("ROOKIE"));
-		Assert.isTrue(positionData != null && positionData.getEndDate().after(positionData.getStartDate()));
+		//Assert.isTrue(positionData != null && positionData.getEndDate().after(positionData.getStartDate()));
 		return this.positionDataRepository.save(positionData);
 	}
 

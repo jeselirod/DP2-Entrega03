@@ -58,9 +58,11 @@ public class EducationDataService {
 		final Actor a = this.actorS.getActorByUserAccount(user.getId());
 		if (educationData.getId() != 0)
 			Assert.isTrue(curricula.getRookie() == a);
+		if (educationData.getEndDate() != null)
+			Assert.isTrue(educationData.getStartDate().before(educationData.getEndDate()));
 
 		Assert.isTrue(user.getAuthorities().iterator().next().getAuthority().equals("ROOKIE"));
-		Assert.isTrue(educationData != null && educationData.getEndDate().after(educationData.getStartDate()));
+		//Assert.isTrue(educationData != null && educationData.getEndDate().after(educationData.getStartDate()));
 		return this.educationDataRepository.save(educationData);
 	}
 
