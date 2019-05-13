@@ -23,10 +23,19 @@
 
 	<display:table pagesize="5" name="items" id="row" requestURI="item/provider/list.do">
 
-		<display:column property="name" titleKey="item.name" />
-		<display:column property="description" titleKey="item.description" />
-		<display:column property="link" titleKey="item.link" />
-		<display:column property="pictures" titleKey="item.pictures" />
+		<display:column  titleKey="item.name" >
+	      <jstl:out value="${row.name}"></jstl:out>
+        </display:column>
+		<display:column  titleKey="item.explication" >
+	       <jstl:out value="${ row.explication}"></jstl:out>
+       </display:column>
+		<display:column  titleKey="item.link" >
+	       <jstl:out value="${ row.link}"></jstl:out>
+       </display:column>
+		
+		<display:column  titleKey="item.pictures" >
+	       <jstl:out value="${ row.pictures}"></jstl:out>
+       </display:column>
 		<jstl:if test="${providerId eq null}">
 		<display:column>
 			<a style="color: green;"
@@ -46,10 +55,19 @@
 
 	<display:table pagesize="5" name="items" id="row" requestURI="item/provider/list.do">
 
-		<display:column property="name" titleKey="item.name" />
-		<display:column property="description" titleKey="item.description" />
-		<display:column property="link" titleKey="item.link" />
-		<display:column property="pictures" titleKey="item.pictures" />
+		<display:column  titleKey="item.name" >
+	      <jstl:out value="${row.name}"></jstl:out>
+        </display:column>
+		<display:column  titleKey="item.description" >
+	       <jstl:out value="${ row.description}"></jstl:out>
+       </display:column>
+       <display:column  titleKey="item.link" >
+	       <jstl:out value="${ row.link}"></jstl:out>
+       </display:column>
+		
+		<display:column  titleKey="item.pictures" >
+	       <jstl:out value="${ row.pictures}"></jstl:out>
+       </display:column>
 		<display:column>
 			<a style="color: green;"
 				href="item/provider/show.do?itemId=${row.id}"><spring:message

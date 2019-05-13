@@ -45,9 +45,13 @@ requestURI="application/rookie/list.do" >
 	<spring:message code="application.status.cancel" />
 </jstl:if>
 </display:column>
-<display:column property="curricula.personalData.fullName" titleKey="application.curricula" />
+<display:column  titleKey="application.curricula" >
+   <jstl:out value="${ row.curricula.personalData.fullName}"></jstl:out>
+</display:column>
 <display:column property="moment" titleKey="application.moment" />
-<display:column property="explication" titleKey="application.explication" />
+<display:column  titleKey="application.explication" >
+	<jstl:out value="${ row.explication}"></jstl:out>
+</display:column>
 <display:column property="urlCode" titleKey="application.urlCode" />
 <display:column property="submitMoment" titleKey="application.submitMoment" />
 <display:column >
@@ -91,9 +95,15 @@ requestURI="application/company/list.do" >
 	<spring:message code="application.status.cancel" />
 </jstl:if>
 </display:column>
-<display:column property="curricula.personalData.fullName" titleKey="application.curricula" />
+		
+<display:column  titleKey="application.curricula" >
+   <jstl:out value="${ row.curricula.personalData.fullName}"></jstl:out>
+</display:column>
+
 <display:column property="moment" titleKey="application.moment" />
-<display:column property="explication" titleKey="application.explication" />
+<display:column  titleKey="application.explication" >
+	<jstl:out value="${ row.explication}"></jstl:out>
+</display:column>
 <display:column property="urlCode" titleKey="application.urlCode" />
 <display:column property="submitMoment" titleKey="application.submitMoment" />
 <display:column >
