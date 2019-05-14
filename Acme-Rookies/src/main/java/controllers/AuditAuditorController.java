@@ -22,7 +22,6 @@ import services.AuditorService;
 import services.PositionService;
 import domain.Audit;
 import domain.Auditor;
-import domain.Company;
 import domain.Position;
 
 @Controller
@@ -111,9 +110,7 @@ public class AuditAuditorController extends AbstractController {
 		try {
 			a = this.auditService.reconstruct(audit, binding);
 			if (!binding.hasErrors()) {
-				final Audit saved = this.auditService.save(a);
-				final Company c = this.companyRepository.getCompanyByAudit(saved.getId());
-				this.auditService.updateTotalScoreOfCompany(c.getId());
+				this.auditService.save(a);
 				result = new ModelAndView("redirect:list.do");
 			} else {
 				Collection<Position> positions;
