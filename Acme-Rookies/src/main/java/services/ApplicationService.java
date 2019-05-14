@@ -68,6 +68,15 @@ public class ApplicationService {
 		} else {
 			final Collection<Curricula> c = this.curriculaService.getCurriculasByHacker(this.hackerService.hackerUserAccount(LoginService.getPrincipal().getId()).getId());
 			Assert.isTrue(c.contains(application.getCurricula()));
+			final Curricula copia = new Curricula();
+			copia.setEducationData(application.getCurricula().getEducationData());
+			copia.setIsCopy(1);
+			copia.setMiscellaneousData(application.getCurricula().getMiscellaneousData());
+			copia.setPersonalData(application.getCurricula().getPersonalData());
+			copia.setPositionData(application.getCurricula().getPositionData());
+			copia.setRookie(application.getCurricula().getRookie());
+			final Curricula savedCopia = this.curriculaService.save(copia);
+			application.setCurricula(savedCopia);
 		}
 		savedApplication = this.applicationRepository.save(application);
 		if (application.getId() == 0 && this.problemService.getProblemDraftModeOut().size() > 0) {
