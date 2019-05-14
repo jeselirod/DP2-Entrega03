@@ -14,6 +14,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
 
+import org.hibernate.validator.constraints.SafeHtml;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
@@ -31,6 +32,7 @@ public class Finder extends DomainEntity {
 	private Date					moment;
 
 
+	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
 	public String getKeyWord() {
 		return this.keyWord;
 	}
