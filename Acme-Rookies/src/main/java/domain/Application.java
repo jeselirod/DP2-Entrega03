@@ -11,6 +11,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Range;
+import org.hibernate.validator.constraints.SafeHtml;
 import org.hibernate.validator.constraints.URL;
 
 @Entity
@@ -58,6 +59,7 @@ public class Application extends DomainEntity {
 	}
 
 	@NotNull
+	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
 	public String getExplication() {
 		return this.explication;
 	}
@@ -68,6 +70,7 @@ public class Application extends DomainEntity {
 
 	@NotNull
 	@URL
+	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
 	public String getUrlCode() {
 		return this.urlCode;
 	}
