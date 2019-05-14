@@ -24,7 +24,7 @@ public class Company extends Actor {
 	public void setTotalScore(final Double totalScore) {
 		this.totalScore = totalScore;
 	}
-	@SafeHtml
+	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
 	@NotBlank
 	@Length(min = 4)
 	public String getNameCompany() {

@@ -24,7 +24,7 @@ public class CreditCard extends DomainEntity {
 	private int		CW;
 
 
-	@SafeHtml
+	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
 	@NotBlank
 	@NotNull
 	public String getHolderName() {
@@ -33,7 +33,7 @@ public class CreditCard extends DomainEntity {
 	public void setHolderName(final String holderName) {
 		this.holderName = holderName;
 	}
-	@SafeHtml
+	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
 	@NotBlank
 	@NotNull
 	public String getBrandName() {
@@ -42,7 +42,7 @@ public class CreditCard extends DomainEntity {
 	public void setBrandName(final String brandName) {
 		this.brandName = brandName;
 	}
-	@SafeHtml
+	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
 	@CreditCardNumber
 	@NotNull
 	@NotBlank
