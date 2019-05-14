@@ -27,7 +27,7 @@
 <strong><spring:message code="personalData.githubProfile"/></strong>: <jstl:out value=" ${personalData.githubProfile}"></jstl:out><br>
 <strong><spring:message code="personalData.linkedlnProfile"/></strong>: <jstl:out value=" ${personalData.linkedlnProfile}"></jstl:out><br>
 
-<a href="personalData/rookie/delete.do?personalDataId=${personalData.id}"><spring:message code="delete" /></a>
+<a href="personalData/rookie/delete.do?curriculaId=${curriculaId}&personalDataId=${personalData.id}"><spring:message code="delete" /></a>
 <input type="button" name="create" value="<spring:message code="edit" />"
 			onclick="javascript: relativeRedir('personalData/rookie/edit.do?personalDataId=${personalData.id}');" />
 <acme:cancel url="curricula/rookie/list.do" code="cancel"/>

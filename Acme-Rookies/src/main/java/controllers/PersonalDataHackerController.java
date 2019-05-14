@@ -38,7 +38,7 @@ public class PersonalDataHackerController extends AbstractController {
 			final PersonalData personalData = curricula.getPersonalData();
 			result = new ModelAndView("personalData/show");
 			result.addObject("personalData", personalData);
-			//result.addObject("curriculaId", curriculaId);
+			result.addObject("curriculaId", curriculaId);
 		} catch (final Exception e) {
 			result = new ModelAndView("redirect:../../curricula/rookie/list.do");
 		}
@@ -104,11 +104,13 @@ public class PersonalDataHackerController extends AbstractController {
 	}
 
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
-	public ModelAndView delete(@RequestParam final int personalDataId) {
+	public ModelAndView delete(@RequestParam final int curriculaId, @RequestParam final int personalDataId) {
 		ModelAndView result;
 		try {
 			final PersonalData personalData = this.personalData.findOne(personalDataId);
-			this.personalData.delete(personalData);
+			final Curricula curricula = this.curriculaService.findOne(curriculaId);
+			this.personalData.delete(curricula.getId(), personalData);
+			//this.curriculaService.delete(curricula);
 			result = new ModelAndView("redirect:../../curricula/rookie/list.do");
 		} catch (final Exception e) {
 			result = new ModelAndView("redirect:../../curricula/rookie/list.do");
