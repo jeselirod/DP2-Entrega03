@@ -75,6 +75,7 @@ public class CurriculaService {
 	public Curricula getCurriculaByProfileData(final Integer profileDataId) {
 		return this.curriculaRepository.getCurriculaByPersonalData(profileDataId);
 	}
+
 	public Curricula getCurriculaByPositionData(final Integer positionDataId) {
 		return this.curriculaRepository.getCurriculaByPositionData(positionDataId);
 	}

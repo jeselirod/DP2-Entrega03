@@ -17,7 +17,7 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
 <security:authorize access="hasRole('COMPANY')">
-<spring:message code="application.curricula"/>:<jstl:out value=" ${application.curricula.id}"></jstl:out><br>
+<spring:message code="application.curricula"/>:<jstl:out value=" ${application.curricula.personalData.fullName}"></jstl:out><br>
 <spring:message code="application.moment"/>: <jstl:out value="${application.moment}"></jstl:out><br>
 <spring:message code="application.explication"/>: <jstl:out value="${application.explication}"></jstl:out><br>
 <spring:message code="application.urlCode"/>: <jstl:out value="${application.urlCode}"></jstl:out><br>
@@ -51,7 +51,7 @@
 
 <security:authorize access="hasRole('ROOKIE')">
 
-<spring:message code="application.curricula"/>:<jstl:out value=" ${application.curricula.id}"></jstl:out><br>
+<spring:message code="application.curricula"/>:<jstl:out value=" ${application.curricula.personalData.fullName}"></jstl:out><br>
 <spring:message code="application.moment"/>: <jstl:out value="${application.moment}"></jstl:out><br>
 <spring:message code="application.explication"/>: <jstl:out value="${application.explication}"></jstl:out><br>
 <spring:message code="application.urlCode"/>: <jstl:out value="${application.urlCode}"></jstl:out><br>

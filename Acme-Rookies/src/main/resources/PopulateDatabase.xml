@@ -584,7 +584,7 @@
 		<property name="submitMoment" value="01/03/2019 23:59"/>
 		<property name="status" value="1"/>
 		<property name="rookie" ref="rookie1"/>
-		<property name="curricula" ref="curricula1"/>
+		<property name="curricula" ref="curricula2"/>
 	</bean>
 	
 	<bean id="application2" class="domain.Application">
@@ -594,7 +594,7 @@
 		<property name="submitMoment" value="01/03/2019 23:59"/>
 		<property name="status" value="1"/>
 		<property name="rookie" ref="rookie1"/>
-		<property name="curricula" ref="curricula1"/>
+		<property name="curricula" ref="curricula2"/>
 	</bean>
 	
 	<bean id="application3" class="domain.Application">
@@ -604,7 +604,7 @@
 		<property name="submitMoment" value="01/03/2019 23:59"/>
 		<property name="status" value="1"/>
 		<property name="rookie" ref="rookie1"/>
-		<property name="curricula" ref="curricula1"/>
+		<property name="curricula" ref="curricula2"/>
 	</bean>
 	
 	<bean id="application4" class="domain.Application">
@@ -613,8 +613,8 @@
 		<property name="urlCode" value=""/>
 		<property name="submitMoment" value="02/03/2019 23:59"/>
 		<property name="status" value="0"/>
-		<property name="rookie" ref="rookie2"/>
-		<property name="curricula" ref="curricula1"/>
+		<property name="rookie" ref="rookie1"/>
+		<property name="curricula" ref="curricula2"/>
 	</bean>
 	
 	<bean id="application5" class="domain.Application">
@@ -623,8 +623,8 @@
 		<property name="urlCode" value="https://www.google.es/?gws_rd=ssl"/>
 		<property name="submitMoment" value="01/03/2019 23:59"/>
 		<property name="status" value="1"/>
-		<property name="rookie" ref="rookie2"/>
-		<property name="curricula" ref="curricula1"/>
+		<property name="rookie" ref="rookie1"/>
+		<property name="curricula" ref="curricula2"/>
 	</bean>
 	
 	<!-- PersonalData -->
@@ -657,6 +657,14 @@
 		<property name="linkedlnProfile" value="http://linkedlnProfile4"/>
 	</bean>	
 	
+	<bean id="personalData5" class="domain.PersonalData">
+		<property name="fullName" value="profileData5"/>
+		<property name="statement" value="statement4"/>
+		<property name="phoneNumber" value="+34 123459999"/>
+		<property name="githubProfile" value="http://githubProfile4.com"/>
+		<property name="linkedlnProfile" value="http://linkedlnProfile4"/>
+	</bean>	
+	
 	<!-- MiscellaneousData -->
 	<bean id="miscellaneousData1" class="domain.MiscellaneousData">
 		<property name="text" value="text1"/>
@@ -674,6 +682,10 @@
 		<property name="text" value="text4"/>
 		<property name="attachment" value="attachment4"/>
 	</bean>	
+	<bean id="miscellaneousData5" class="domain.MiscellaneousData">
+		<property name="text" value="text4"/>
+		<property name="attachment" value="attachment5"/>
+	</bean>
 	
 	<!-- PositionData -->
 	<bean id="positionData1" class="domain.PositionData">
@@ -695,6 +707,12 @@
 		<property name="endDate" value="03/03/2019 23:59"/>
 	</bean>
 	<bean id="positionData4" class="domain.PositionData">
+		<property name="title" value="title4"/>
+		<property name="description" value="description4"/>
+		<property name="startDate" value="02/12/2019 23:59"/>
+		<property name="endDate" value="03/12/2019 23:59"/>
+	</bean>
+	<bean id="positionData5" class="domain.PositionData">
 		<property name="title" value="title4"/>
 		<property name="description" value="description4"/>
 		<property name="startDate" value="02/12/2019 23:59"/>
@@ -730,6 +748,13 @@
 		<property name="startDate" value="03/09/2019 23:59"/>
 		<property name="endDate" value="03/20/2019 23:59"/>
 	</bean>		
+	<bean id="educationData5" class="domain.EducationData">
+		<property name="degree" value="degree4"/>
+		<property name="institution" value="institution4"/>
+		<property name="mark" value="6"/>
+		<property name="startDate" value="03/09/2019 23:59"/>
+		<property name="endDate" value="03/20/2019 23:59"/>
+	</bean>
 	
 	<!-- Curricula -->
 	<bean id="curricula1" class="domain.Curricula">
@@ -772,6 +797,27 @@
 			</list>
 		</property>
 		<property name="isCopy" value="0"/>
+	</bean>
+	
+	<bean id="curricula3" class="domain.Curricula">
+		<property name="rookie" ref="rookie1"/>
+		<property name="personalData" ref="personalData5"/>
+		<property name="positionData">
+			<list>
+				<ref bean="positionData5" />
+			</list>
+		</property>
+		<property name="educationData">
+			<list>
+				<ref bean="educationData5" />
+			</list>
+		</property>
+		<property name="miscellaneousData" >
+			<list>
+				<ref bean="miscellaneousData5" />
+			</list>
+		</property>
+		<property name="isCopy" value="1"/>
 	</bean>
 		
 	<!-- CreditCard -->
