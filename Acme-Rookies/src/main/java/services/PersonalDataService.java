@@ -54,10 +54,9 @@ public class PersonalDataService {
 		return this.personalDataRepository.findAll();
 	}
 
-	public PersonalData findOne(final Integer curriculaId, final Integer personalDataId) {
+	public PersonalData findOne(final Integer personalDataId) {
 		final PersonalData profileData = this.personalDataRepository.findOne(personalDataId);
-		//final Curricula curricula = this.curriculaService.getCurriculaByProfileData(profileData.getId());
-		final Curricula curricula = this.curriculaService.findOne(curriculaId);
+		final Curricula curricula = this.curriculaService.getCurriculaByProfileData(profileData.getId());
 		final UserAccount user = LoginService.getPrincipal();
 		final Actor a = this.actorS.getActorByUserAccount(user.getId());
 		Assert.isTrue(user.getAuthorities().iterator().next().getAuthority().equals("ROOKIE"));
@@ -85,8 +84,8 @@ public class PersonalDataService {
 		return personalDataSave;
 	}
 
-	public void delete(final Integer curriculaId, final PersonalData personalData) {
-		final Curricula curriculaD = this.curriculaService.getCurriculaByProfileData2(curriculaId, personalData.getId());
+	public void delete(final PersonalData personalData) {
+		final Curricula curriculaD = this.curriculaService.getCurriculaByProfileData(personalData.getId());
 		this.curriculaService.delete(curriculaD);
 
 	}

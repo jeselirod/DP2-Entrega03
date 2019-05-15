@@ -72,10 +72,6 @@ public class CurriculaService {
 		this.curriculaRepository.delete(curricula);
 	}
 
-	public Curricula getCurriculaByProfileData2(final Integer curriculaId, final Integer profileDataId) {
-		return this.curriculaRepository.getCurriculaByPersonalData2(curriculaId, profileDataId);
-	}
-
 	public Curricula getCurriculaByProfileData(final Integer profileDataId) {
 		return this.curriculaRepository.getCurriculaByPersonalData(profileDataId);
 	}

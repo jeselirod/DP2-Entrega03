@@ -72,6 +72,7 @@ public class ApplicationService {
 			final Collection<Curricula> c = this.curriculaService.getCurriculasByHacker(this.hackerService.hackerUserAccount(LoginService.getPrincipal().getId()).getId());
 			Assert.isTrue(c.contains(application.getCurricula()));
 
+			//Para guardar una copia del curriculum que se le asigan a una application
 			final PersonalData personalData = new PersonalData();
 			personalData.setFullName(application.getCurricula().getPersonalData().getFullName());
 			personalData.setGithubProfile(application.getCurricula().getPersonalData().getGithubProfile());
