@@ -19,6 +19,7 @@ import security.LoginService;
 import security.UserAccount;
 import domain.Application;
 import domain.Curricula;
+import domain.PersonalData;
 import domain.Position;
 import domain.Problem;
 import domain.Rookie;
@@ -37,6 +38,8 @@ public class ApplicationService {
 	private CurriculaService		curriculaService;
 	@Autowired
 	private ProblemService			problemService;
+	@Autowired
+	private PersonalDataService		personalDataService;
 
 
 	public Application create() {
@@ -68,15 +71,27 @@ public class ApplicationService {
 		} else {
 			final Collection<Curricula> c = this.curriculaService.getCurriculasByHacker(this.hackerService.hackerUserAccount(LoginService.getPrincipal().getId()).getId());
 			Assert.isTrue(c.contains(application.getCurricula()));
-			final Curricula copia = new Curricula();
-			copia.setEducationData(application.getCurricula().getEducationData());
-			copia.setIsCopy(1);
-			copia.setMiscellaneousData(application.getCurricula().getMiscellaneousData());
-			copia.setPersonalData(application.getCurricula().getPersonalData());
-			copia.setPositionData(application.getCurricula().getPositionData());
-			copia.setRookie(application.getCurricula().getRookie());
-			final Curricula savedCopia = this.curriculaService.save(copia);
-			application.setCurricula(savedCopia);
+
+			final PersonalData personalData = new PersonalData();
+			personalData.setFullName(application.getCurricula().getPersonalData().getFullName());
+			personalData.setGithubProfile(application.getCurricula().getPersonalData().getGithubProfile());
+			personalData.setLinkedlnProfile(application.getCurricula().getPersonalData().getLinkedlnProfile());
+			personalData.setPhoneNumber(application.getCurricula().getPersonalData().getPhoneNumber());
+			personalData.setStatement(application.getCurricula().getPersonalData().getStatement());
+
+			final PersonalData pdSave = this.personalDataService.save(personalData);
+			final Curricula curricula = this.curriculaService.getCurriculaByProfileData(pdSave.getId());
+			curricula.setIsCopy(1);
+			//			final Curricula copia = new Curricula();
+			//			copia.setEducationData(application.getCurricula().getEducationData());
+			//			copia.setIsCopy(1);
+			//			copia.setMiscellaneousData(application.getCurricula().getMiscellaneousData());
+			//			copia.setPersonalData(pdSave);
+			//			copia.setPositionData(application.getCurricula().getPositionData());
+			//			copia.setRookie(application.getCurricula().getRookie());
+			//			final Curricula savedCopia = this.curriculaService.save(copia);
+			//savedCopia.setPersonalData(pdSave);
+			application.setCurricula(curricula);
 		}
 		savedApplication = this.applicationRepository.save(application);
 		if (application.getId() == 0 && this.problemService.getProblemDraftModeOut().size() > 0) {

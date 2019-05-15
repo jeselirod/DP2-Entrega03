@@ -29,7 +29,7 @@
 
 <a href="personalData/rookie/delete.do?curriculaId=${curriculaId}&personalDataId=${personalData.id}"><spring:message code="delete" /></a>
 <input type="button" name="create" value="<spring:message code="edit" />"
-			onclick="javascript: relativeRedir('personalData/rookie/edit.do?personalDataId=${personalData.id}');" />
+			onclick="javascript: relativeRedir('personalData/rookie/edit.do?personalDataId=${personalData.id}&curriculaId=${curriculaId}');" />
 <acme:cancel url="curricula/rookie/list.do" code="cancel"/>
 
 </security:authorize>

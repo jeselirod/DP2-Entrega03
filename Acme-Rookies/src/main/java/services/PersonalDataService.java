@@ -54,9 +54,10 @@ public class PersonalDataService {
 		return this.personalDataRepository.findAll();
 	}
 
-	public PersonalData findOne(final Integer personalDataId) {
+	public PersonalData findOne(final Integer curriculaId, final Integer personalDataId) {
 		final PersonalData profileData = this.personalDataRepository.findOne(personalDataId);
-		final Curricula curricula = this.curriculaService.getCurriculaByProfileData(profileData.getId());
+		//final Curricula curricula = this.curriculaService.getCurriculaByProfileData(profileData.getId());
+		final Curricula curricula = this.curriculaService.findOne(curriculaId);
 		final UserAccount user = LoginService.getPrincipal();
 		final Actor a = this.actorS.getActorByUserAccount(user.getId());
 		Assert.isTrue(user.getAuthorities().iterator().next().getAuthority().equals("ROOKIE"));
