@@ -26,8 +26,8 @@
 		<display:column  titleKey="item.name" >
 	      <jstl:out value="${row.name}"></jstl:out>
         </display:column>
-		<display:column  titleKey="item.explication" >
-	       <jstl:out value="${ row.explication}"></jstl:out>
+		<display:column  titleKey="item.description" >
+	       <jstl:out value="${ row.description}"></jstl:out>
        </display:column>
 		<display:column  titleKey="item.link" >
 	       <jstl:out value="${ row.link}"></jstl:out>
