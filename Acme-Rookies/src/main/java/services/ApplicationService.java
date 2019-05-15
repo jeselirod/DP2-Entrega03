@@ -3,6 +3,7 @@ package services;
 
 import java.util.Collection;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 
 import javax.validation.ValidationException;
@@ -15,12 +16,16 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
 
 import repositories.ApplicationRepository;
+import repositories.PersonalDataRepository;
 import security.LoginService;
 import security.UserAccount;
 import domain.Application;
 import domain.Curricula;
+import domain.EducationData;
+import domain.MiscellaneousData;
 import domain.PersonalData;
 import domain.Position;
+import domain.PositionData;
 import domain.Problem;
 import domain.Rookie;
 
@@ -29,17 +34,23 @@ import domain.Rookie;
 public class ApplicationService {
 
 	@Autowired
-	private ApplicationRepository	applicationRepository;
+	private ApplicationRepository		applicationRepository;
 	@Autowired
-	private Validator				validator;
+	private Validator					validator;
 	@Autowired
-	private HackerService			hackerService;
+	private HackerService				hackerService;
 	@Autowired
-	private CurriculaService		curriculaService;
+	private CurriculaService			curriculaService;
 	@Autowired
-	private ProblemService			problemService;
+	private ProblemService				problemService;
 	@Autowired
-	private PersonalDataService		personalDataService;
+	private EducationDataService		educationDataService;
+	@Autowired
+	private MiscellaneousDataService	miscellaneousDataService;
+	@Autowired
+	private PersonalDataRepository		personalDataRepository;
+	@Autowired
+	private PositionDataService			positionDataService;
 
 
 	public Application create() {
@@ -71,38 +82,24 @@ public class ApplicationService {
 		} else {
 			final Collection<Curricula> c = this.curriculaService.getCurriculasByHacker(this.hackerService.hackerUserAccount(LoginService.getPrincipal().getId()).getId());
 			Assert.isTrue(c.contains(application.getCurricula()));
-
-			//Para guardar una copia del curriculum que se le asigan a una application
-			final PersonalData personalData = new PersonalData();
-			personalData.setFullName(application.getCurricula().getPersonalData().getFullName());
-			personalData.setGithubProfile(application.getCurricula().getPersonalData().getGithubProfile());
-			personalData.setLinkedlnProfile(application.getCurricula().getPersonalData().getLinkedlnProfile());
-			personalData.setPhoneNumber(application.getCurricula().getPersonalData().getPhoneNumber());
-			personalData.setStatement(application.getCurricula().getPersonalData().getStatement());
-
-			final PersonalData pdSave = this.personalDataService.save(personalData);
-			final Curricula curricula = this.curriculaService.getCurriculaByProfileData(pdSave.getId());
-			curricula.setIsCopy(1);
-			//			final Curricula copia = new Curricula();
-			//			copia.setEducationData(application.getCurricula().getEducationData());
-			//			copia.setIsCopy(1);
-			//			copia.setMiscellaneousData(application.getCurricula().getMiscellaneousData());
-			//			copia.setPersonalData(pdSave);
-			//			copia.setPositionData(application.getCurricula().getPositionData());
-			//			copia.setRookie(application.getCurricula().getRookie());
-			//			final Curricula savedCopia = this.curriculaService.save(copia);
-			//savedCopia.setPersonalData(pdSave);
-			application.setCurricula(curricula);
 		}
-		savedApplication = this.applicationRepository.save(application);
+
 		if (application.getId() == 0 && this.problemService.getProblemDraftModeOut().size() > 0) {
 			final Problem p = this.problemService.getAleatoryProblem(position);
+			final Curricula copia = this.clonarCurricula(application);
+			final Curricula savedCopia = this.curriculaService.save(copia);
+			application.setCurricula(savedCopia);
+			savedApplication = this.applicationRepository.save(application);
 			p.getApplications().add(savedApplication);
 			this.problemService.saveApplication(p);
-		} else if (application.getId() != 0)
+
+		} else if (application.getId() != 0) {
 			Assert.isTrue(true);
-		else
+			savedApplication = this.applicationRepository.save(application);
+		} else {
 			Assert.isTrue(false);
+			savedApplication = this.applicationRepository.save(application);
+		}
 		return savedApplication;
 	}
 	//RECONSTRUCT
@@ -169,5 +166,63 @@ public class ApplicationService {
 
 	public Application saveCompany(final Application a) {
 		return this.applicationRepository.save(a);
+	}
+
+	public Curricula clonarCurricula(final Application application) {
+		final Curricula curricula = new Curricula();
+		final Collection<EducationData> es = new HashSet<EducationData>();
+		for (final EducationData e : application.getCurricula().getEducationData()) {
+			final EducationData newE = new EducationData();
+			newE.setDegree(e.getDegree());
+			newE.setEndDate(e.getEndDate());
+			newE.setInstitution(e.getInstitution());
+			newE.setMark(e.getMark());
+			newE.setStartDate(e.getStartDate());
+			EducationData savedE = new EducationData();
+			savedE = this.educationDataService.save(newE);
+			es.add(savedE);
+
+		}
+		final Collection<MiscellaneousData> ms = new HashSet<MiscellaneousData>();
+		for (final MiscellaneousData m : application.getCurricula().getMiscellaneousData()) {
+			final MiscellaneousData newM = new MiscellaneousData();
+			newM.setAttachment(m.getAttachment());
+			newM.setText(m.getText());
+			MiscellaneousData savedM = new MiscellaneousData();
+			savedM = this.miscellaneousDataService.save(newM);
+			ms.add(savedM);
+
+		}
+
+		final Collection<PositionData> ps = new HashSet<PositionData>();
+		for (final PositionData p : application.getCurricula().getPositionData()) {
+			final PositionData newP = new PositionData();
+			newP.setDescription(p.getDescription());
+			newP.setEndDate(p.getEndDate());
+			newP.setStartDate(p.getStartDate());
+			newP.setTitle(p.getTitle());
+
+			PositionData savedP = new PositionData();
+			savedP = this.positionDataService.save(newP);
+			ps.add(savedP);
+
+		}
+
+		final PersonalData pd = new PersonalData();
+		pd.setFullName(application.getCurricula().getPersonalData().getFullName());
+		pd.setGithubProfile(application.getCurricula().getPersonalData().getGithubProfile());
+		pd.setLinkedlnProfile(application.getCurricula().getPersonalData().getLinkedlnProfile());
+		pd.setPhoneNumber(application.getCurricula().getPersonalData().getPhoneNumber());
+		pd.setStatement(application.getCurricula().getPersonalData().getStatement());
+		final PersonalData savedpd = this.personalDataRepository.save(pd);
+
+		curricula.setPersonalData(savedpd);
+		curricula.setIsCopy(1);
+		curricula.setRookie(application.getCurricula().getRookie());
+		curricula.setEducationData(es);
+		curricula.setMiscellaneousData(ms);
+		curricula.setPositionData(ps);
+
+		return curricula;
 	}
 }
