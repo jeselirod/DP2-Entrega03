@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.PositionService;
+import domain.Actor;
 import domain.Position;
 import forms.PositionFinderForm;
 
@@ -85,5 +86,23 @@ public class PositionController extends AbstractController {
 		result.addObject("positions", positions);
 		result.addObject("finder", finder);
 		return result;
+	}
+
+	@RequestMapping(value = "/company", method = RequestMethod.GET)
+	public ModelAndView getCompany(@RequestParam final int positionId) {
+		ModelAndView result;
+		try {
+			final Position position;
+
+			position = this.positionService.findOne(positionId);
+			Assert.notNull(position);
+			final Actor c = position.getCompany();
+			result = new ModelAndView("profile/action-1");
+			result.addObject("actor", c);
+		} catch (final Exception e) {
+			result = new ModelAndView("redirect:../");
+		}
+		return result;
+
 	}
 }

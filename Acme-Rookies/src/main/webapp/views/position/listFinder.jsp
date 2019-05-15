@@ -43,7 +43,9 @@ requestURI="position/listAll.do" >
 <display:column property="title" titleKey="position.title" />
 <display:column property="deadLine" titleKey="position.deadline" />
 <display:column property="salary" titleKey="position.salary" />
-
+	<display:column>
+		<a href="position/company.do?positionId=${row.id}"><spring:message code="position.company" /></a>
+	</display:column>
 </display:table>
 
 </security:authorize>
