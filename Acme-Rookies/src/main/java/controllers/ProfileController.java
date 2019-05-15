@@ -462,8 +462,21 @@ public class ProfileController extends AbstractController {
 	@RequestMapping(value = "/edit-auditor", method = RequestMethod.POST, params = "save")
 	public ModelAndView editAuditor(@ModelAttribute("actor") final RegistrationFormAuditor registrationForm, final BindingResult binding) {
 		ModelAndView result;
-		final Collection<Position> positions = registrationForm.getPositions();
+
+		Collection<Position> allPositions;
+		Collection<Position> positionAssing;
+		Collection<Position> positionsMe;
+
+		allPositions = this.positionService.findAll();
+		positionAssing = this.positionService.getAllPositionAssing();
+		final boolean eliminar = allPositions.removeAll(positionAssing);
+
+		final Auditor auditor2 = this.auditorService.findOne(this.auditorService.auditorUserAccount(LoginService.getPrincipal().getId()).getId());
+		positionsMe = auditor2.getPositions();
+		final boolean añadir = allPositions.addAll(positionsMe);
+
 		try {
+
 			final CreditCard creditCard = this.creditCardService.reconstruct(registrationForm, binding);
 			registrationForm.setCreditCard(creditCard);
 			final Auditor auditor = this.auditorService.reconstruct(registrationForm, binding);
@@ -477,6 +490,7 @@ public class ProfileController extends AbstractController {
 			} else {
 				result = new ModelAndView("profile/editAuditor");
 				result.addObject("actor", registrationForm);
+				result.addObject("positions", allPositions);
 
 			}
 		} catch (final Exception e) {
@@ -484,7 +498,7 @@ public class ProfileController extends AbstractController {
 			result = new ModelAndView("profile/editAuditor");
 			result.addObject("actor", registrationForm);
 			result.addObject("exception", e);
-			result.addObject("positions", positions);
+			result.addObject("positions", allPositions);
 
 		}
 		return result;

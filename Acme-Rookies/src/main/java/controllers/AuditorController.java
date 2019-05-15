@@ -26,7 +26,9 @@ import services.CreditCardService;
 import services.CustomizableSystemService;
 import services.PositionService;
 import domain.Auditor;
+import domain.CreditCard;
 import domain.Position;
+import forms.RegistrationFormAuditor;
 
 @Controller
 @RequestMapping("/auditor")
@@ -53,9 +55,9 @@ public class AuditorController extends AbstractController {
 	@RequestMapping(value = "/assing-position", method = RequestMethod.GET)
 	public ModelAndView editAuditor() {
 		ModelAndView result;
-
+		final RegistrationFormAuditor registrationForm = new RegistrationFormAuditor();
 		Auditor auditor;
-
+		final CreditCard creditCard;
 		Collection<Position> allPositions;
 		Collection<Position> positionAssing;
 		Collection<Position> positionsMe;
@@ -70,8 +72,8 @@ public class AuditorController extends AbstractController {
 			final boolean añadir = allPositions.addAll(positionsMe);
 
 			result = new ModelAndView("auditor/assingPositions");
-			result.addObject("positions", allPositions);
 			result.addObject("auditor", auditor);
+			result.addObject("positions", allPositions);
 
 		} catch (final Exception e) {
 			result = new ModelAndView("redirect:../../");
@@ -81,24 +83,40 @@ public class AuditorController extends AbstractController {
 	}
 
 	@RequestMapping(value = "/assing-position", method = RequestMethod.POST, params = "save")
-	public ModelAndView editAuditor(@ModelAttribute("positions") final Collection<Position> positions, final BindingResult binding) {
+	public ModelAndView editAuditor(@ModelAttribute("auditor") final Auditor a, final BindingResult binding) {
 		ModelAndView result;
+		Auditor auditor = null;
 
+		Collection<Position> allPositions;
+		Collection<Position> positionAssing;
+		Collection<Position> positionsMe;
+
+		allPositions = this.positionService.findAll();
+		positionAssing = this.positionService.getAllPositionAssing();
+		final boolean eliminar = allPositions.removeAll(positionAssing);
+
+		auditor = this.auditorService.findOne(this.auditorService.auditorUserAccount(LoginService.getPrincipal().getId()).getId());
+		positionsMe = auditor.getPositions();
+		final boolean añadir = allPositions.addAll(positionsMe);
 		try {
-			final Auditor auditor = this.auditorService.findOne(this.auditorService.auditorUserAccount(LoginService.getPrincipal().getId()).getId());
-			if (!auditor.getPositions().equals(positions)) {
-				auditor.getPositions().clear();
-				auditor.setPositions(positions);
-				this.auditorService.save(auditor);
+			final Auditor auditor2 = this.auditorService.reconstruct(a, binding);
+			if (!binding.hasErrors()) {
+				this.auditorService.save(auditor2);
+				result = new ModelAndView("redirect:../");
+
+			} else {
+				result = new ModelAndView("auditor/assingPositions");
+				result.addObject("auditor", a);
+				result.addObject("positions", allPositions);
 			}
-			result = new ModelAndView("redirect:../");
 
 		} catch (final Exception e) {
 
-			result = new ModelAndView("auditor/assing-position");
+			result = new ModelAndView("auditor/assingPositions");
 
 			result.addObject("exception", e);
-			result.addObject("positions", positions);
+			result.addObject("auditor", a);
+			result.addObject("positions", allPositions);
 
 		}
 		return result;

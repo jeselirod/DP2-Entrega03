@@ -22,8 +22,12 @@
 
 <form:form action="auditor/assing-position.do" modelAttribute="auditor">
 
-
-	<acme:multipleSelect items="${positions}" itemLabel="title" code="auditor.positions" path="positions"/>
+	<!-- <select>
+	<jstl:forEach var= "position" items="${positions}">
+	<option><jstl:out value="${position.title }"/> </option>
+	</jstl:forEach>
+	</select>-->
+ 	<acme:multipleSelect items="${positions}" itemLabel="title" code="auditor.positions" path="positions"/>
 	
 	<acme:submit name="save" code="auditor.save"/>
 	<acme:cancel url="welcome/index.do" code="auditor.cancel"/>

@@ -8,6 +8,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.transaction.Transactional;
+import javax.validation.ValidationException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
@@ -230,6 +231,35 @@ public class AuditorService {
 
 		}
 		return res;
+
+	}
+
+	public Auditor reconstruct(final Auditor auditor, final BindingResult binding) {
+		final Auditor res;
+
+		res = this.auditorRepository.findOne(this.auditorRepository.auditorUserAccount(LoginService.getPrincipal().getId()).getId());
+		final Auditor p = new Auditor();
+		p.setId(res.getId());
+		p.setVersion(res.getVersion());
+		p.setAddress(res.getAddress());
+		p.setEmail(res.getEmail());
+		p.setVatNumber(res.getVatNumber());
+		p.setName(res.getName());
+		p.setPhone(res.getPhone());
+		p.setPhoto(res.getPhoto());
+		p.setSurnames(res.getSurnames());
+		p.setCreditCard(res.getCreditCard());
+		p.setPositions(auditor.getPositions());
+		p.setUserAccount(res.getUserAccount());
+
+		//			if (res.getId() != 0 && copy.getDraftMode() == 0)
+		//				if (!(this.getProblemsWithoutDraftMode(copy.getId()) >= 2))
+		//					binding.rejectValue("title", "ProblemSize");
+
+		this.validator.validate(p, binding);
+		if (binding.hasErrors())
+			throw new ValidationException();
+		return p;
 
 	}
 
