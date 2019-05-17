@@ -83,9 +83,10 @@ public class PersonalDataService {
 		}
 		return personalDataSave;
 	}
+
 	public void delete(final PersonalData personalData) {
-		final Curricula curricula = this.curriculaService.getCurriculaByProfileData(personalData.getId());
-		this.curriculaService.delete(curricula);
+		final Curricula curriculaD = this.curriculaService.getCurriculaByProfileData(personalData.getId());
+		this.curriculaService.delete(curriculaD);
 
 	}
 

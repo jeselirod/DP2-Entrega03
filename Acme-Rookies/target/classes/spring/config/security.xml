@@ -56,6 +56,8 @@
 		<security:intercept-url pattern="/profile/edit-rookie.do" access="hasRole('ROOKIE')" />
 		<security:intercept-url pattern="/profile/edit-provider.do" access="hasRole('PROVIDER')" />
 		<security:intercept-url pattern="/profile/edit-auditor.do" access="hasRole('AUDITOR')" />
+		<security:intercept-url pattern="/auditor/assing-position.do" access="hasRole('AUDITOR')" />
+		<security:intercept-url pattern="/auditor/assingPositions.do" access="hasRole('AUDITOR')" />
 		<security:intercept-url pattern="/export/json.do" access="isAuthenticated()" /> 
 		
 		<security:intercept-url pattern="/notification/actor/list.do" access="isAuthenticated()" />
@@ -117,6 +119,7 @@
 		<security:intercept-url pattern="/company/list.do" access="isAnonymous()" />
 		<security:intercept-url pattern="/position/listAll.do" access="isAnonymous()" />
 		<security:intercept-url pattern="/position/search.do" access="isAnonymous()" />
+		 <security:intercept-url pattern="/position/company.do" access="isAnonymous()" />
 		 
 
 	

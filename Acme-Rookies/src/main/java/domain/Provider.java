@@ -16,7 +16,7 @@ public class Provider extends Actor {
 	private String	make;
 
 
-	@SafeHtml
+	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
 	@NotBlank
 	@NotNull
 	public String getMake() {

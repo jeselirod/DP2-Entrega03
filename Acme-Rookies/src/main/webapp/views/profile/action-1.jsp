@@ -129,4 +129,23 @@
 </script>
 </security:authorize>
 
+<security:authorize access="isAnonymous()">
 
+<img src="<jstl:out value='${actor.photo }'/> ">  <br/>
+<br/>
+<fieldset>
+	<legend><spring:message code="profile.personalDatas" /></legend>	
+<b><spring:message code="profile.action.2.name" /> </b> <jstl:out value="${actor.name }"/> <br/>
+<b><spring:message code="profile.action.2.surname" /></b> <jstl:out value="${actor.surnames}"/> <br/>
+<b><spring:message code="profile.action.2.vatNumber" /></b> <jstl:out value="${actor.vatNumber }"/> <br/>
+<b><spring:message code="profile.action.2.email" /></b> <jstl:out value="${actor.email }"/> <br/>
+<b><spring:message code="profile.action.2.phone" /></b> <jstl:out value="${actor.phone }"/> <br/>
+<b><spring:message code="profile.action.2.address" /></b> <jstl:out value="${actor.address }"/> <br/>
+
+<b><spring:message code="profile.company.nameCompany" /></b> <jstl:out value="${actor.nameCompany }"/> <br/>
+<b><spring:message code="profile.company.Score" /></b> <jstl:out value="${actor.totalScore }"/> <br/>
+</fieldset>
+<br/>
+<input type="button" name="cancel" value="<spring:message code="notification.cancel" />"
+			onclick="javascript: relativeRedir('position/listAll.do');" />
+</security:authorize>
