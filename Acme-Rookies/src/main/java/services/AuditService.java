@@ -82,9 +82,7 @@ public class AuditService {
 		Assert.isTrue(userAccount.getAuthorities().iterator().next().getAuthority().equals("AUDITOR"));
 		Assert.isTrue(audit.getAuditor().equals(this.auditorRepository.auditorUserAccount(userAccount.getId())));
 		Assert.isTrue(audit.getDraftMode() == 1);
-		final Company c = this.companyRepository.getCompanyByAudit(audit.getId());
 		this.auditRepository.delete(audit);
-		this.updateTotalScoreOfCompany(c.getId());
 	}
 
 	public Collection<Audit> getAuditsByAuditor(final Integer auditorId) {
