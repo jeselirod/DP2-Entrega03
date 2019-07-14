@@ -23,7 +23,7 @@ public interface AuditRepository extends JpaRepository<Audit, Integer> {
 	@Query("select count(a) from Audit a where a.position.company.id = ?1")
 	public Integer getNumerosAuditsByCompany(Integer id);
 
-	@Query("select 1.0*(sum(a.score)/(10*count(a))) from Audit a where a.position.company.id = ?1")
+	@Query("select 1.0*(sum(a.score)/(10*count(a))) from Audit a where a.position.company.id = ?1 and a.draftMode = 0")
 	public Double getTotalScoreOfCompany(Integer id);
 	//---Cristian---
 
