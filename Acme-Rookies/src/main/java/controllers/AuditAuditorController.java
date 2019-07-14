@@ -93,6 +93,7 @@ public class AuditAuditorController extends AbstractController {
 			audit = this.auditService.findOne(auditId);
 			positions = this.positionService.getPositionsOutDraftMode();
 			Assert.notNull(audit);
+			Assert.isTrue(audit.getDraftMode() == 1);
 			result = new ModelAndView("audit/edit");
 			result.addObject("audit", audit);
 			result.addObject("positions", positions);
